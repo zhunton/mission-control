@@ -3,14 +3,18 @@
 import { useState } from "react";
 import { Search, BookOpen, Lightbulb, CheckCircle, MessageSquare } from "lucide-react";
 
+interface Discussion {
+  title: string;
+  thingsToRemember: string[];
+  recommendations: string[];
+  decisions: string[];
+}
+
 interface MemoryEntry {
   id: string;
   date: string;
   title: string;
-  discussions: string[];
-  remember: string[];
-  recommendations: string[];
-  decisions: string[];
+  discussions: Discussion[];
 }
 
 const ENTRIES: MemoryEntry[] = [
@@ -19,28 +23,52 @@ const ENTRIES: MemoryEntry[] = [
     date: "March 28, 2026",
     title: "Mission Control MVP Scoping",
     discussions: [
-      "Discussed the six core pages for Mission Control: Tasks, Calendar, Memory, Documents, People, Office.",
-      "Explored the idea of a pixelated 2D office where agents have visible presence and move between rooms.",
-      "Agreed that the first version should be entirely hardcoded with placeholder data — no backend or auth needed.",
-      "Talked about the 'Memory' page serving as a human-readable log of conversations, similar to a shared journal between Zach and Wally.",
-    ],
-    remember: [
-      "Dark mode only — no light mode toggle needed. Design aesthetic is modern, minimal, dark.",
-      "Accent color is #3b82f6 (blue). Background is #0a0a0a.",
-      "Wally is the Director of Agents — all sub-agents report to Wally, who reports to Zach.",
-      "The Office page should use emoji-based pixel characters with CSS animations, not actual pixel art assets.",
-    ],
-    recommendations: [
-      "Consider adding real-time agent status in the Office page once backend is connected.",
-      "Memory entries should eventually be auto-generated from actual conversations — consider a structured format early.",
-      "Tasks could eventually integrate with Claude API to auto-create tasks from conversation summaries.",
-      "The People/Org Chart should expand as new agents are spun up — design it to be data-driven.",
-    ],
-    decisions: [
-      "Next.js 15 App Router with TypeScript and Tailwind CSS chosen as tech stack.",
-      "lucide-react for icons, date-fns for date utilities.",
-      "Left sidebar navigation with icon + label for all six sections.",
-      "No authentication for MVP — single-user app for Zach.",
+      {
+        title: "Core Pages, Navigation & Visual Design",
+        thingsToRemember: [
+          "Dark mode only — no light mode toggle needed. Design aesthetic is modern, minimal, dark.",
+          "Accent color is #3b82f6 (blue). Background is #0a0a0a.",
+          "Six core pages for MVP: Tasks, Calendar, Memory, Documents, People, Office.",
+          "Left sidebar navigation with icon + label for all six sections.",
+        ],
+        recommendations: [
+          "Tasks could eventually integrate with Claude API to auto-create tasks from conversation summaries.",
+          "The People/Org Chart should expand as new agents are spun up — design it to be data-driven.",
+        ],
+        decisions: [
+          "Next.js 15 App Router with TypeScript and Tailwind CSS chosen as tech stack.",
+          "lucide-react for icons, date-fns for date utilities.",
+          "No authentication for MVP — single-user app for Zach.",
+        ],
+      },
+      {
+        title: "Memory Page as Shared Journal",
+        thingsToRemember: [
+          "The Memory page serves as a human-readable log of conversations — a shared journal between Zach and Wally.",
+          "Wally is the Director of Agents — all sub-agents report to Wally, who reports to Zach.",
+        ],
+        recommendations: [
+          "Memory entries should eventually be auto-generated from actual conversations — consider a structured format early.",
+          "Consider adding real-time agent status in the Office page once backend is connected.",
+        ],
+        decisions: [
+          "First version is entirely hardcoded with placeholder data — no backend or auth needed.",
+        ],
+      },
+      {
+        title: "Office Page & Agent Presence",
+        thingsToRemember: [
+          "The Office page should use emoji-based pixel characters with CSS animations, not actual pixel art assets.",
+          "Agents should have a visible sense of 'place' — their location conveys their status.",
+        ],
+        recommendations: [
+          "Once backend is live, Office page should reflect real agent state (Idle → Break Room, Working → Workstation, In Meeting → Meeting Table).",
+          "Consider ambient animations (like typing indicators) to make the office feel alive.",
+        ],
+        decisions: [
+          "Office page is in MVP scope but functionality is deferred — visual scaffolding only for now.",
+        ],
+      },
     ],
   },
   {
@@ -48,26 +76,37 @@ const ENTRIES: MemoryEntry[] = [
     date: "March 25, 2026",
     title: "Agent Architecture & Role Definitions",
     discussions: [
-      "Defined Wally's role: Director of Agents — responsible for task delegation, memory management, and coordination.",
-      "Discussed the concept of specialized sub-agents: Research Agent, Dev Agent, Writing Agent.",
-      "Explored how sub-agents should communicate through Wally rather than directly with Zach in most cases.",
-      "Talked about agent state visibility — Wally should always know what each agent is doing.",
-    ],
-    remember: [
-      "Wally's full title is 'Director of Agents' — not just an AI assistant.",
-      "Zach is the Owner — final decision-maker on all strategic direction.",
-      "Sub-agents are specialized: Research for information gathering, Dev for code, Writing for content.",
-      "Agents should have status: Idle (Break Room), Working (Workstation), In Meeting (Meeting Table).",
-    ],
-    recommendations: [
-      "Build a routing layer so Zach can address any agent but Wally coordinates by default.",
-      "Consider an agent 'briefing' system where sub-agents get context from Wally before starting tasks.",
-      "Status indicators on the sidebar and Office page should stay in sync.",
-    ],
-    decisions: [
-      "Wally is the primary interface for Zach — all conversations start with Wally.",
-      "Sub-agents are invoked by Wally as needed and report back through Wally.",
-      "Org chart in People page reflects the hierarchy: Zach → Wally → Sub-agents.",
+      {
+        title: "Wally's Role & Chain of Command",
+        thingsToRemember: [
+          "Wally's full title is 'Director of Agents' — not just an AI assistant.",
+          "Zach is the Owner — final decision-maker on all strategic direction.",
+          "Sub-agents are specialized: Research for information gathering, Dev for code, Writing for content.",
+        ],
+        recommendations: [
+          "Build a routing layer so Zach can address any agent but Wally coordinates by default.",
+          "Consider an agent 'briefing' system where sub-agents get context from Wally before starting tasks.",
+        ],
+        decisions: [
+          "Wally is the primary interface for Zach — all conversations start with Wally.",
+          "Sub-agents are invoked by Wally as needed and report back through Wally.",
+          "Org chart in People page reflects the hierarchy: Zach → Wally → Sub-agents.",
+        ],
+      },
+      {
+        title: "Agent State Visibility & Status System",
+        thingsToRemember: [
+          "Agents should have status: Idle (Break Room), Working (Workstation), In Meeting (Meeting Table).",
+          "Wally should always know what each agent is doing — state is never opaque.",
+        ],
+        recommendations: [
+          "Status indicators on the sidebar and Office page should stay in sync.",
+          "Explore a notification model where Wally surfaces completed sub-agent work proactively.",
+        ],
+        decisions: [
+          "Sub-agents report back through Wally rather than directly to Zach in most cases.",
+        ],
+      },
     ],
   },
   {
@@ -75,48 +114,57 @@ const ENTRIES: MemoryEntry[] = [
     date: "March 20, 2026",
     title: "Project Genesis — Vision & Goals",
     discussions: [
-      "Introduced the concept of Mission Control: a personal command center for Zach's work with AI.",
-      "Discussed frustration with fragmented tools — tasks in one place, notes in another, conversations scattered.",
-      "Explored the vision: a single interface where Zach and Wally work together seamlessly.",
-      "Talked about the Office concept as a way to give agents a sense of 'place' and presence.",
-    ],
-    remember: [
-      "Mission Control is not just a task manager — it's a collaboration hub between human and AI.",
-      "The goal is to make working with AI feel natural, organized, and persistent.",
-      "Everything should feel like it belongs to Zach — personalized, not generic.",
-      "Wally should feel like a real collaborator, not just a chatbot.",
-    ],
-    recommendations: [
-      "Start with the visual shell and navigation first — get the 'feel' right before adding functionality.",
-      "The Memory page is critical for continuity — prioritize getting the format right.",
-      "Don't over-engineer early. Get to a working MVP fast, then iterate.",
-    ],
-    decisions: [
-      "Project name: Mission Control.",
-      "Wally is the AI assistant and Director of Agents.",
-      "Six core sections for MVP: Tasks, Calendar, Memory, Documents, People, Office.",
-      "Prioritize shipping over perfection in the first iteration.",
+      {
+        title: "Problem Statement & Core Vision",
+        thingsToRemember: [
+          "Mission Control is not just a task manager — it's a collaboration hub between human and AI.",
+          "The frustration driving this: tasks in one place, notes in another, conversations scattered.",
+          "The goal is to make working with AI feel natural, organized, and persistent.",
+        ],
+        recommendations: [
+          "Start with the visual shell and navigation first — get the 'feel' right before adding functionality.",
+          "The Memory page is critical for continuity — prioritize getting the format right.",
+        ],
+        decisions: [
+          "Project name: Mission Control.",
+          "Wally is the AI assistant and Director of Agents.",
+          "Six core sections for MVP: Tasks, Calendar, Memory, Documents, People, Office.",
+        ],
+      },
+      {
+        title: "Design Principles & Development Philosophy",
+        thingsToRemember: [
+          "Everything should feel like it belongs to Zach — personalized, not generic.",
+          "Wally should feel like a real collaborator, not just a chatbot.",
+          "The Office concept gives agents a sense of 'place' and presence — that's intentional.",
+        ],
+        recommendations: [
+          "Don't over-engineer early. Get to a working MVP fast, then iterate.",
+          "Resist adding features until the core loop (talk → task → memory) is solid.",
+        ],
+        decisions: [
+          "Prioritize shipping over perfection in the first iteration.",
+          "Design decisions should always serve Zach's workflow, not generic best practices.",
+        ],
+      },
     ],
   },
 ];
 
-const SECTION_ICONS = {
-  discussions: MessageSquare,
-  remember: BookOpen,
+const SUBSECTION_ICONS = {
+  thingsToRemember: BookOpen,
   recommendations: Lightbulb,
   decisions: CheckCircle,
 };
 
-const SECTION_COLORS = {
-  discussions: "#3b82f6",
-  remember: "#8b5cf6",
+const SUBSECTION_COLORS = {
+  thingsToRemember: "#8b5cf6",
   recommendations: "#f59e0b",
   decisions: "#22c55e",
 };
 
-const SECTION_LABELS = {
-  discussions: "Key Discussions",
-  remember: "Things to Remember",
+const SUBSECTION_LABELS = {
+  thingsToRemember: "Things to Remember",
   recommendations: "Recommendations",
   decisions: "Decisions Made",
 };
@@ -193,20 +241,9 @@ export default function MemoryPage() {
                 <div style={{ fontSize: 12, fontWeight: 600, color: selectedEntry.id === entry.id ? "#e5e7eb" : "#9ca3af", marginBottom: 3, lineHeight: 1.4 }}>
                   {entry.title}
                 </div>
-                <div style={{ fontSize: 11, color: "#4b5563" }}>{entry.date}</div>
-                <div style={{ display: "flex", gap: 3, marginTop: 6 }}>
-                  {(["discussions", "remember", "recommendations", "decisions"] as const).map((section) => (
-                    <div
-                      key={section}
-                      style={{
-                        width: 6,
-                        height: 6,
-                        borderRadius: "50%",
-                        background: SECTION_COLORS[section],
-                        opacity: 0.7,
-                      }}
-                    />
-                  ))}
+                <div style={{ fontSize: 11, color: "#4b5563", marginBottom: 6 }}>{entry.date}</div>
+                <div style={{ fontSize: 10, color: "#374151" }}>
+                  {entry.discussions.length} discussion{entry.discussions.length !== 1 ? "s" : ""}
                 </div>
               </button>
             ))}
@@ -215,68 +252,99 @@ export default function MemoryPage() {
 
         {/* Right Panel - Entry Detail */}
         <div style={{ flex: 1, overflow: "auto", padding: "28px 36px" }}>
-          <div style={{ marginBottom: 28 }}>
+          <div style={{ marginBottom: 32 }}>
             <div style={{ fontSize: 11, color: "#4b5563", marginBottom: 6 }}>{selectedEntry.date}</div>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: "#fff", margin: 0 }}>{selectedEntry.title}</h2>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-            {(["discussions", "remember", "recommendations", "decisions"] as const).map((section) => {
-              const Icon = SECTION_ICONS[section];
-              const color = SECTION_COLORS[section];
-              const items = selectedEntry[section];
-              return (
-                <div key={section}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-                    <div
-                      style={{
-                        width: 28,
-                        height: 28,
-                        borderRadius: 8,
-                        background: `${color}18`,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Icon size={14} color={color} />
-                    </div>
-                    <span style={{ fontSize: 12, fontWeight: 700, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.06em" }}>
-                      {SECTION_LABELS[section]}
-                    </span>
-                  </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 36 }}>
+            {selectedEntry.discussions.map((discussion, di) => (
+              <div key={di}>
+                {/* Discussion Header */}
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
                   <div
                     style={{
-                      background: "#111",
-                      border: "1px solid #1e1e1e",
-                      borderLeft: `3px solid ${color}40`,
-                      borderRadius: 10,
-                      padding: "14px 18px",
+                      width: 28,
+                      height: 28,
+                      borderRadius: 8,
+                      background: "#3b82f618",
                       display: "flex",
-                      flexDirection: "column",
-                      gap: 10,
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
                   >
-                    {items.map((item, i) => (
-                      <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                        <div
-                          style={{
-                            width: 5,
-                            height: 5,
-                            borderRadius: "50%",
-                            background: color,
-                            marginTop: 7,
-                            flexShrink: 0,
-                            opacity: 0.7,
-                          }}
-                        />
-                        <div style={{ fontSize: 13, color: "#d1d5db", lineHeight: 1.6 }}>{item}</div>
-                      </div>
-                    ))}
+                    <MessageSquare size={14} color="#3b82f6" />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 10, color: "#4b5563", textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 600, marginBottom: 2 }}>
+                      Discussion {di + 1}
+                    </div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: "#e5e7eb" }}>{discussion.title}</div>
                   </div>
                 </div>
-              );
-            })}
+
+                {/* Sub-sections */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 16, paddingLeft: 18, borderLeft: "2px solid #1e2a3a" }}>
+                  {(["thingsToRemember", "recommendations", "decisions"] as const).map((key) => {
+                    const items = discussion[key];
+                    if (!items.length) return null;
+                    const Icon = SUBSECTION_ICONS[key];
+                    const color = SUBSECTION_COLORS[key];
+                    return (
+                      <div key={key}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                          <div
+                            style={{
+                              width: 24,
+                              height: 24,
+                              borderRadius: 6,
+                              background: `${color}18`,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <Icon size={12} color={color} />
+                          </div>
+                          <span style={{ fontSize: 11, fontWeight: 700, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                            {SUBSECTION_LABELS[key]}
+                          </span>
+                        </div>
+                        <div
+                          style={{
+                            background: "#111",
+                            border: "1px solid #1e1e1e",
+                            borderLeft: `3px solid ${color}40`,
+                            borderRadius: 10,
+                            padding: "12px 16px",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: 8,
+                          }}
+                        >
+                          {items.map((item, i) => (
+                            <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                              <div
+                                style={{
+                                  width: 5,
+                                  height: 5,
+                                  borderRadius: "50%",
+                                  background: color,
+                                  marginTop: 7,
+                                  flexShrink: 0,
+                                  opacity: 0.7,
+                                }}
+                              />
+                              <div style={{ fontSize: 13, color: "#d1d5db", lineHeight: 1.6 }}>{item}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

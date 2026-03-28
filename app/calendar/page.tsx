@@ -18,6 +18,7 @@ const WEEK_DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const HOURS = Array.from({ length: 14 }, (_, i) => i + 7); // 7am - 8pm
 
 const EVENTS: CalendarEvent[] = [
+  // Morning Standups — Mon–Fri
   {
     id: "1",
     title: "Morning Standup",
@@ -26,7 +27,7 @@ const EVENTS: CalendarEvent[] = [
     duration: 0.5,
     color: "#3b82f6",
     agent: "Wally",
-    description: "Daily sync with Wally to review priorities",
+    description: "Daily sync with Wally to review priorities and blockers",
   },
   {
     id: "2",
@@ -64,6 +65,7 @@ const EVENTS: CalendarEvent[] = [
     color: "#3b82f6",
     agent: "Wally",
   },
+  // Agent-scheduled recurring work
   {
     id: "6",
     title: "Mission Control Dev Sprint",
@@ -82,7 +84,7 @@ const EVENTS: CalendarEvent[] = [
     duration: 1,
     color: "#06b6d4",
     agent: "Research Agent",
-    description: "Review competitor analysis and market research",
+    description: "Review competitor analysis and market research findings",
   },
   {
     id: "8",
@@ -102,7 +104,7 @@ const EVENTS: CalendarEvent[] = [
     duration: 1,
     color: "#ef4444",
     agent: "Wally",
-    description: "Review sub-agent hierarchy and task delegation",
+    description: "Review sub-agent hierarchy and task delegation patterns",
   },
   {
     id: "10",
@@ -112,25 +114,100 @@ const EVENTS: CalendarEvent[] = [
     duration: 1,
     color: "#22c55e",
     agent: "Wally",
-    description: "End-of-week review, wins, blockers, next steps",
+    description: "End-of-week review: wins, blockers, and next week priorities",
   },
+  // Daily AI Brief — every day at noon, run by Wally
   {
     id: "11",
-    title: "Deep Work: Writing",
+    title: "Daily AI Brief",
     day: 0,
-    startHour: 13,
-    duration: 2,
-    color: "#6b7280",
-    description: "Focused writing session — no interruptions",
+    startHour: 12,
+    duration: 0.5,
+    color: "#3b82f6",
+    agent: "Wally",
+    description: "Wally's automated daily briefing: task status updates, new assignments, and priority changes",
   },
   {
     id: "12",
-    title: "Deep Work: Strategy",
+    title: "Daily AI Brief",
+    day: 1,
+    startHour: 12,
+    duration: 0.5,
+    color: "#3b82f6",
+    agent: "Wally",
+    description: "Wally's automated daily briefing: task status updates, new assignments, and priority changes",
+  },
+  {
+    id: "13",
+    title: "Daily AI Brief",
+    day: 2,
+    startHour: 12,
+    duration: 0.5,
+    color: "#3b82f6",
+    agent: "Wally",
+    description: "Wally's automated daily briefing: task status updates, new assignments, and priority changes",
+  },
+  {
+    id: "14",
+    title: "Daily AI Brief",
     day: 3,
-    startHour: 10,
-    duration: 2,
-    color: "#6b7280",
-    description: "Strategic thinking time — unstructured",
+    startHour: 12,
+    duration: 0.5,
+    color: "#3b82f6",
+    agent: "Wally",
+    description: "Wally's automated daily briefing: task status updates, new assignments, and priority changes",
+  },
+  {
+    id: "15",
+    title: "Daily AI Brief",
+    day: 4,
+    startHour: 12,
+    duration: 0.5,
+    color: "#3b82f6",
+    agent: "Wally",
+    description: "Wally's automated daily briefing: task status updates, new assignments, and priority changes",
+  },
+  {
+    id: "16",
+    title: "Daily AI Brief",
+    day: 5,
+    startHour: 12,
+    duration: 0.5,
+    color: "#3b82f6",
+    agent: "Wally",
+    description: "Wally's automated daily briefing: task status updates, new assignments, and priority changes",
+  },
+  {
+    id: "17",
+    title: "Daily AI Brief",
+    day: 6,
+    startHour: 12,
+    duration: 0.5,
+    color: "#3b82f6",
+    agent: "Wally",
+    description: "Wally's automated daily briefing: task status updates, new assignments, and priority changes",
+  },
+  // Memory Review — weekly on Wednesday
+  {
+    id: "18",
+    title: "Memory Review",
+    day: 2,
+    startHour: 15,
+    duration: 1,
+    color: "#8b5cf6",
+    agent: "Wally",
+    description: "Weekly audit of memory entries: update context, flag key decisions, and surface patterns from recent conversations",
+  },
+  // Weekly Summary — Friday evening
+  {
+    id: "19",
+    title: "Weekly Summary",
+    day: 4,
+    startHour: 17,
+    duration: 1,
+    color: "#22c55e",
+    agent: "Wally",
+    description: "Auto-generated end-of-week summary: completed tasks, open decisions, and recommended focus areas for next week",
   },
 ];
 
@@ -425,11 +502,13 @@ export default function CalendarPage() {
                         {event.duration >= 0.75 && (
                           <div style={{ fontSize: 10, color: "#6b7280", marginTop: 2, display: "flex", alignItems: "center", gap: 3 }}>
                             <Clock size={9} />
-                            {event.startHour > 12 ? `${event.startHour - 12}:00pm` : `${event.startHour}:00am`}
+                            {event.startHour > 12 ? `${event.startHour - 12}:00pm` : event.startHour === 12 ? "12:00pm" : `${event.startHour}:00am`}
                           </div>
                         )}
-                        {event.agent && event.duration >= 1 && (
-                          <div style={{ fontSize: 10, color: "#6b7280" }}>{event.agent}</div>
+                        {event.agent && (
+                          <div style={{ fontSize: 10, color: "#6b7280", marginTop: 1 }}>
+                            🤖 {event.agent}
+                          </div>
                         )}
                       </div>
                     );
@@ -463,7 +542,7 @@ export default function CalendarPage() {
               borderLeft: `4px solid ${selectedEvent.color}`,
               borderRadius: 12,
               padding: 24,
-              width: 360,
+              width: 380,
               boxShadow: "0 24px 60px rgba(0,0,0,0.6)",
             }}
           >
@@ -479,13 +558,20 @@ export default function CalendarPage() {
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: "#9ca3af" }}>
                 <Clock size={13} />
-                {WEEK_DAYS[selectedEvent.day]}, {selectedEvent.startHour > 12 ? `${selectedEvent.startHour - 12}:00 PM` : `${selectedEvent.startHour}:00 AM`}
+                {WEEK_DAYS[selectedEvent.day]},{" "}
+                {selectedEvent.startHour > 12
+                  ? `${selectedEvent.startHour - 12}:00 PM`
+                  : selectedEvent.startHour === 12
+                  ? "12:00 PM"
+                  : `${selectedEvent.startHour}:00 AM`}
                 {" "}({selectedEvent.duration}h)
               </div>
               {selectedEvent.agent && (
                 <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: "#9ca3af" }}>
                   <span>🤖</span>
-                  {selectedEvent.agent}
+                  <span>
+                    Agent: <span style={{ color: selectedEvent.color, fontWeight: 600 }}>{selectedEvent.agent}</span>
+                  </span>
                 </div>
               )}
               {selectedEvent.description && (

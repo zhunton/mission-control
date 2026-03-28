@@ -96,8 +96,8 @@ function AgentNode({
 }) {
   const statusConfig = STATUS_CONFIG[agent.status];
   const isLarge = size === "large";
-  const nodeSize = isLarge ? 90 : size === "small" ? 64 : 74;
-  const emojiSize = isLarge ? 32 : size === "small" ? 22 : 26;
+  const nodeSize = isLarge ? 130 : size === "small" ? 90 : 108;
+  const emojiSize = isLarge ? 48 : size === "small" ? 32 : 38;
 
   return (
     <div
@@ -134,8 +134,8 @@ function AgentNode({
             position: "absolute",
             bottom: 4,
             right: 4,
-            width: isLarge ? 14 : 10,
-            height: isLarge ? 14 : 10,
+            width: isLarge ? 18 : 13,
+            height: isLarge ? 18 : 13,
             borderRadius: "50%",
             background: statusConfig.color,
             border: `2px solid #0a0a0a`,
@@ -144,10 +144,10 @@ function AgentNode({
         />
       </div>
       <div style={{ textAlign: "center" }}>
-        <div style={{ fontSize: isLarge ? 14 : 12, fontWeight: 700, color: selected ? "#fff" : "#e5e7eb" }}>
+        <div style={{ fontSize: isLarge ? 17 : size === "small" ? 13 : 15, fontWeight: 700, color: selected ? "#fff" : "#e5e7eb" }}>
           {agent.name}
         </div>
-        <div style={{ fontSize: isLarge ? 12 : 10, color: agent.color, fontWeight: 600 }}>{agent.role}</div>
+        <div style={{ fontSize: isLarge ? 13 : size === "small" ? 11 : 12, color: agent.color, fontWeight: 600 }}>{agent.role}</div>
       </div>
     </div>
   );
@@ -183,9 +183,9 @@ export default function PeoplePage() {
           <div
             style={{
               width: 2,
-              height: 36,
+              height: 56,
               background: "linear-gradient(to bottom, #f59e0b40, #3b82f640)",
-              margin: "4px 0",
+              margin: "8px 0",
             }}
           />
 
@@ -198,31 +198,31 @@ export default function PeoplePage() {
           />
 
           {/* Connectors to sub-agents */}
-          <div style={{ position: "relative", width: "100%", display: "flex", justifyContent: "center", marginTop: 4 }}>
+          <div style={{ position: "relative", width: "100%", display: "flex", justifyContent: "center", marginTop: 8 }}>
             <div
               style={{
                 width: 2,
-                height: 20,
+                height: 32,
                 background: "#3b82f440",
               }}
             />
           </div>
           <div
             style={{
-              width: `${subAgents.length * 140}px`,
+              width: `${subAgents.length * 190}px`,
               height: 2,
               background: "linear-gradient(to right, transparent, #3b82f440, transparent)",
               marginBottom: 0,
             }}
           />
           {/* Vertical drops */}
-          <div style={{ display: "flex", gap: 0, width: `${subAgents.length * 140}px`, justifyContent: "space-around" }}>
+          <div style={{ display: "flex", gap: 0, width: `${subAgents.length * 190}px`, justifyContent: "space-around" }}>
             {subAgents.map(() => (
               <div
                 key={Math.random()}
                 style={{
                   width: 2,
-                  height: 20,
+                  height: 32,
                   background: "#3b82f440",
                 }}
               />
@@ -230,7 +230,7 @@ export default function PeoplePage() {
           </div>
 
           {/* Sub-agents row */}
-          <div style={{ display: "flex", gap: 24 }}>
+          <div style={{ display: "flex", gap: 40 }}>
             {subAgents.map((agent) => (
               <AgentNode
                 key={agent.id}
