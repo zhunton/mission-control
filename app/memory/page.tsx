@@ -21,130 +21,55 @@ const ENTRIES: MemoryEntry[] = [
   {
     id: "1",
     date: "March 28, 2026",
-    title: "Mission Control MVP Scoping",
+    title: "Day One — Wally comes online",
     discussions: [
       {
-        title: "Core Pages, Navigation & Visual Design",
+        title: "Identity & Setup",
         thingsToRemember: [
-          "Dark mode only — no light mode toggle needed. Design aesthetic is modern, minimal, dark.",
-          "Accent color is #3b82f6 (blue). Background is #0a0a0a.",
-          "Six core pages for MVP: Tasks, Calendar, Memory, Documents, People, Office.",
-          "Left sidebar navigation with icon + label for all six sections.",
+          "Zach Hunton, 26, Houston TX, married to Blair, schnoodle Dobby",
+          "Wally is the AI assistant name — strategic right-hand man",
+          "Strong opinions, brevity, humor, directness are the vibe",
         ],
         recommendations: [
-          "Tasks could eventually integrate with Claude API to auto-create tasks from conversation summaries.",
-          "The People/Org Chart should expand as new agents are spun up — design it to be data-driven.",
+          "Keep SOUL.md updated as preferences evolve",
         ],
         decisions: [
-          "Next.js 15 App Router with TypeScript and Tailwind CSS chosen as tech stack.",
-          "lucide-react for icons, date-fns for date utilities.",
-          "No authentication for MVP — single-user app for Zach.",
+          "Established Wally identity, rewrote SOUL.md with Zach's personality rules",
         ],
       },
       {
-        title: "Memory Page as Shared Journal",
+        title: "The Hunton Group",
         thingsToRemember: [
-          "The Memory page serves as a human-readable log of conversations — a shared journal between Zach and Wally.",
-          "Wally is the Director of Agents — all sub-agents report to Wally, who reports to Zach.",
+          "4 companies: HT, HD, HS, CVZ — all HVAC Houston",
+          "Zach in accelerated dev program at HS, future CEO track",
+          "Data centers now huge profit driver for HT",
+          "HS is the most complex — 5 divisions, 12+ teams",
+          "Brett Lutz leads Special Projects/HEP, Stephen Ingram is Director of Operations",
         ],
         recommendations: [
-          "Memory entries should eventually be auto-generated from actual conversations — consider a structured format early.",
-          "Consider adding real-time agent status in the Office page once backend is connected.",
+          "Data center work needs its own playbook tracked separately from core business",
+          "HEP catalog is a strong opportunity if product selection is right",
         ],
         decisions: [
-          "First version is entirely hardcoded with placeholder data — no backend or auth needed.",
+          "Saved full Hunton Group business overview to memory/hunton-group.md",
         ],
       },
       {
-        title: "Office Page & Agent Presence",
+        title: "Mission Control",
         thingsToRemember: [
-          "The Office page should use emoji-based pixel characters with CSS animations, not actual pixel art assets.",
-          "Agents should have a visible sense of 'place' — their location conveys their status.",
+          "Live at https://mission-control-five-red.vercel.app",
+          "GitHub: github.com/zhunton/mission-control",
+          "Next.js 15, TypeScript, Tailwind CSS",
+          "Wally is Director of Agents — spins up sub-agents on demand, stays lean",
         ],
         recommendations: [
-          "Once backend is live, Office page should reflect real agent state (Idle → Break Room, Working → Workstation, In Meeting → Meeting Table).",
-          "Consider ambient animations (like typing indicators) to make the office feel alive.",
+          "Build lean — complexity should earn its keep",
+          "Wally pushes tasks into Mission Control directly from conversations",
         ],
         decisions: [
-          "Office page is in MVP scope but functionality is deferred — visual scaffolding only for now.",
-        ],
-      },
-    ],
-  },
-  {
-    id: "2",
-    date: "March 25, 2026",
-    title: "Agent Architecture & Role Definitions",
-    discussions: [
-      {
-        title: "Wally's Role & Chain of Command",
-        thingsToRemember: [
-          "Wally's full title is 'Director of Agents' — not just an AI assistant.",
-          "Zach is the Owner — final decision-maker on all strategic direction.",
-          "Sub-agents are specialized: Research for information gathering, Dev for code, Writing for content.",
-        ],
-        recommendations: [
-          "Build a routing layer so Zach can address any agent but Wally coordinates by default.",
-          "Consider an agent 'briefing' system where sub-agents get context from Wally before starting tasks.",
-        ],
-        decisions: [
-          "Wally is the primary interface for Zach — all conversations start with Wally.",
-          "Sub-agents are invoked by Wally as needed and report back through Wally.",
-          "Org chart in People page reflects the hierarchy: Zach → Wally → Sub-agents.",
-        ],
-      },
-      {
-        title: "Agent State Visibility & Status System",
-        thingsToRemember: [
-          "Agents should have status: Idle (Break Room), Working (Workstation), In Meeting (Meeting Table).",
-          "Wally should always know what each agent is doing — state is never opaque.",
-        ],
-        recommendations: [
-          "Status indicators on the sidebar and Office page should stay in sync.",
-          "Explore a notification model where Wally surfaces completed sub-agent work proactively.",
-        ],
-        decisions: [
-          "Sub-agents report back through Wally rather than directly to Zach in most cases.",
-        ],
-      },
-    ],
-  },
-  {
-    id: "3",
-    date: "March 20, 2026",
-    title: "Project Genesis — Vision & Goals",
-    discussions: [
-      {
-        title: "Problem Statement & Core Vision",
-        thingsToRemember: [
-          "Mission Control is not just a task manager — it's a collaboration hub between human and AI.",
-          "The frustration driving this: tasks in one place, notes in another, conversations scattered.",
-          "The goal is to make working with AI feel natural, organized, and persistent.",
-        ],
-        recommendations: [
-          "Start with the visual shell and navigation first — get the 'feel' right before adding functionality.",
-          "The Memory page is critical for continuity — prioritize getting the format right.",
-        ],
-        decisions: [
-          "Project name: Mission Control.",
-          "Wally is the AI assistant and Director of Agents.",
-          "Six core sections for MVP: Tasks, Calendar, Memory, Documents, People, Office.",
-        ],
-      },
-      {
-        title: "Design Principles & Development Philosophy",
-        thingsToRemember: [
-          "Everything should feel like it belongs to Zach — personalized, not generic.",
-          "Wally should feel like a real collaborator, not just a chatbot.",
-          "The Office concept gives agents a sense of 'place' and presence — that's intentional.",
-        ],
-        recommendations: [
-          "Don't over-engineer early. Get to a working MVP fast, then iterate.",
-          "Resist adding features until the core loop (talk → task → memory) is solid.",
-        ],
-        decisions: [
-          "Prioritize shipping over perfection in the first iteration.",
-          "Design decisions should always serve Zach's workflow, not generic best practices.",
+          "Built Mission Control as the central hub",
+          "Deployed to Vercel for access from any device",
+          "Agent architecture: Wally orchestrates, sub-agents spun up on demand",
         ],
       },
     ],
