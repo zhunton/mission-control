@@ -19,6 +19,44 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "2",
+    date: "March 29, 2026",
+    title: "Automation, Memory Sync & Daily Routines",
+    discussions: [
+      {
+        title: "Daily Midnight Memory Sync",
+        thingsToRemember: [
+          "Cron job runs at midnight every night to sync memory and Mission Control",
+          "Isolated agent turn — reads session history, updates MEMORY.md, updates all Mission Control pages, commits and pushes both repos",
+          "Delivery goes to Zach via Telegram so he gets a summary in the morning",
+        ],
+        recommendations: [
+          "Add more context to memory files as Zach shares more about Hunton Group — better input = better strategic output",
+          "Consider a weekly deeper review cron to prune and distill MEMORY.md",
+        ],
+        decisions: [
+          "Daily memory sync cron established and running (midnight, America/Chicago)",
+          "Task #4 (scrub fake data) confirmed complete via git commit 4e45f45",
+          "Calendar 'isToday' fixed to use dynamic date instead of hardcoded March 28",
+        ],
+      },
+      {
+        title: "Daily AI Market Brief",
+        thingsToRemember: [
+          "Noon cron (America/Chicago) runs every day — Wally searches for top AI news and sends a brief to Zach via Telegram",
+          "5-7 bullets max, no hype, lead with what actually matters",
+          "First successful run confirmed March 28, 2026",
+        ],
+        recommendations: [
+          "Expand brief scope if Zach wants: include HVAC tech news, energy sector, or data center industry",
+        ],
+        decisions: [
+          "Daily AI Brief cron live and confirmed working",
+        ],
+      },
+    ],
+  },
+  {
     id: "1",
     date: "March 28, 2026",
     title: "Day One — Wally comes online",

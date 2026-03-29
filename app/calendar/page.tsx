@@ -261,7 +261,7 @@ export default function CalendarPage() {
             const dayIndex = viewMode === "day" ? selectedDay : i;
             dayDate.setDate(dayDate.getDate() + dayIndex);
             const isToday =
-              dayDate.toDateString() === new Date(2026, 2, 28).toDateString();
+              dayDate.toDateString() === new Date().toDateString();
             return (
               <div
                 key={day}
