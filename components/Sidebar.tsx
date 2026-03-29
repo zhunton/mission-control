@@ -144,20 +144,16 @@ export default function Sidebar() {
         }}
       >
         <div style={{ position: "relative" }}>
-          <div
+          <img
+            src="/wally-wizard.jpg"
+            alt="Wally"
             style={{
-              width: 30,
-              height: 30,
+              width: 32,
+              height: 32,
               borderRadius: "50%",
-              background: "linear-gradient(135deg, #3b82f6, #06b6d4)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 14,
+              objectFit: "cover",
             }}
-          >
-            🤖
-          </div>
+          />
           <div
             style={{
               position: "absolute",

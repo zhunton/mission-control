@@ -970,7 +970,45 @@ export default function OfficePage() {
           }}
         >
           <div style={{ animation: `${animName} 2s ease-in-out infinite` }}>
-            <PixelCharacter name="Wally" color="#3b82f6" status={status} />
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", userSelect: "none" }}>
+              <div style={{ position: "relative" }}>
+                <img
+                  src="/wally-wizard.jpg"
+                  alt="Wally"
+                  style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", display: "block" }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    right: 0,
+                    width: 10,
+                    height: 10,
+                    borderRadius: "50%",
+                    background: STATUS_COLORS[status],
+                    border: "1.5px solid #000",
+                    boxShadow: `0 0 5px ${STATUS_COLORS[status]}`,
+                  }}
+                />
+              </div>
+              <div
+                style={{
+                  marginTop: 3,
+                  fontSize: 8,
+                  fontFamily: "'Courier New', monospace",
+                  fontWeight: 700,
+                  color: "#e5e7eb",
+                  background: "#0d0d0d",
+                  border: "1px solid #3b82f660",
+                  padding: "1px 4px",
+                  whiteSpace: "nowrap",
+                  lineHeight: "11px",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                Wally
+              </div>
+            </div>
           </div>
         </div>
 

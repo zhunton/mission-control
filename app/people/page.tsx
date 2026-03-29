@@ -8,6 +8,7 @@ interface Agent {
   role: string;
   status: "online" | "working" | "idle" | "offline";
   emoji: string;
+  avatar?: string;
   color: string;
   description: string;
   skills: string[];
@@ -22,6 +23,7 @@ const AGENTS: Agent[] = [
     role: "Owner",
     status: "online",
     emoji: "👤",
+    avatar: "/zach-king.jpg",
     color: "#f59e0b",
     description: "Founder and owner of Mission Control. Final decision-maker on all strategic direction. Collaborates directly with Wally on daily operations.",
     skills: ["Strategy", "Vision", "Leadership", "Product"],
@@ -32,6 +34,7 @@ const AGENTS: Agent[] = [
     role: "Director of Agents",
     status: "working",
     emoji: "🤖",
+    avatar: "/wally-wizard.jpg",
     color: "#3b82f6",
     description: "Primary AI assistant and Director of Agents. Coordinates all sub-agents, manages task delegation, maintains memory, and serves as Zach's main interface.",
     skills: ["Coordination", "Memory", "Delegation", "Strategy", "Communication"],
@@ -124,9 +127,18 @@ function AgentNode({
             fontSize: emojiSize,
             transition: "all 0.2s ease",
             boxShadow: selected ? `0 0 0 3px ${agent.color}30, 0 8px 24px ${agent.color}20` : "none",
+            overflow: "hidden",
           }}
         >
-          {agent.emoji}
+          {agent.avatar ? (
+            <img
+              src={agent.avatar}
+              alt={agent.name}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          ) : (
+            agent.emoji
+          )}
         </div>
         {/* Status dot */}
         <div
@@ -292,9 +304,18 @@ export default function PeoplePage() {
                 alignItems: "center",
                 justifyContent: "center",
                 fontSize: 26,
+                overflow: "hidden",
               }}
             >
-              {selectedAgent.emoji}
+              {selectedAgent.avatar ? (
+                <img
+                  src={selectedAgent.avatar}
+                  alt={selectedAgent.name}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              ) : (
+                selectedAgent.emoji
+              )}
             </div>
             <div>
               <div style={{ fontSize: 16, fontWeight: 700, color: "#fff" }}>{selectedAgent.name}</div>
@@ -381,7 +402,15 @@ export default function PeoplePage() {
                     }}
                     onClick={() => setSelectedAgent(manager)}
                   >
-                    <span style={{ fontSize: 18 }}>{manager.emoji}</span>
+                    {manager.avatar ? (
+                      <img
+                        src={manager.avatar}
+                        alt={manager.name}
+                        style={{ width: 24, height: 24, borderRadius: "50%", objectFit: "cover" }}
+                      />
+                    ) : (
+                      <span style={{ fontSize: 18 }}>{manager.emoji}</span>
+                    )}
                     <div>
                       <div style={{ fontSize: 12, fontWeight: 600, color: "#e5e7eb" }}>{manager.name}</div>
                       <div style={{ fontSize: 10, color: manager.color }}>{manager.role}</div>
