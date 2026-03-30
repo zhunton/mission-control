@@ -1,13 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import React from "react";
 
 type AgentStatus = "working" | "idle" | "meeting";
 
+// Character positions as % of castle container
+// working → Wizard's Tower (bottom-right)
+// idle    → The Tavern (bottom-left)
+// meeting → The Round Table (center)
 const SPOTS: Record<AgentStatus, { left: number; top: number }> = {
-  working: { left: 35, top: 21 },
-  idle: { left: 10, top: 76 },
-  meeting: { left: 77, top: 30 },
+  working: { left: 81, top: 72 },
+  idle: { left: 14, top: 84 },
+  meeting: { left: 49, top: 43 },
 };
 
 const STATUS_COLORS: Record<AgentStatus, string> = {
@@ -19,126 +24,37 @@ const STATUS_COLORS: Record<AgentStatus, string> = {
 const STATUS_LABELS: Record<AgentStatus, string> = {
   working: "Working",
   idle: "Idle",
-  meeting: "In Meeting",
+  meeting: "In Council",
 };
 
-const WEIGHTS: AgentStatus[] = [
-  ...Array(7).fill("working" as AgentStatus),
-  ...Array(2).fill("idle" as AgentStatus),
-  ...Array(1).fill("meeting" as AgentStatus),
-];
+const STATUS_LOCATIONS: Record<AgentStatus, string> = {
+  working: "Wizard's Tower",
+  idle: "The Tavern",
+  meeting: "The Round Table",
+};
 
-function PixelCharacter({ name, color, status }: { name: string; color: string; status: AgentStatus }) {
+function Torch({ style }: { style: React.CSSProperties }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", userSelect: "none" }}>
-      {/* Hair */}
+    <div style={{ position: "absolute", zIndex: 10, ...style }}>
+      {/* Warm glow pool */}
       <div
         style={{
-          width: 14,
-          height: 5,
-          background: color,
-          border: "2px solid #111",
-          borderBottom: "none",
-          borderRadius: "3px 3px 0 0",
-          position: "relative",
-        }}
-      >
-        {/* Status dot */}
-        <div
-          style={{
-            position: "absolute",
-            top: -3,
-            right: -5,
-            width: 6,
-            height: 6,
-            borderRadius: "50%",
-            background: STATUS_COLORS[status],
-            border: "1.5px solid #000",
-            boxShadow: `0 0 5px ${STATUS_COLORS[status]}`,
-          }}
-        />
-      </div>
-      {/* Face */}
-      <div
-        style={{
-          position: "relative",
-          width: 16,
-          height: 14,
-          background: "#e8c49a",
-          border: "2px solid #111",
-          borderTop: "1px solid #333",
-        }}
-      >
-        {/* Eyes */}
-        <div
-          style={{
-            position: "absolute",
-            top: 3,
-            left: 2,
-            width: 3,
-            height: 3,
-            background: "#111",
-            boxShadow: "6px 0 0 #111",
-          }}
-        />
-        {/* Mouth */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 2,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: 7,
-            height: 2,
-            background: "#111",
-          }}
-        />
-      </div>
-      {/* Body */}
-      <div
-        style={{
-          width: 16,
-          height: 11,
-          background: color,
-          border: "2px solid #111",
-          borderTop: "none",
-          borderRadius: "0 0 2px 2px",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 90,
+          height: 90,
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(255,140,0,0.18) 0%, rgba(255,100,0,0.07) 40%, transparent 70%)",
+          pointerEvents: "none",
         }}
       />
-      {/* Name tag */}
-      <div
-        style={{
-          marginTop: 3,
-          fontSize: 8,
-          fontFamily: "'Courier New', monospace",
-          fontWeight: 700,
-          color: "#e5e7eb",
-          background: "#0d0d0d",
-          border: `1px solid ${color}60`,
-          padding: "1px 4px",
-          whiteSpace: "nowrap",
-          lineHeight: "11px",
-          letterSpacing: "0.02em",
-        }}
-      >
-        {name}
-      </div>
+      <span style={{ fontSize: 13, animation: "torchFlicker 1.8s ease-in-out infinite", lineHeight: 1, display: "block" }}>
+        🕯️
+      </span>
     </div>
-  );
-}
-
-// Reusable floor tile overlay
-function FloorTiles({ color }: { color: string }) {
-  return (
-    <div
-      style={{
-        position: "absolute",
-        inset: 0,
-        backgroundImage: `linear-gradient(${color} 1px, transparent 1px), linear-gradient(90deg, ${color} 1px, transparent 1px)`,
-        backgroundSize: "14px 14px",
-        pointerEvents: "none",
-      }}
-    />
   );
 }
 
@@ -146,865 +62,1114 @@ export default function OfficePage() {
   const [status, setStatus] = useState<AgentStatus>("working");
 
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-    const schedule = () => {
-      timer = setTimeout(() => {
-        setStatus(WEIGHTS[Math.floor(Math.random() * WEIGHTS.length)]);
-        schedule();
-      }, 4000 + Math.random() * 2000);
-    };
-    schedule();
-    return () => clearTimeout(timer);
+    const interval = setInterval(() => {
+      const rand = Math.random();
+      setStatus(rand < 0.6 ? "working" : rand < 0.8 ? "idle" : "meeting");
+    }, 6000);
+    return () => clearInterval(interval);
   }, []);
 
   const pos = SPOTS[status];
-  const animName =
-    status === "working" ? "pixelBob" : status === "idle" ? "pixelSway" : "pixelBounce";
+  const anim =
+    status === "working" ? "wallyBob" : status === "idle" ? "wallySway" : "wallyBounce";
 
   return (
     <div
       style={{
-        padding: "24px 32px",
         height: "100vh",
         display: "flex",
         flexDirection: "column",
-        fontFamily: "monospace",
+        padding: "12px 16px 10px",
+        background: "#080604",
+        fontFamily: "Georgia, 'Times New Roman', serif",
+        boxSizing: "border-box",
       }}
     >
       <style>{`
-        @keyframes pixelBob {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-3px); }
+        @keyframes torchFlicker {
+          0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+          20%       { opacity: 0.8; transform: scale(0.93) rotate(-3deg); }
+          40%       { opacity: 0.95; transform: scale(1.06) rotate(1deg); }
+          60%       { opacity: 0.85; transform: scale(0.97) rotate(-2deg); }
+          80%       { opacity: 1; transform: scale(1.04) rotate(2deg); }
         }
-        @keyframes pixelSway {
+        @keyframes crystalPulse {
+          0%, 100% {
+            box-shadow: 0 0 10px 3px rgba(96,165,250,0.45),
+                        0 0 28px rgba(96,165,250,0.18),
+                        inset 0 0 6px rgba(200,230,255,0.3);
+          }
+          50% {
+            box-shadow: 0 0 22px 8px rgba(96,165,250,0.65),
+                        0 0 55px rgba(96,165,250,0.28),
+                        inset 0 0 12px rgba(200,230,255,0.5);
+          }
+        }
+        @keyframes fireGlow {
+          0%, 100% { opacity: 0.85; text-shadow: 0 0 8px rgba(255,120,0,0.6); }
+          50%       { opacity: 1;    text-shadow: 0 0 18px rgba(255,160,0,0.9); }
+        }
+        @keyframes wallyBob {
+          0%, 100% { transform: translateY(0px); }
+          50%       { transform: translateY(-4px); }
+        }
+        @keyframes wallySway {
           0%, 100% { transform: translateX(0px); }
-          25% { transform: translateX(-2px); }
-          75% { transform: translateX(2px); }
+          25%       { transform: translateX(-3px); }
+          75%       { transform: translateX(3px); }
         }
-        @keyframes pixelBounce {
+        @keyframes wallyBounce {
           0%, 100% { transform: translateY(0px); }
-          35% { transform: translateY(-4px); }
-          65% { transform: translateY(-2px); }
-        }
-        @keyframes screenGlow {
-          0%, 100% { box-shadow: 0 0 4px #3b82f630; }
-          50% { box-shadow: 0 0 10px #3b82f660; }
-        }
-        @keyframes steamRise {
-          0%, 100% { transform: translateY(0) scaleX(1); opacity: 0.35; }
-          50% { transform: translateY(-6px) scaleX(0.6); opacity: 0.1; }
-        }
-        @keyframes scanline {
-          0% { top: -2px; }
-          100% { top: 100%; }
+          35%       { transform: translateY(-5px); }
+          65%       { transform: translateY(-2px); }
         }
         @keyframes statusPulse {
           0%, 100% { opacity: 1; }
-          50% { opacity: 0.6; }
+          50%       { opacity: 0.55; }
+        }
+        @keyframes runeRotate {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to   { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes runeRotateCCW {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to   { transform: translate(-50%, -50%) rotate(-360deg); }
         }
       `}</style>
 
-      {/* Header */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: 14,
-          flexShrink: 0,
-        }}
-      >
-        <div>
-          <h1
-            style={{
-              fontSize: 18,
-              fontWeight: 700,
-              color: "#e5e7eb",
-              margin: 0,
-              fontFamily: "monospace",
-              letterSpacing: "0.03em",
-            }}
-          >
-            Office
-          </h1>
-          <p
-            style={{
-              fontSize: 10,
-              color: "#374151",
-              margin: "2px 0 0",
-              fontFamily: "monospace",
-              letterSpacing: "0.06em",
-            }}
-          >
-            MISSION CONTROL HQ — FLOOR 1
-          </p>
-        </div>
-
-        {/* Status bar */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            background: "#0d0d0d",
-            border: "1px solid #1e1e1e",
-            padding: "7px 14px",
-          }}
-        >
-          <div
-            style={{
-              width: 8,
-              height: 8,
-              borderRadius: "50%",
-              background: STATUS_COLORS[status],
-              boxShadow: `0 0 8px ${STATUS_COLORS[status]}90`,
-              animation: "statusPulse 2s ease-in-out infinite",
-            }}
-          />
-          <span
-            style={{
-              fontSize: 11,
-              color: "#e5e7eb",
-              fontWeight: 700,
-              letterSpacing: "0.05em",
-              fontFamily: "monospace",
-            }}
-          >
-            WALLY — {STATUS_LABELS[status].toUpperCase()}
-          </span>
-        </div>
-      </div>
-
-      {/* ── Office floor plan ── */}
+      {/* ═══════════════════════════════════════
+          CASTLE HALL — the main floor
+      ════════════════════════════════════════ */}
       <div
         style={{
           flex: 1,
-          position: "relative",
-          background: "#0a0a0a",
-          border: "3px solid #1a2535",
-          overflow: "hidden",
           minHeight: 0,
+          position: "relative",
+          overflow: "hidden",
+          // Stone walls
+          border: "7px solid #111",
+          borderRadius: 3,
+          boxShadow:
+            "inset 0 0 40px rgba(0,0,0,0.85), inset 0 0 4px rgba(255,140,0,0.06), 0 0 20px rgba(0,0,0,0.6)",
+          // Cobblestone floor
+          background: "#2b2b2b",
+          backgroundImage: `
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 29px,
+              rgba(0,0,0,0.4) 29px,
+              rgba(0,0,0,0.4) 30px
+            ),
+            repeating-linear-gradient(
+              90deg,
+              transparent,
+              transparent 39px,
+              rgba(0,0,0,0.4) 39px,
+              rgba(0,0,0,0.4) 40px
+            )
+          `,
         }}
       >
-        {/* Global grid */}
+        {/* Ambient warm center glow */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)",
-            backgroundSize: "20px 20px",
-            zIndex: 0,
+            background:
+              "radial-gradient(ellipse at 48% 48%, rgba(255,140,0,0.045) 0%, transparent 65%)",
             pointerEvents: "none",
+            zIndex: 1,
           }}
         />
 
-        {/* ── MAIN OFFICE (top-left) ── */}
+        {/* ── Wall torches ── */}
+        <Torch style={{ top: 4,    left: "15%", transform: "translateX(-50%)" }} />
+        <Torch style={{ top: 4,    left: "49%", transform: "translateX(-50%)" }} />
+        <Torch style={{ top: 4,    left: "83%", transform: "translateX(-50%)" }} />
+        <Torch style={{ top: "33%", left: 4,   transform: "translateY(-50%)" }} />
+        <Torch style={{ top: "67%", left: 4,   transform: "translateY(-50%)" }} />
+        <Torch style={{ top: "28%", right: 4,  transform: "translateY(-50%)" }} />
+        <Torch style={{ top: "65%", right: 4,  transform: "translateY(-50%)" }} />
+        <Torch style={{ bottom: 6, left: "29%", transform: "translateX(-50%)" }} />
+
+        {/* ── Room divider walls ── */}
+        {/* Left col | Center col */}
         <div
           style={{
             position: "absolute",
-            left: "2%",
-            top: "3%",
-            width: "23%",
-            height: "55%",
-            background: "#0f1319",
-            border: "3px solid #1e3040",
-            zIndex: 1,
+            left: "28%",
+            top: "1%",
+            bottom: "1%",
+            width: 3,
+            background: "rgba(0,0,0,0.55)",
+            boxShadow: "0 0 8px rgba(0,0,0,0.9)",
+            zIndex: 2,
+          }}
+        />
+        {/* Center col | Right col */}
+        <div
+          style={{
+            position: "absolute",
+            left: "68%",
+            top: "1%",
+            bottom: "1%",
+            width: 3,
+            background: "rgba(0,0,0,0.55)",
+            boxShadow: "0 0 8px rgba(0,0,0,0.9)",
+            zIndex: 2,
+          }}
+        />
+        {/* Top zone | Middle-bottom zone (left col only) */}
+        <div
+          style={{
+            position: "absolute",
+            left: "1%",
+            width: "27%",
+            top: "44%",
+            height: 3,
+            background: "rgba(0,0,0,0.5)",
+            zIndex: 2,
+          }}
+        />
+        {/* Scribe | Tavern (left col) */}
+        <div
+          style={{
+            position: "absolute",
+            left: "1%",
+            width: "27%",
+            top: "72%",
+            height: 3,
+            background: "rgba(0,0,0,0.5)",
+            zIndex: 2,
+          }}
+        />
+        {/* Center top zone | Round Table */}
+        <div
+          style={{
+            position: "absolute",
+            left: "29%",
+            width: "39%",
+            top: "19%",
+            height: 3,
+            background: "rgba(0,0,0,0.45)",
+            zIndex: 2,
+          }}
+        />
+        {/* Round Table | Dungeon Door */}
+        <div
+          style={{
+            position: "absolute",
+            left: "29%",
+            width: "39%",
+            top: "72%",
+            height: 3,
+            background: "rgba(0,0,0,0.45)",
+            zIndex: 2,
+          }}
+        />
+        {/* Wizard Tower top */}
+        <div
+          style={{
+            position: "absolute",
+            left: "69%",
+            right: "1%",
+            top: "44%",
+            height: 3,
+            background: "rgba(0,0,0,0.5)",
+            zIndex: 2,
+          }}
+        />
+
+        {/* ══════════════════════════════════════
+            TOP-LEFT — Alchemy Lab
+        ════════════════════════════════════ */}
+        <div
+          style={{
+            position: "absolute",
+            left: "1%",
+            top: "1%",
+            width: "26%",
+            height: "42%",
+            zIndex: 3,
           }}
         >
-          <FloorTiles color="rgba(30,48,64,0.22)" />
           <div
             style={{
               position: "absolute",
-              top: 4,
-              left: 6,
-              fontSize: 7,
-              color: "#1e3a52",
+              top: 5,
+              left: 7,
+              fontSize: 8,
+              color: "rgba(255,190,80,0.65)",
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "0.08em",
-              zIndex: 2,
             }}
           >
-            MAIN OFFICE
+            ⚗️ Alchemy Lab
           </div>
-
-          {/* Chalkboard */}
           <div
             style={{
               position: "absolute",
-              left: "12%",
-              top: "8%",
-              width: "76%",
-              height: "24%",
-              background: "#0a2015",
-              border: "3px solid #5a3a10",
-              zIndex: 2,
+              top: 16,
+              left: 6,
+              fontSize: 7,
+              color: "rgba(180,140,60,0.4)",
+              fontStyle: "italic",
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                inset: 2,
-                background: "#0c2518",
-                border: "1px solid #1a3822",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 2,
-              }}
-            >
+            strategy & research
+          </div>
+
+          {/* Wooden alchemy table */}
+          <div
+            style={{
+              position: "absolute",
+              left: "8%",
+              top: "25%",
+              width: "82%",
+              height: "48%",
+              background: "#3a2410",
+              border: "2px solid #5c3a18",
+              borderRadius: 2,
+              boxShadow: "inset 0 0 8px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.5)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "space-around",
+              padding: "6px 8px",
+            }}
+          >
+            <div style={{ fontSize: 15, lineHeight: 1 }}>🧪 🫙 🍶</div>
+            <div style={{ fontSize: 13, lineHeight: 1 }}>🕯️ 🧪 🫙</div>
+          </div>
+
+          {/* Chair at table */}
+          <div
+            style={{
+              position: "absolute",
+              left: "11%",
+              bottom: "14%",
+              width: 15,
+              height: 15,
+              background: "#1e1208",
+              border: "2px solid #3a2210",
+              borderRadius: 2,
+            }}
+          />
+
+          {/* Candle glow */}
+          <div
+            style={{
+              position: "absolute",
+              left: "35%",
+              top: "42%",
+              width: 70,
+              height: 55,
+              borderRadius: "50%",
+              background:
+                "radial-gradient(circle, rgba(255,160,0,0.13) 0%, transparent 70%)",
+              pointerEvents: "none",
+            }}
+          />
+        </div>
+
+        {/* ══════════════════════════════════════
+            TOP-CENTER — Chandelier zone
+        ════════════════════════════════════ */}
+        <div
+          style={{
+            position: "absolute",
+            left: "29%",
+            top: "1%",
+            width: "39%",
+            height: "17%",
+            zIndex: 3,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {/* Chandelier */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+            {/* Mounting chain */}
+            <div style={{ width: 2, height: 12, background: "#4a3a20" }} />
+            {/* Arms */}
+            <div style={{ position: "relative", width: 80, height: 18 }}>
               <div
                 style={{
-                  fontSize: 6,
-                  color: "#b8d8b0",
-                  letterSpacing: "0.04em",
-                  fontWeight: 700,
-                  textShadow: "0 0 6px #7ab87080",
-                }}
-              >
-                MISSION
-              </div>
-              <div
-                style={{
-                  fontSize: 6,
-                  color: "#b8d8b0",
-                  letterSpacing: "0.04em",
-                  fontWeight: 700,
-                  textShadow: "0 0 6px #7ab87080",
-                }}
-              >
-                CONTROL HQ
-              </div>
-              <div
-                style={{
-                  width: "55%",
-                  height: 1,
-                  background: "#a0c09840",
-                  marginTop: 2,
+                  position: "absolute",
+                  top: "50%",
+                  left: 0,
+                  right: 0,
+                  height: 2,
+                  background: "#5a4222",
+                  transform: "translateY(-50%)",
+                  borderRadius: 1,
                 }}
               />
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: 2,
+                  height: 18,
+                  background: "#5a4222",
+                }}
+              />
+              <span style={{ position: "absolute", left: -4, bottom: 0, fontSize: 13 }}>🕯️</span>
+              <span
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  bottom: 0,
+                  fontSize: 13,
+                  transform: "translateX(-50%)",
+                }}
+              >
+                🕯️
+              </span>
+              <span style={{ position: "absolute", right: -4, bottom: 0, fontSize: 13 }}>🕯️</span>
             </div>
-            {/* Chalk tray */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: -4,
-                left: "5%",
-                width: "90%",
-                height: 4,
-                background: "#6a4810",
-              }}
-            />
           </div>
 
-          {/* Desk */}
+          {/* Chandelier warm glow pool on floor below */}
+          <div
+            style={{
+              position: "absolute",
+              top: "80%",
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: 140,
+              height: 60,
+              borderRadius: "50%",
+              background:
+                "radial-gradient(ellipse, rgba(255,160,0,0.13) 0%, transparent 70%)",
+              pointerEvents: "none",
+            }}
+          />
+        </div>
+
+        {/* ══════════════════════════════════════
+            TOP-RIGHT — The Forge
+        ════════════════════════════════════ */}
+        <div
+          style={{
+            position: "absolute",
+            left: "69%",
+            top: "1%",
+            width: "30%",
+            height: "42%",
+            zIndex: 3,
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: 5,
+              left: 7,
+              fontSize: 8,
+              color: "rgba(255,150,60,0.75)",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+            }}
+          >
+            ⚒️ The Forge
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              top: 16,
+              left: 6,
+              fontSize: 7,
+              color: "rgba(200,110,40,0.4)",
+              fontStyle: "italic",
+            }}
+          >
+            engineering & builds
+          </div>
+
+          {/* Fireplace / Forge — right wall */}
+          <div
+            style={{
+              position: "absolute",
+              right: "5%",
+              top: "18%",
+              width: "32%",
+              height: "48%",
+              background: "#150600",
+              border: "3px solid #2e1000",
+              borderRadius: "2px 2px 0 0",
+              boxShadow:
+                "0 0 25px rgba(255,110,0,0.35), inset 0 0 12px rgba(255,100,0,0.25)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 20,
+              animation: "fireGlow 2s ease-in-out infinite",
+            }}
+          >
+            🔥
+          </div>
+
+          {/* Forge floor glow */}
+          <div
+            style={{
+              position: "absolute",
+              right: "3%",
+              top: "15%",
+              width: 90,
+              height: 90,
+              borderRadius: "50%",
+              background:
+                "radial-gradient(circle, rgba(255,120,0,0.22) 0%, transparent 70%)",
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* Workbench */}
+          <div
+            style={{
+              position: "absolute",
+              left: "6%",
+              top: "22%",
+              width: "50%",
+              height: "38%",
+              background: "#2c1808",
+              border: "2px solid #4e2e10",
+              borderRadius: 2,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "space-around",
+              padding: "4px 0",
+              fontSize: 14,
+            }}
+          >
+            <span>🔨</span>
+            <span style={{ fontSize: 12 }}>⚒️</span>
+          </div>
+
+          {/* Anvil */}
           <div
             style={{
               position: "absolute",
               left: "12%",
-              bottom: "20%",
-              width: "68%",
-              height: "26%",
-              background: "#0e1e2e",
-              border: "2px solid #1e3a54",
-              zIndex: 2,
+              bottom: "18%",
+              fontSize: 16,
             }}
           >
-            {/* Monitor */}
-            <div
-              style={{
-                position: "absolute",
-                top: "8%",
-                left: "46%",
-                transform: "translateX(-50%)",
-                width: "38%",
-                height: "75%",
-                background: "#060d14",
-                border: "2px solid #1a3a5a",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                animation: "screenGlow 4s ease-in-out infinite",
-              }}
-            >
+            ⚙️
+          </div>
+        </div>
+
+        {/* ══════════════════════════════════════
+            CENTER — The Round Table
+        ════════════════════════════════════ */}
+        <div
+          style={{
+            position: "absolute",
+            left: "29%",
+            top: "20%",
+            width: "39%",
+            height: "51%",
+            zIndex: 3,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: 5,
+              left: 7,
+              fontSize: 8,
+              color: "rgba(220,190,100,0.55)",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+            }}
+          >
+            ⚔️ The Round Table
+          </div>
+
+          {/* Dark circular rug */}
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 155,
+              height: 155,
+              borderRadius: "50%",
+              background:
+                "radial-gradient(circle, #3e2312 0%, #2a1608 55%, #1a0e05 100%)",
+              border: "2px solid #4e2e10",
+            }}
+          />
+
+          {/* The Round Table itself */}
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 110,
+              height: 110,
+              borderRadius: "50%",
+              background:
+                "radial-gradient(circle at 38% 38%, #7a5530 0%, #5c3d1e 45%, #472e14 100%)",
+              border: "3px solid #7a5428",
+              boxShadow:
+                "0 4px 14px rgba(0,0,0,0.7), inset 0 0 12px rgba(0,0,0,0.35)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 22,
+              zIndex: 4,
+            }}
+          >
+            📜
+          </div>
+
+          {/* 8 chairs around the table */}
+          {([0, 45, 90, 135, 180, 225, 270, 315] as number[]).map((angle, i) => {
+            const rad = (angle * Math.PI) / 180;
+            const r = 68;
+            const x = Math.cos(rad) * r;
+            const y = Math.sin(rad) * r;
+            return (
               <div
+                key={i}
                 style={{
-                  width: "80%",
-                  height: "80%",
-                  background: "#0a2035",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 8,
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                  width: 14,
+                  height: 14,
+                  background: "#2a1a08",
+                  border: "2px solid #4e3018",
+                  borderRadius: 2,
+                  zIndex: 5,
                 }}
-              >
-                🖥️
-              </div>
-            </div>
-            {/* Keyboard */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "8%",
-                left: "8%",
-                width: "30%",
-                height: "28%",
-                background: "#0a1520",
-                border: "1px solid #162840",
-              }}
-            />
+              />
+            );
+          })}
+        </div>
+
+        {/* ══════════════════════════════════════
+            MIDDLE-LEFT — Scribe's Corner
+        ════════════════════════════════════ */}
+        <div
+          style={{
+            position: "absolute",
+            left: "1%",
+            top: "45%",
+            width: "26%",
+            height: "26%",
+            zIndex: 3,
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: 5,
+              left: 7,
+              fontSize: 8,
+              color: "rgba(220,200,120,0.6)",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+            }}
+          >
+            📜 Scribe's Corner
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              top: 16,
+              left: 6,
+              fontSize: 7,
+              color: "rgba(180,160,80,0.35)",
+              fontStyle: "italic",
+            }}
+          >
+            memory & documents
+          </div>
+
+          {/* Wooden desk */}
+          <div
+            style={{
+              position: "absolute",
+              left: "8%",
+              top: "28%",
+              width: "80%",
+              height: "52%",
+              background: "#352212",
+              border: "2px solid #5a3818",
+              borderRadius: 2,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-around",
+              padding: "4px 8px",
+              fontSize: 15,
+              boxShadow: "inset 0 0 6px rgba(0,0,0,0.5)",
+            }}
+          >
+            <span>📖</span>
+            <span>🪶</span>
+            <span>📜</span>
           </div>
 
           {/* Chair */}
           <div
             style={{
               position: "absolute",
-              left: "14%",
+              left: "11%",
               bottom: "6%",
-              width: 18,
-              height: 18,
-              background: "#141c28",
-              border: "2px solid #202e42",
-              borderRadius: 1,
-              zIndex: 2,
+              width: 14,
+              height: 14,
+              background: "#1e1208",
+              border: "2px solid #3a2210",
+              borderRadius: 2,
             }}
           />
 
-          {/* Plant */}
+          {/* Candle light */}
           <div
             style={{
               position: "absolute",
-              bottom: "8%",
-              right: "8%",
-              fontSize: 14,
-              zIndex: 2,
+              left: "50%",
+              top: "55%",
+              width: 55,
+              height: 40,
+              borderRadius: "50%",
+              background:
+                "radial-gradient(ellipse, rgba(255,150,0,0.11) 0%, transparent 70%)",
+              transform: "translate(-50%, -50%)",
+              pointerEvents: "none",
             }}
-          >
-            🪴
-          </div>
+          />
         </div>
 
-        {/* ── AGENT WORKSTATIONS (center-top) ── */}
+        {/* ══════════════════════════════════════
+            BOTTOM-LEFT — The Tavern
+        ════════════════════════════════════ */}
         <div
           style={{
             position: "absolute",
-            left: "27%",
-            top: "3%",
-            width: "35%",
-            height: "55%",
-            background: "#0b0f15",
-            border: "3px solid #1a2a3a",
-            zIndex: 1,
+            left: "1%",
+            top: "73%",
+            width: "26%",
+            height: "25%",
+            zIndex: 3,
           }}
         >
-          <FloorTiles color="rgba(26,42,58,0.18)" />
           <div
             style={{
               position: "absolute",
-              top: 4,
-              left: 6,
-              fontSize: 7,
-              color: "#1a3050",
+              top: 5,
+              left: 7,
+              fontSize: 8,
+              color: "rgba(210,160,60,0.7)",
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "0.08em",
-              zIndex: 2,
             }}
           >
-            AGENT WORKSTATIONS
+            🍺 The Tavern
           </div>
-
-          {/* 2×2 desk grid */}
-          {(
-            [
-              { l: "7%", t: "18%", id: "W-01", active: true },
-              { l: "53%", t: "18%", id: "——", active: false },
-              { l: "7%", t: "58%", id: "——", active: false },
-              { l: "53%", t: "58%", id: "——", active: false },
-            ] as { l: string; t: string; id: string; active: boolean }[]
-          ).map((desk, i) => (
-            <div
-              key={i}
-              style={{
-                position: "absolute",
-                left: desk.l,
-                top: desk.t,
-                width: "38%",
-                height: "28%",
-                background: desk.active ? "#0d1a2e" : "#0a0e14",
-                border: `2px solid ${desk.active ? "#1e3a5a" : "#141c28"}`,
-                zIndex: 2,
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  top: "8%",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: "42%",
-                  height: "68%",
-                  background: desk.active ? "#060d14" : "#080c10",
-                  border: `1.5px solid ${desk.active ? "#1a3a5a" : "#111820"}`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 8,
-                  animation: desk.active
-                    ? "screenGlow 5s ease-in-out infinite"
-                    : undefined,
-                }}
-              >
-                {desk.active ? "🖥️" : ""}
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 2,
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  fontSize: 5,
-                  color: desk.active ? "#1e3a5a" : "#0e1a28",
-                  whiteSpace: "nowrap",
-                  fontWeight: 700,
-                }}
-              >
-                {desk.id}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* ── MEETING ROOM (top-right) ── */}
-        <div
-          style={{
-            position: "absolute",
-            left: "64%",
-            top: "3%",
-            width: "34%",
-            height: "55%",
-            background: "#0f1118",
-            border: "3px solid #1e2a3a",
-            zIndex: 1,
-          }}
-        >
-          <FloorTiles color="rgba(30,42,58,0.18)" />
           <div
             style={{
               position: "absolute",
-              top: 4,
+              top: 16,
               left: 6,
               fontSize: 7,
-              color: "#1a2a40",
-              fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              zIndex: 2,
+              color: "rgba(180,130,50,0.35)",
+              fontStyle: "italic",
             }}
           >
-            MEETING ROOM
+            idle & break area
           </div>
 
-          {/* Conference table */}
+          {/* Table 1 */}
           <div
             style={{
               position: "absolute",
-              left: "12%",
-              top: "25%",
-              width: "76%",
-              height: "42%",
-              background: "#1a1208",
-              border: "3px solid #3a2810",
+              left: "7%",
+              top: "32%",
+              width: "36%",
+              height: "48%",
+              background: "#2e1a08",
+              border: "2px solid #503018",
               borderRadius: 2,
-              zIndex: 2,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 15,
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                top: "33%",
-                left: "5%",
-                right: "5%",
-                height: 1,
-                background: "#2a1e0a30",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                top: "66%",
-                left: "5%",
-                right: "5%",
-                height: 1,
-                background: "#2a1e0a30",
-              }}
-            />
+            🍺
+          </div>
+          {/* Chairs around table 1 */}
+          <div style={{ position: "absolute", left: "5%",  top: "22%", width: 11, height: 11, background: "#1c1008", border: "1.5px solid #362010", borderRadius: 1 }} />
+          <div style={{ position: "absolute", left: "37%", top: "22%", width: 11, height: 11, background: "#1c1008", border: "1.5px solid #362010", borderRadius: 1 }} />
+          <div style={{ position: "absolute", left: "5%",  bottom: "10%", width: 11, height: 11, background: "#1c1008", border: "1.5px solid #362010", borderRadius: 1 }} />
+
+          {/* Table 2 */}
+          <div
+            style={{
+              position: "absolute",
+              right: "8%",
+              top: "28%",
+              width: "32%",
+              height: "44%",
+              background: "#2e1a08",
+              border: "2px solid #503018",
+              borderRadius: 2,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 14,
+            }}
+          >
+            🍻
           </div>
 
-          {/* Chairs — top */}
-          {[18, 43, 68].map((l) => (
-            <div
-              key={`ct${l}`}
-              style={{
-                position: "absolute",
-                left: `${l}%`,
-                top: "14%",
-                width: 14,
-                height: 9,
-                background: "#161820",
-                border: "1.5px solid #222840",
-                borderRadius: "2px 2px 0 0",
-                zIndex: 2,
-              }}
-            />
-          ))}
-          {/* Chairs — bottom */}
-          {[18, 43, 68].map((l) => (
-            <div
-              key={`cb${l}`}
-              style={{
-                position: "absolute",
-                left: `${l}%`,
-                top: "70%",
-                width: 14,
-                height: 9,
-                background: "#161820",
-                border: "1.5px solid #222840",
-                borderRadius: "0 0 2px 2px",
-                zIndex: 2,
-              }}
-            />
-          ))}
-          {/* Chairs — left */}
-          {[34, 53].map((t) => (
-            <div
-              key={`cl${t}`}
-              style={{
-                position: "absolute",
-                left: "4%",
-                top: `${t}%`,
-                width: 9,
-                height: 13,
-                background: "#161820",
-                border: "1.5px solid #222840",
-                borderRadius: "2px 0 0 2px",
-                zIndex: 2,
-              }}
-            />
-          ))}
-          {/* Chairs — right */}
-          {[34, 53].map((t) => (
-            <div
-              key={`cr${t}`}
-              style={{
-                position: "absolute",
-                right: "4%",
-                top: `${t}%`,
-                width: 9,
-                height: 13,
-                background: "#161820",
-                border: "1.5px solid #222840",
-                borderRadius: "0 2px 2px 0",
-                zIndex: 2,
-              }}
-            />
-          ))}
+          {/* Barrel */}
+          <div style={{ position: "absolute", right: "3%", bottom: "8%", fontSize: 15 }}>
+            🪣
+          </div>
+
+          {/* Warm tavern glow */}
+          <div
+            style={{
+              position: "absolute",
+              left: "40%",
+              top: "55%",
+              width: 65,
+              height: 45,
+              borderRadius: "50%",
+              background:
+                "radial-gradient(ellipse, rgba(255,140,0,0.12) 0%, transparent 70%)",
+              pointerEvents: "none",
+            }}
+          />
         </div>
 
-        {/* ── BREAK ROOM (bottom) ── */}
+        {/* ══════════════════════════════════════
+            BOTTOM-CENTER — Dungeon Door
+        ════════════════════════════════════ */}
         <div
           style={{
             position: "absolute",
-            left: "2%",
-            top: "61%",
-            width: "96%",
-            height: "36%",
-            background: "#0d0b12",
-            border: "3px solid #241a38",
-            zIndex: 1,
+            left: "29%",
+            top: "73%",
+            width: "39%",
+            height: "25%",
+            zIndex: 3,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          <FloorTiles color="rgba(36,26,56,0.18)" />
-          <div
-            style={{
-              position: "absolute",
-              top: 4,
-              left: 6,
-              fontSize: 7,
-              color: "#342048",
-              fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              zIndex: 2,
-            }}
-          >
-            BREAK ROOM
-          </div>
-
-          {/* Couch */}
-          <div
-            style={{
-              position: "absolute",
-              left: "3%",
-              top: "18%",
-              width: "18%",
-              height: "65%",
-              zIndex: 2,
-            }}
-          >
+          {/* Stone arch */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            {/* Arch cap */}
             <div
               style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: "38%",
-                background: "#2a180c",
-                border: "2px solid #4a2e18",
-                borderRadius: "2px 2px 0 0",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: "70%",
-                background: "#22140a",
-                border: "2px solid #4a2e18",
-                borderTop: "none",
-                borderRadius: "0 0 2px 2px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-around",
-                padding: "0 3px",
-              }}
-            >
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  style={{
-                    width: "28%",
-                    height: "55%",
-                    background: "#301c0e",
-                    border: "1px solid #503a22",
-                    borderRadius: 1,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Coffee machine */}
-          <div
-            style={{ position: "absolute", left: "28%", top: "12%", zIndex: 2 }}
-          >
-            <div
-              style={{
-                fontSize: 6,
-                color: "#3a2818",
-                marginBottom: 2,
-                textAlign: "center",
-                fontWeight: 700,
-                letterSpacing: "0.04em",
-              }}
-            >
-              COFFEE
-            </div>
-            <div
-              style={{
-                position: "relative",
-                width: 26,
-                height: 34,
-                background: "#18100a",
-                border: "2px solid #3a2010",
-                borderRadius: 2,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "space-around",
-                padding: "3px 0",
-              }}
-            >
-              <div
-                style={{
-                  width: 14,
-                  height: 9,
-                  background: "#0a0808",
-                  border: "1px solid #2a1010",
-                  borderRadius: 1,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 7,
-                }}
-              >
-                ☕
-              </div>
-              <div
-                style={{
-                  width: 8,
-                  height: 5,
-                  background: "#2a1010",
-                  border: "1px solid #4a2010",
-                  borderRadius: 1,
-                }}
-              />
-              {/* Steam */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: -8,
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: 2,
-                  height: 8,
-                  background: "rgba(255,255,255,0.18)",
-                  borderRadius: 1,
-                  animation: "steamRise 2.5s ease-in-out infinite",
-                }}
-              />
-            </div>
-          </div>
-
-          {/* Water cooler */}
-          <div
-            style={{ position: "absolute", left: "40%", top: "8%", zIndex: 2 }}
-          >
-            <div
-              style={{
-                fontSize: 6,
-                color: "#1a2a3a",
-                marginBottom: 2,
-                textAlign: "center",
-                fontWeight: 700,
-                letterSpacing: "0.04em",
-              }}
-            >
-              H₂O
-            </div>
-            <div
-              style={{
-                position: "relative",
-                width: 20,
+                width: 58,
                 height: 36,
-                background: "#0a1520",
-                border: "2px solid #162a40",
-                borderRadius: "4px 4px 2px 2px",
+                borderRadius: "29px 29px 0 0",
+                background: "#0d0d0d",
+                border: "3px solid #1e1e1e",
+                borderBottom: "none",
+                boxShadow: "inset 0 0 12px rgba(0,0,0,0.9)",
+                position: "relative",
               }}
             >
-              {/* Water jug */}
+              {/* Keystone */}
               <div
                 style={{
                   position: "absolute",
-                  top: -10,
+                  top: -5,
                   left: "50%",
                   transform: "translateX(-50%)",
-                  width: 14,
+                  width: 13,
                   height: 11,
-                  background: "#102040",
-                  border: "1.5px solid #1a4060",
-                  borderRadius: "2px 2px 0 0",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 7,
-                }}
-              >
-                💧
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 4,
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: 8,
-                  height: 5,
-                  background: "#162a40",
-                  borderRadius: 1,
+                  background: "#1a1a1a",
+                  border: "2px solid #2a2a2a",
                 }}
               />
             </div>
+            {/* Arch body */}
+            <div
+              style={{
+                width: 52,
+                height: 38,
+                background: "#0d0d0d",
+                border: "3px solid #1e1e1e",
+                borderTop: "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 18,
+              }}
+            >
+              🚪
+            </div>
           </div>
-
-          {/* Plants */}
           <div
             style={{
               position: "absolute",
-              right: "4%",
-              top: "10%",
-              fontSize: 18,
-              zIndex: 2,
+              bottom: 5,
+              left: "50%",
+              transform: "translateX(-50%)",
+              fontSize: 7,
+              color: "rgba(140,100,50,0.45)",
+              whiteSpace: "nowrap",
+              letterSpacing: "0.12em",
+              fontStyle: "italic",
             }}
           >
-            🪴
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              right: "20%",
-              bottom: "12%",
-              fontSize: 13,
-              opacity: 0.65,
-              zIndex: 2,
-            }}
-          >
-            🌿
+            — exit —
           </div>
         </div>
 
-        {/* ── WALLY CHARACTER ── */}
+        {/* ══════════════════════════════════════
+            BOTTOM-RIGHT — Wizard's Tower
+        ════════════════════════════════════ */}
+        <div
+          style={{
+            position: "absolute",
+            left: "69%",
+            top: "45%",
+            width: "30%",
+            height: "53%",
+            zIndex: 3,
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: 5,
+              left: 7,
+              fontSize: 8,
+              color: "rgba(150,210,255,0.7)",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+            }}
+          >
+            🧙 Wizard's Tower
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              top: 16,
+              left: 6,
+              fontSize: 7,
+              color: "rgba(100,160,220,0.35)",
+              fontStyle: "italic",
+            }}
+          >
+            wally's workstation
+          </div>
+
+          {/* Rune circle — outer */}
+          <div
+            style={{
+              position: "absolute",
+              top: "60%",
+              left: "62%",
+              width: 78,
+              height: 78,
+              borderRadius: "50%",
+              border: "1.5px solid rgba(96,165,250,0.28)",
+              boxShadow: "0 0 12px rgba(96,165,250,0.1)",
+              transform: "translate(-50%, -50%)",
+            }}
+          />
+          {/* Rune circle — inner spinning */}
+          <div
+            style={{
+              position: "absolute",
+              top: "60%",
+              left: "62%",
+              width: 56,
+              height: 56,
+              borderRadius: "50%",
+              border: "1px dashed rgba(96,165,250,0.2)",
+              animation: "runeRotate 10s linear infinite",
+              transform: "translate(-50%, -50%)",
+            }}
+          />
+          {/* Rune innermost CCW */}
+          <div
+            style={{
+              position: "absolute",
+              top: "60%",
+              left: "62%",
+              width: 36,
+              height: 36,
+              borderRadius: "50%",
+              border: "1px solid rgba(96,165,250,0.15)",
+              animation: "runeRotateCCW 6s linear infinite",
+              transform: "translate(-50%, -50%)",
+            }}
+          />
+
+          {/* Crystal ball */}
+          <div
+            style={{
+              position: "absolute",
+              top: "57%",
+              left: "62%",
+              transform: "translate(-50%, -50%)",
+              width: 42,
+              height: 42,
+              borderRadius: "50%",
+              background:
+                "radial-gradient(circle at 35% 32%, rgba(220,240,255,0.9) 0%, rgba(120,180,250,0.7) 35%, rgba(59,130,246,0.85) 100%)",
+              animation: "crystalPulse 3s ease-in-out infinite",
+              zIndex: 6,
+            }}
+          />
+
+          {/* Crystal stand */}
+          <div
+            style={{
+              position: "absolute",
+              top: "72%",
+              left: "62%",
+              transform: "translateX(-50%)",
+              width: 32,
+              height: 9,
+              background: "#2a1808",
+              border: "2px solid #4a2e10",
+              borderRadius: "0 0 4px 4px",
+              zIndex: 5,
+            }}
+          />
+
+          {/* Blue floor glow from crystal */}
+          <div
+            style={{
+              position: "absolute",
+              top: "65%",
+              left: "62%",
+              transform: "translate(-50%, -50%)",
+              width: 110,
+              height: 90,
+              borderRadius: "50%",
+              background:
+                "radial-gradient(ellipse, rgba(96,165,250,0.16) 0%, transparent 70%)",
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* Bookshelf */}
+          <div
+            style={{
+              position: "absolute",
+              left: "5%",
+              top: "12%",
+              width: "33%",
+              height: "52%",
+              background: "#271508",
+              border: "2px solid #4a2e10",
+              borderRadius: 2,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "space-around",
+              padding: "5px 0",
+              fontSize: 14,
+            }}
+          >
+            <span>📚</span>
+            <span style={{ fontSize: 12 }}>📖</span>
+          </div>
+
+          {/* Star accents */}
+          <div style={{ position: "absolute", right: "8%",  top: "12%", fontSize: 12, color: "rgba(200,225,255,0.45)" }}>✨</div>
+          <div style={{ position: "absolute", right: "22%", top: "7%",  fontSize: 10, color: "rgba(200,225,255,0.35)" }}>⭐</div>
+          <div style={{ position: "absolute", right: "5%",  top: "35%", fontSize: 10, color: "rgba(150,200,255,0.3)" }}>✨</div>
+        </div>
+
+        {/* ══════════════════════════════════════
+            WALLY — moving character
+        ════════════════════════════════════ */}
         <div
           style={{
             position: "absolute",
             left: `${pos.left}%`,
             top: `${pos.top}%`,
             transform: "translate(-50%, -50%)",
-            transition:
-              "left 0.9s cubic-bezier(0.4, 0, 0.2, 1), top 0.9s cubic-bezier(0.4, 0, 0.2, 1)",
-            zIndex: 20,
+            transition: "left 1.2s ease, top 1.2s ease",
+            zIndex: 25,
           }}
         >
-          <div style={{ animation: `${animName} 2s ease-in-out infinite` }}>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", userSelect: "none" }}>
+          <div style={{ animation: `${anim} 2.2s ease-in-out infinite` }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                userSelect: "none",
+              }}
+            >
               <div style={{ position: "relative" }}>
                 <img
                   src="/wally-wizard.jpg"
                   alt="Wally"
-                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                  style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", display: "block" }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                  style={{
+                    width: 38,
+                    height: 38,
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                    display: "block",
+                    border: "2px solid rgba(255,190,60,0.5)",
+                    boxShadow: "0 0 8px rgba(255,160,0,0.25)",
+                  }}
                 />
                 <div
                   style={{
                     position: "absolute",
-                    top: 0,
-                    right: 0,
+                    top: 1,
+                    right: 1,
                     width: 10,
                     height: 10,
                     borderRadius: "50%",
                     background: STATUS_COLORS[status],
                     border: "1.5px solid #000",
-                    boxShadow: `0 0 5px ${STATUS_COLORS[status]}`,
+                    boxShadow: `0 0 6px ${STATUS_COLORS[status]}`,
+                    animation: "statusPulse 2s ease-in-out infinite",
                   }}
                 />
               </div>
               <div
                 style={{
-                  marginTop: 3,
+                  marginTop: 4,
                   fontSize: 8,
-                  fontFamily: "'Courier New', monospace",
                   fontWeight: 700,
-                  color: "#e5e7eb",
-                  background: "#0d0d0d",
-                  border: "1px solid #3b82f660",
-                  padding: "1px 4px",
+                  color: "#f0d878",
+                  background: "rgba(8,4,0,0.88)",
+                  border: "1px solid rgba(255,170,30,0.4)",
+                  padding: "1px 6px",
                   whiteSpace: "nowrap",
-                  lineHeight: "11px",
-                  letterSpacing: "0.02em",
+                  lineHeight: "12px",
+                  letterSpacing: "0.06em",
                 }}
               >
                 Wally
@@ -1013,44 +1178,79 @@ export default function OfficePage() {
           </div>
         </div>
 
-        {/* Scanline sweep */}
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            height: 2,
-            background:
-              "linear-gradient(to right, transparent, rgba(59,130,246,0.06), transparent)",
-            animation: "scanline 10s linear infinite",
-            zIndex: 22,
-            pointerEvents: "none",
-          }}
-        />
-
-        {/* CRT scanlines */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 4px)",
-            zIndex: 21,
-            pointerEvents: "none",
-          }}
-        />
-
         {/* Vignette */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.55) 100%)",
-            zIndex: 21,
+              "radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.72) 100%)",
+            zIndex: 18,
             pointerEvents: "none",
           }}
         />
+      </div>
+
+      {/* ══════════════════════════════════════
+          STATUS BAR — parchment style
+      ════════════════════════════════════ */}
+      <div
+        style={{
+          flexShrink: 0,
+          marginTop: 8,
+          background: "linear-gradient(to bottom, #1e1508, #130e05)",
+          border: "1px solid #3e2c10",
+          borderRadius: 3,
+          padding: "7px 16px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          boxShadow: "0 2px 10px rgba(0,0,0,0.6)",
+        }}
+      >
+        <div
+          style={{
+            fontSize: 11,
+            color: "#c89830",
+            fontWeight: 700,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+          }}
+        >
+          ⚔️ War Room Status
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
+          <div
+            style={{
+              width: 8,
+              height: 8,
+              borderRadius: "50%",
+              background: STATUS_COLORS[status],
+              boxShadow: `0 0 8px ${STATUS_COLORS[status]}`,
+              animation: "statusPulse 2s ease-in-out infinite",
+            }}
+          />
+          <span
+            style={{
+              fontSize: 11,
+              color: "#e0c870",
+              letterSpacing: "0.05em",
+            }}
+          >
+            Wally — {STATUS_LOCATIONS[status]} — {STATUS_LABELS[status]}
+          </span>
+        </div>
+
+        <div
+          style={{
+            fontSize: 10,
+            color: "#5a3c14",
+            fontStyle: "italic",
+          }}
+        >
+          Est. Anno Domini 2026
+        </div>
       </div>
     </div>
   );
