@@ -19,8 +19,79 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
-    id: "2",
+    id: "3",
     date: "March 29, 2026",
+    title: "Office Overhaul, Avatars & New Agents",
+    discussions: [
+      {
+        title: "Pixel Art Avatars",
+        thingsToRemember: [
+          "Zach sent medieval pixel art avatars: Wally = wizard with staff, Zach = king with crown",
+          "Avatars saved to workspace /avatars/ and Mission Control /public/",
+          "Wally's Telegram bot photo updated manually via BotFather to the wizard avatar",
+          "Initial render bug (broken placeholder text) fixed by Claude Code using standard <img> tags with onError handlers",
+        ],
+        recommendations: [
+          "If new agents are added, create pixel art avatars to match the medieval theme for visual consistency",
+        ],
+        decisions: [
+          "Wally identity locked in: name=Wally, emoji=🧙, avatar=wally-wizard.jpg",
+          "Zach avatar saved as zach-king.jpg — available for use in Mission Control People page",
+        ],
+      },
+      {
+        title: "Office Page — Medieval Castle Canvas",
+        thingsToRemember: [
+          "Office page rebuilt as full canvas room with pathfinding — agents walk between locations",
+          "Medieval zones: Wizard Tower (Wally), The Forge (Patch/builds), Alchemy Lab (Dali/research), Tavern (idle), Round Table (meetings), Scribe's Corner (docs)",
+          "Wally has a pixel art SVG wizard sprite with walking animation",
+          "AI-generated sprites used for other agents",
+          "Claude Code session 'lucky-pine' built the medieval castle version",
+        ],
+        recommendations: [
+          "As the team grows, add new agent waypoints to the Office canvas",
+          "Consider adding click-to-navigate: click a zone, Wally walks there",
+        ],
+        decisions: [
+          "Office page ships as canvas-based with pathfinding (not CSS-only)",
+          "Medieval aesthetic chosen as the permanent Office theme",
+        ],
+      },
+      {
+        title: "New Agents: Patch & Dali",
+        thingsToRemember: [
+          "Patch = Software Dev Agent (orange) — owns Mission Control technical builds under Wally's direction",
+          "Dali = Image Generation Agent — handles graphics, avatars, visual assets",
+          "Both added to Office page, People page, and Tasks page",
+          "Patch assigned to Task #7 (Mission Control ongoing improvements)",
+        ],
+        recommendations: [
+          "Use Patch for future Mission Control feature requests to keep Wally focused on strategy",
+          "Use Dali when Zach needs generated images, thumbnails, or visual brand assets",
+        ],
+        decisions: [
+          "Agent roster formalized: Wally (strategy/orchestration), Patch (dev), Dali (image gen)",
+        ],
+      },
+      {
+        title: "Daily AI Brief — First Confirmed Run",
+        thingsToRemember: [
+          "Noon cron fired successfully on March 29 — first full Sunday brief delivered to Zach via Telegram",
+          "Top story: Anthropic 'Claude Mythos' (codename Capybara) leaked from unsecured database — described as above Opus, with advanced cyber capabilities",
+          "Other headlines: OpenAI 'Spud' finished pretraining March 25; Jensen Huang says AGI is already here; Perplexity on 1B Samsung devices; March was one of the busiest months in AI history",
+        ],
+        recommendations: [
+          "Keep monitoring AI brief quality — adjust scope if Zach wants HVAC tech or data center industry news added",
+        ],
+        decisions: [
+          "AI Daily Brief format confirmed: 5-7 bullets, no hype, most important story first, sign off as Wally 🧙",
+        ],
+      },
+    ],
+  },
+  {
+    id: "2",
+    date: "March 28, 2026",
     title: "Automation, Memory Sync & Daily Routines",
     discussions: [
       {
