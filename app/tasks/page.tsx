@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Plus, X, Calendar, Info } from "lucide-react";
 
 type TaskStatus = "backlog" | "in-progress" | "needs-review" | "complete";
@@ -14,110 +14,9 @@ interface Task {
   date: string;
   status: TaskStatus;
   priority: "low" | "medium" | "high";
+  protected: boolean;
 }
 
-const INITIAL_TASKS: Task[] = [
-  {
-    id: "1",
-    title: "Build Mission Control",
-    description: "Build the Mission Control Next.js app with 6 tabs: Tasks, Calendar, Memory, Documents, People, Office",
-    why: "Central hub to track all projects, agent activity, and memory across our growing team",
-    agent: "Wally",
-    date: "Mar 28, 2026",
-    status: "complete",
-    priority: "high",
-  },
-  {
-    id: "2",
-    title: "Deploy Mission Control to Vercel",
-    description: "Deploy to Vercel and connect to GitHub (zhunton/mission-control)",
-    why: "Make Mission Control accessible from any device, not just the Mac Mini",
-    agent: "Wally",
-    date: "Mar 28, 2026",
-    status: "complete",
-    priority: "high",
-  },
-  {
-    id: "3",
-    title: "UI Improvements Round 1",
-    description: "Task detail modals, column color coding, calendar cleanup, memory restructure, larger org chart",
-    why: "Polish the UI based on Zach's initial feedback",
-    agent: "Wally",
-    date: "Mar 28, 2026",
-    status: "complete",
-    priority: "medium",
-  },
-  {
-    id: "4",
-    title: "Scrub fake placeholder data",
-    description: "Replace all AI-generated placeholder content with real accurate data across all pages",
-    why: "Mission Control should only show real information — fake data creates confusion",
-    agent: "Wally",
-    date: "Mar 28, 2026",
-    status: "complete",
-    priority: "high",
-  },
-  {
-    id: "5",
-    title: "Daily midnight memory sync",
-    description: "Automated cron job runs at midnight every night — reads session history, updates MEMORY.md, syncs Mission Control, commits and pushes both repos",
-    why: "Wally wakes fresh each session. This keeps memory and Mission Control accurate and up to date automatically.",
-    agent: "Wally",
-    date: "Mar 29, 2026",
-    status: "complete",
-    priority: "medium",
-  },
-  {
-    id: "7",
-    title: "Office page — medieval castle canvas",
-    description: "Rebuilt Office page as a full canvas room with pathfinding. Agents walk between themed zones: Wizard Tower, Forge, Alchemy Lab, Tavern, Round Table, Scribe's Corner. Pixel art sprites with walking animations.",
-    why: "Visual identity for the agent team — makes Mission Control feel alive, not just a dashboard.",
-    agent: "Patch",
-    date: "Mar 29, 2026",
-    status: "complete",
-    priority: "high",
-  },
-  {
-    id: "8",
-    title: "Avatar integration — Wally & Zach pixel art",
-    description: "Medieval pixel art avatars for Wally (wizard) and Zach (king) added to workspace and Mission Control. Fixed broken image rendering with standard <img> tags and onError handlers.",
-    why: "Visual consistency and identity — Wally needed a real face, not a placeholder.",
-    agent: "Patch",
-    date: "Mar 29, 2026",
-    status: "complete",
-    priority: "medium",
-  },
-  {
-    id: "9",
-    title: "Add Patch & Dali agents to Mission Control",
-    description: "Patch (Software Dev Agent) and Dali (Image Generation Agent) added to Office page, People/org chart, and Tasks. Canvas ctx null check TypeScript error also fixed.",
-    why: "Agent roster needs to be real and visible in Mission Control — no phantom agents.",
-    agent: "Wally",
-    date: "Mar 29, 2026",
-    status: "complete",
-    priority: "medium",
-  },
-  {
-    id: "10",
-    title: "Hunton Group business deep-dive",
-    description: "Continue building out detailed context on all 4 operating companies — org charts, key people, P&L structure, strategic priorities",
-    why: "Better context = better strategic advice. Zach needs Wally to think like someone who's been in the business for years.",
-    agent: "Zach",
-    date: "Mar 29, 2026",
-    status: "backlog",
-    priority: "medium",
-  },
-  {
-    id: "11",
-    title: "Mission Control — ongoing improvements",
-    description: "Continuous development and improvement of Mission Control features as new needs emerge",
-    why: "Patch owns the technical build. As new features are needed, Patch implements them under Wally's direction.",
-    agent: "Patch",
-    date: "Mar 30, 2026",
-    status: "in-progress",
-    priority: "medium",
-  },
-];
 
 const COLUMNS: { id: TaskStatus; label: string; color: string; accentBorder?: string }[] = [
   { id: "backlog", label: "Backlog", color: "#6b7280" },
@@ -362,7 +261,7 @@ function TaskDetailModal({ task, onClose }: { task: Task; onClose: () => void })
   );
 }
 
-function NewTaskModal({ onClose, onAdd }: { onClose: () => void; onAdd: (task: Omit<Task, "id">) => void }) {
+function NewTaskModal({ onClose, onAdd }: { onClose: () => void; onAdd: (task: Omit<Task, "id" | "protected">) => void }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [why, setWhy] = useState("");
@@ -537,16 +436,34 @@ function NewTaskModal({ onClose, onAdd }: { onClose: () => void; onAdd: (task: O
 }
 
 export default function TasksPage() {
-  const [tasks, setTasks] = useState<Task[]>(INITIAL_TASKS);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [showNewModal, setShowNewModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
-  const addTask = (task: Omit<Task, "id">) => {
-    setTasks((prev) => [...prev, { ...task, id: Date.now().toString() }]);
+  useEffect(() => {
+    fetch("/api/tasks")
+      .then((r) => r.json())
+      .then((data: Task[]) => setTasks(data));
+  }, []);
+
+  const addTask = async (task: Omit<Task, "id" | "protected">) => {
+    const res = await fetch("/api/tasks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(task),
+    });
+    const newTask: Task = await res.json();
+    setTasks((prev) => [...prev, newTask]);
   };
 
-  const moveTask = (id: string, status: TaskStatus) => {
-    setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, status } : t)));
+  const moveTask = async (id: string, status: TaskStatus) => {
+    const res = await fetch("/api/tasks", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, status }),
+    });
+    const updated: Task = await res.json();
+    setTasks((prev) => prev.map((t) => (t.id === id ? updated : t)));
   };
 
   const counts = {

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "title": "Build Mission Control",
+    "description": "Build the Mission Control Next.js app with 6 tabs: Tasks, Calendar, Memory, Documents, People, Office",
+    "why": "Central hub to track all projects, agent activity, and memory across our growing team",
+    "agent": "Wally",
+    "date": "Mar 28, 2026",
+    "status": "complete",
+    "priority": "high",
+    "protected": false
+  },
+  {
+    "id": "2",
+    "title": "Deploy Mission Control to Vercel",
+    "description": "Deploy to Vercel and connect to GitHub (zhunton/mission-control)",
+    "why": "Make Mission Control accessible from any device, not just the Mac Mini",
+    "agent": "Wally",
+    "date": "Mar 28, 2026",
+    "status": "complete",
+    "priority": "high",
+    "protected": false
+  },
+  {
+    "id": "3",
+    "title": "UI Improvements Round 1",
+    "description": "Task detail modals, column color coding, calendar cleanup, memory restructure, larger org chart",
+    "why": "Polish the UI based on Zach's initial feedback",
+    "agent": "Wally",
+    "date": "Mar 28, 2026",
+    "status": "complete",
+    "priority": "medium",
+    "protected": false
+  },
+  {
+    "id": "4",
+    "title": "Mission Control — ongoing improvements",
+    "description": "Continuous development and improvement of Mission Control features",
+    "why": "Patch owns the technical build of Mission Control. As new features are needed, Patch implements them under Wally's direction.",
+    "agent": "Patch",
+    "date": "Mar 29, 2026",
+    "status": "in-progress",
+    "priority": "high",
+    "protected": false
+  }
+]
