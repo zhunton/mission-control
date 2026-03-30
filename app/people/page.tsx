@@ -80,7 +80,7 @@ const AGENTS: Agent[] = [
   {
     id: "patch",
     name: "Patch",
-    role: "Software Dev Agent · The Blacksmith",
+    role: "Software Developer",
     status: "working",
     emoji: "🔨",
     avatar: "/patch-blacksmith.jpg",
