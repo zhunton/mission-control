@@ -77,6 +77,19 @@ const AGENTS: Agent[] = [
     currentTask: undefined,
     reportsTo: "wally",
   },
+  {
+    id: "patch",
+    name: "Patch",
+    role: "Software Dev Agent · The Blacksmith",
+    status: "working",
+    emoji: "🔨",
+    avatar: "/patch-blacksmith.jpg",
+    color: "#f97316",
+    description: "Software Development Agent and resident Blacksmith. Owns the technical build of Mission Control. Implements new features and improvements under Wally's direction.",
+    skills: ["Next.js", "React", "TypeScript", "UI/UX", "Full-Stack"],
+    currentTask: "Mission Control — ongoing improvements",
+    reportsTo: "wally",
+  },
 ];
 
 const STATUS_CONFIG = {

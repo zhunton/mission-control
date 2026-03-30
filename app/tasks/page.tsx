@@ -77,6 +77,16 @@ const INITIAL_TASKS: Task[] = [
     status: "backlog",
     priority: "medium",
   },
+  {
+    id: "7",
+    title: "Mission Control — ongoing improvements",
+    description: "Continuous development and improvement of Mission Control features",
+    why: "Patch owns the technical build of Mission Control. As new features are needed, Patch implements them under Wally's direction.",
+    agent: "Patch",
+    date: "Mar 29, 2026",
+    status: "in-progress",
+    priority: "high",
+  },
 ];
 
 const COLUMNS: { id: TaskStatus; label: string; color: string; accentBorder?: string }[] = [
@@ -96,6 +106,7 @@ const AGENT_COLORS: Record<string, string> = {
   Wally: "#3b82f6",
   "Research Agent": "#8b5cf6",
   "Dev Agent": "#06b6d4",
+  Patch: "#f97316",
 };
 
 function TaskCard({ task, onClick }: { task: Task; onClick: () => void }) {
