@@ -35,6 +35,91 @@ function pickPatchState(): { status: AgentStatus; location: LocationKey } {
   return               { status: "meeting",  location: "roundTable" };
 }
 
+function pickDaliState(): { status: AgentStatus; location: LocationKey } {
+  const roll = Math.random();
+  if (roll < 0.65) return { status: "working", location: "alchemyLab" };
+  if (roll < 0.85) return { status: "idle",    location: "tavern" };
+  return               { status: "meeting",  location: "roundTable" };
+}
+
+function DaliSprite({ isMoving }: { isMoving: boolean }) {
+  return (
+    <div
+      style={{
+        animation: isMoving
+          ? "walkCycle 0.5s ease-in-out infinite"
+          : "idle 2s ease-in-out infinite",
+        display: "inline-block",
+        filter: "drop-shadow(0 3px 6px rgba(0,0,0,0.8))",
+      }}
+    >
+      {/* viewBox 44x56, rendered at 66x84 */}
+      <svg
+        width={66}
+        height={84}
+        viewBox="0 0 44 56"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Body — white shirt base */}
+        <path d="M 15 26 L 7 52 Q 22 58 37 52 L 29 26 Z" fill="#f5f5f0" />
+
+        {/* Green vest over shirt */}
+        <path d="M 16 26 L 9 50 Q 22 56 35 50 L 28 26 Z" fill="#3d6b4f" />
+
+        {/* Vest lapels — white shirt showing through */}
+        <path d="M 16 26 L 18 35 L 22 28 Z" fill="#f5f5f0" />
+        <path d="M 28 26 L 26 35 L 22 28 Z" fill="#f5f5f0" />
+
+        {/* Left arm — holding palette */}
+        <rect x="1" y="28" width="12" height="6" rx="3" fill="#f5f5f0" />
+
+        {/* Right arm — holding paintbrush */}
+        <rect x="31" y="28" width="12" height="6" rx="3" fill="#f5f5f0" />
+
+        {/* Palette in left hand */}
+        <ellipse cx="2" cy="36" rx="5" ry="4" fill="#c8965a" />
+        <circle cx="0.5" cy="34.5" r="1.1" fill="#e53e3e" />
+        <circle cx="2.5" cy="33.2" r="1.1" fill="#3182ce" />
+        <circle cx="4.5" cy="34.5" r="1.1" fill="#38a169" />
+        <circle cx="3.5" cy="37" r="1.1" fill="#d69e2e" />
+        <circle cx="1" cy="37" r="1.1" fill="#9f7aea" />
+
+        {/* Paintbrush in right hand */}
+        <line x1="43" y1="34" x2="40" y2="14" stroke="#5c3317" strokeWidth="2" strokeLinecap="round" />
+        {/* Brush ferrule (silver band) */}
+        <rect x="38.5" y="16.5" width="3" height="3" rx="0.5" fill="#9ca3af" />
+        {/* Brush bristles */}
+        <ellipse cx="39.5" cy="13.5" rx="2.2" ry="3.2" fill="#c0392b" />
+
+        {/* Head */}
+        <circle cx="22" cy="20" r="7" fill="#f4c284" />
+
+        {/* Brown medium-length hair — sides and back */}
+        <path d="M 15.5 21 Q 14 26 15.5 28" fill="#6b3a2a" />
+        <path d="M 28.5 21 Q 30 26 28.5 28" fill="#6b3a2a" />
+
+        {/* Eyes */}
+        <circle cx="19.5" cy="20" r="1" fill="#1a1a1a" />
+        <circle cx="24.5" cy="20" r="1" fill="#1a1a1a" />
+
+        {/* Thin mustache (Dalí-style) */}
+        <path d="M 19 23.5 Q 20.5 24.5 22 23.5" fill="none" stroke="#3d1a0a" strokeWidth="0.9" strokeLinecap="round" />
+        <path d="M 19 23.5 Q 18 22.5 17.5 23" fill="none" stroke="#3d1a0a" strokeWidth="0.9" strokeLinecap="round" />
+        <path d="M 22 23.5 Q 23 22.5 24.5 23" fill="none" stroke="#3d1a0a" strokeWidth="0.9" strokeLinecap="round" />
+
+        {/* Red beret — flat disk shape */}
+        <ellipse cx="22" cy="15" rx="9" ry="3.5" fill="#c0392b" />
+        {/* Beret top dome */}
+        <path d="M 13 15 Q 14 10 22 10 Q 30 10 31 15" fill="#c0392b" />
+        {/* Beret highlight */}
+        <path d="M 14 14 Q 18 10.5 22 10.5" fill="none" stroke="#e74c3c" strokeWidth="1" strokeLinecap="round" />
+        {/* Beret button/knot on top */}
+        <circle cx="22" cy="10" r="1.5" fill="#a93226" />
+      </svg>
+    </div>
+  );
+}
+
 function PatchSprite({ isMoving }: { isMoving: boolean }) {
   return (
     <div
@@ -175,6 +260,11 @@ export default function OfficePage() {
   const [patchMoving, setPatchMoving]     = useState(false);
   const patchMoveRef                      = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const [daliStatus, setDaliStatus]       = useState<AgentStatus>("working");
+  const [daliLocation, setDaliLocation]   = useState<LocationKey>("alchemyLab");
+  const [daliMoving, setDaliMoving]       = useState(false);
+  const daliMoveRef                       = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
     const interval = setInterval(() => {
       const next = pickWallyState();
@@ -207,8 +297,25 @@ export default function OfficePage() {
     };
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const next = pickDaliState();
+      setDaliStatus(next.status);
+      setDaliLocation(next.location);
+      setDaliMoving(true);
+      if (daliMoveRef.current) clearTimeout(daliMoveRef.current);
+      daliMoveRef.current = setTimeout(() => setDaliMoving(false), 7000);
+    }, 10000);
+
+    return () => {
+      clearInterval(interval);
+      if (daliMoveRef.current) clearTimeout(daliMoveRef.current);
+    };
+  }, []);
+
   const wallyPos = LOCATIONS[wallyLocation];
   const patchPos = LOCATIONS[patchLocation];
+  const daliPos  = LOCATIONS[daliLocation];
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100%", overflow: "hidden" }}>
@@ -314,6 +421,45 @@ export default function OfficePage() {
           </div>
           <PatchSprite isMoving={patchMoving} />
         </div>
+
+        {/* Dali sprite */}
+        <div
+          style={{
+            position: "absolute",
+            top: daliPos.top,
+            left: daliPos.left,
+            transform: "translate(-50%, -50%)",
+            transition: "top 7s ease-in-out, left 7s ease-in-out",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 2,
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+            <span
+              style={{
+                fontSize: 11,
+                fontWeight: "bold",
+                color: "#fff",
+                textShadow: "0 1px 3px rgba(0,0,0,0.9)",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Dali
+            </span>
+            <div
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                backgroundColor: "#a855f7",
+                flexShrink: 0,
+              }}
+            />
+          </div>
+          <DaliSprite isMoving={daliMoving} />
+        </div>
       </div>
 
       {/* Status bar */}
@@ -352,6 +498,18 @@ export default function OfficePage() {
           }}
         />
         <span>🔨 Patch · {patchStatus.charAt(0).toUpperCase() + patchStatus.slice(1)}</span>
+        <span style={{ color: "#4b5563", margin: "0 4px" }}>|</span>
+        <span
+          style={{
+            width: 8,
+            height: 8,
+            borderRadius: "50%",
+            backgroundColor: "#a855f7",
+            display: "inline-block",
+            flexShrink: 0,
+          }}
+        />
+        <span>🎨 Dali · {daliStatus.charAt(0).toUpperCase() + daliStatus.slice(1)}</span>
       </div>
     </div>
   );

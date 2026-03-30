@@ -90,6 +90,19 @@ const AGENTS: Agent[] = [
     currentTask: "Mission Control — ongoing improvements",
     reportsTo: "wally",
   },
+  {
+    id: "dali",
+    name: "Dali",
+    role: "Image Generation Agent",
+    status: "working",
+    emoji: "🎨",
+    avatar: "/dali-painter.jpg",
+    color: "#a855f7",
+    description: "Image Generation Agent and resident Painter. Conjures visuals, illustrations, and creative assets for Mission Control. Operates from the Alchemy Lab under Wally's direction.",
+    skills: ["Image Generation", "Visual Design", "Illustration", "Creative Direction"],
+    currentTask: "Generating visual assets",
+    reportsTo: "wally",
+  },
 ];
 
 const STATUS_CONFIG = {
