@@ -134,6 +134,7 @@ function AgentNode({
             <img
               src={agent.avatar}
               alt={agent.name}
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           ) : (
@@ -311,6 +312,7 @@ export default function PeoplePage() {
                 <img
                   src={selectedAgent.avatar}
                   alt={selectedAgent.name}
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               ) : (
@@ -406,6 +408,7 @@ export default function PeoplePage() {
                       <img
                         src={manager.avatar}
                         alt={manager.name}
+                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
                         style={{ width: 24, height: 24, borderRadius: "50%", objectFit: "cover" }}
                       />
                     ) : (

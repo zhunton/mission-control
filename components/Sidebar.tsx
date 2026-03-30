@@ -147,6 +147,7 @@ export default function Sidebar() {
           <img
             src="/wally-wizard.jpg"
             alt="Wally"
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
             style={{
               width: 32,
               height: 32,

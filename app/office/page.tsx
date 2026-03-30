@@ -975,6 +975,7 @@ export default function OfficePage() {
                 <img
                   src="/wally-wizard.jpg"
                   alt="Wally"
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
                   style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", display: "block" }}
                 />
                 <div
