@@ -1,459 +1,644 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 
-type LocationKey = "wizardTower" | "tavern" | "roundTable" | "alchemyLab" | "forge" | "scribe";
+// ---- Waypoints ----
+const WAYPOINTS = {
+  center:      { x: 450, y: 300 },
+  tableNorth:  { x: 450, y: 230 },
+  tableSouth:  { x: 450, y: 370 },
+  tableEast:   { x: 520, y: 300 },
+  tableWest:   { x: 380, y: 300 },
+  corridorNE:  { x: 660, y: 200 },
+  corridorNW:  { x: 240, y: 200 },
+  corridorSE:  { x: 660, y: 430 },
+  corridorSW:  { x: 240, y: 430 },
+  wizardTower: { x: 740, y: 500 },
+  forge:       { x: 740, y: 120 },
+  alchemyLab:  { x: 160, y: 120 },
+  tavern:      { x: 160, y: 500 },
+  scribe:      { x: 200, y: 300 },
+} as const;
 
-const LOCATIONS: Record<LocationKey, { top: string; left: string; label: string }> = {
-  wizardTower: { top: "62%", left: "72%", label: "Wizard's Tower" },
-  tavern:      { top: "65%", left: "18%", label: "Tavern" },
-  roundTable:  { top: "38%", left: "45%", label: "Round Table" },
-  alchemyLab:  { top: "15%", left: "18%", label: "Alchemy Lab" },
-  forge:       { top: "15%", left: "72%", label: "Forge" },
-  scribe:      { top: "42%", left: "25%", label: "Scribe's Desk" },
-};
+type WaypointKey = keyof typeof WAYPOINTS;
 
+const EDGES: [WaypointKey, WaypointKey][] = [
+  ["center", "tableNorth"], ["center", "tableSouth"],
+  ["center", "tableEast"],  ["center", "tableWest"],
+  ["tableNorth", "corridorNE"], ["tableNorth", "corridorNW"],
+  ["tableSouth", "corridorSE"], ["tableSouth", "corridorSW"],
+  ["corridorNE", "forge"],      ["corridorNW", "alchemyLab"],
+  ["corridorSE", "wizardTower"],["corridorSW", "tavern"],
+  ["tableWest", "scribe"],
+];
+
+const GRAPH: Map<WaypointKey, WaypointKey[]> = new Map();
+for (const key of Object.keys(WAYPOINTS) as WaypointKey[]) GRAPH.set(key, []);
+for (const [a, b] of EDGES) { GRAPH.get(a)!.push(b); GRAPH.get(b)!.push(a); }
+
+function bfs(start: WaypointKey, end: WaypointKey): WaypointKey[] {
+  if (start === end) return [start];
+  const queue: WaypointKey[][] = [[start]];
+  const visited = new Set<WaypointKey>([start]);
+  while (queue.length) {
+    const path = queue.shift()!;
+    const node = path[path.length - 1];
+    for (const nb of GRAPH.get(node) ?? []) {
+      if (nb === end) return [...path, nb];
+      if (!visited.has(nb)) { visited.add(nb); queue.push([...path, nb]); }
+    }
+  }
+  return [start];
+}
+
+// ---- Types ----
 type AgentStatus = "working" | "idle" | "meeting";
 
+interface AgentState {
+  name: string; color: string; emoji: string;
+  x: number; y: number;
+  path: WaypointKey[]; pathIndex: number;
+  currentWaypoint: WaypointKey;
+  status: AgentStatus; locationLabel: string;
+  nextDecisionTime: number;
+}
+
+// ---- Constants ----
+const CANVAS_W = 900;
+const CANVAS_H = 600;
+const WALL = 40;
+const SPEED = 60;
+
 const STATUS_COLORS: Record<AgentStatus, string> = {
-  working: "#22c55e",
-  idle:    "#f59e0b",
-  meeting: "#60a5fa",
+  working: "#22c55e", idle: "#f59e0b", meeting: "#60a5fa",
 };
 
-function pickWallyState(): { status: AgentStatus; location: LocationKey } {
-  const roll = Math.random();
-  if (roll < 0.6) return { status: "working", location: "wizardTower" };
-  if (roll < 0.8) return { status: "idle",    location: "tavern" };
-  return              { status: "meeting",  location: "roundTable" };
+const LOCATION_LABELS: Record<WaypointKey, string> = {
+  center: "Round Table",   tableNorth: "Round Table", tableSouth: "Round Table",
+  tableEast: "Round Table", tableWest: "Round Table",
+  corridorNE: "Corridor",  corridorNW: "Corridor",
+  corridorSE: "Corridor",  corridorSW: "Corridor",
+  wizardTower: "Wizard's Tower", forge: "The Forge",
+  alchemyLab: "Alchemy Lab", tavern: "The Tavern", scribe: "Scribe's Corner",
+};
+
+function pickDest(name: string): { dest: WaypointKey; status: AgentStatus } {
+  const r = Math.random();
+  if (name === "Wally") {
+    if (r < 0.60) return { dest: "wizardTower", status: "working" };
+    if (r < 0.80) return { dest: "tavern",      status: "idle" };
+    return { dest: "center", status: "meeting" };
+  } else if (name === "Patch") {
+    if (r < 0.65) return { dest: "forge",  status: "working" };
+    if (r < 0.85) return { dest: "tavern", status: "idle" };
+    return { dest: "center", status: "meeting" };
+  } else {
+    if (r < 0.65) return { dest: "alchemyLab", status: "working" };
+    if (r < 0.85) return { dest: "tavern",     status: "idle" };
+    return { dest: "center", status: "meeting" };
+  }
 }
 
-function pickPatchState(): { status: AgentStatus; location: LocationKey } {
-  const roll = Math.random();
-  if (roll < 0.65) return { status: "working", location: "forge" };
-  if (roll < 0.85) return { status: "idle",    location: "tavern" };
-  return               { status: "meeting",  location: "roundTable" };
-}
-
-function pickDaliState(): { status: AgentStatus; location: LocationKey } {
-  const roll = Math.random();
-  if (roll < 0.65) return { status: "working", location: "alchemyLab" };
-  if (roll < 0.85) return { status: "idle",    location: "tavern" };
-  return               { status: "meeting",  location: "roundTable" };
-}
-
-function DaliSprite({ isMoving }: { isMoving: boolean }) {
-  return (
-    <div
-      style={{
-        animation: isMoving
-          ? "walkCycle 0.5s ease-in-out infinite"
-          : "idle 2s ease-in-out infinite",
-        display: "inline-block",
-        filter: "drop-shadow(0 3px 6px rgba(0,0,0,0.8))",
-      }}
-    >
-      <img
-        src="/dali-painter.jpg"
-        alt="Dali"
-        className="rounded-full"
-        onError={(e) => { e.currentTarget.style.display = 'none'; }}
-        style={{ width: 36, height: 36, objectFit: "cover" }}
-      />
-    </div>
-  );
-}
-
-function PatchSprite({ isMoving }: { isMoving: boolean }) {
-  return (
-    <div
-      style={{
-        animation: isMoving
-          ? "walkCycle 0.5s ease-in-out infinite"
-          : "idle 2s ease-in-out infinite",
-        display: "inline-block",
-        filter: "drop-shadow(0 3px 6px rgba(0,0,0,0.8))",
-      }}
-    >
-      {/* viewBox 44x56, rendered at 66x84 — slightly wider than Wally */}
-      <svg
-        width={66}
-        height={84}
-        viewBox="0 0 44 56"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Body — white shirt base, wider/sturdier build */}
-        <path d="M 15 26 L 6 52 Q 22 58 38 52 L 29 26 Z" fill="#f5f5f0" />
-
-        {/* Leather apron — brown, covers front */}
-        <path d="M 17 29 L 10 52 Q 22 57 34 52 L 27 29 Z" fill="#92400e" />
-
-        {/* Apron bib — upper chest piece */}
-        <rect x="17" y="26" width="10" height="7" rx="1" fill="#78350f" />
-
-        {/* Left arm */}
-        <rect x="0" y="28" width="13" height="6" rx="3" fill="#f5f5f0" />
-
-        {/* Right arm */}
-        <rect x="31" y="28" width="13" height="6" rx="3" fill="#f5f5f0" />
-
-        {/* Hammer handle — in right hand */}
-        <line x1="43" y1="34" x2="43" y2="14" stroke="#5c3317" strokeWidth="2.5" strokeLinecap="round" />
-        {/* Hammer head */}
-        <rect x="38" y="10" width="10" height="9" rx="2" fill="#6b7280" />
-        {/* Hammer head highlight */}
-        <rect x="38" y="10" width="10" height="3" rx="1.5" fill="#9ca3af" />
-
-        {/* Head */}
-        <circle cx="22" cy="20" r="7" fill="#f4c284" />
-
-        {/* Dark brown hair — cap style */}
-        <path d="M 15 19 Q 15 11 22 11 Q 29 11 29 19 Q 26 16 22 16 Q 18 16 15 19 Z" fill="#3d1a0a" />
-
-        {/* Sideburns / short beard stubble */}
-        <path d="M 15.5 22 Q 15 26.5 18 27.5 Q 20 28 22 28 Q 24 28 26 27.5 Q 29 26.5 28.5 22" fill="none" stroke="#3d1a0a" strokeWidth="1.2" strokeLinecap="round" />
-
-        {/* Eyes */}
-        <circle cx="19.5" cy="20" r="1" fill="#1a1a1a" />
-        <circle cx="24.5" cy="20" r="1" fill="#1a1a1a" />
-
-        {/* Nose bridge hint */}
-        <line x1="22" y1="21" x2="22" y2="23" stroke="#d4a574" strokeWidth="0.8" />
-
-        {/* Apron tie strings */}
-        <line x1="17" y1="32" x2="12" y2="34" stroke="#92400e" strokeWidth="1" />
-        <line x1="27" y1="32" x2="32" y2="34" stroke="#92400e" strokeWidth="1" />
-      </svg>
-    </div>
-  );
-}
-
-function WallySprite({ isMoving }: { isMoving: boolean }) {
-  return (
-    <div
-      style={{
-        animation: isMoving
-          ? "walkCycle 0.5s ease-in-out infinite"
-          : "idle 2s ease-in-out infinite",
-        display: "inline-block",
-        filter: "drop-shadow(0 3px 6px rgba(0,0,0,0.8))",
-      }}
-    >
-      {/* viewBox 40x56, rendered at 60x84 */}
-      <svg
-        width={60}
-        height={84}
-        viewBox="0 0 40 56"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Cape — drawn first so it sits behind everything */}
-        <polygon points="9,56 31,56 20,28" fill="#1e1b4b" />
-
-        {/* Robe body — bell-shaped trapezoid with curved bottom */}
-        <path d="M 14 28 L 7 52 Q 20 58 33 52 L 26 28 Z" fill="#4a0e8f" />
-
-        {/* Left arm */}
-        <rect x="4" y="31" width="10" height="5" rx="2.5" fill="#5a1eaf" />
-
-        {/* Right arm */}
-        <rect x="26" y="31" width="10" height="5" rx="2.5" fill="#5a1eaf" />
-
-        {/* Staff — behind orb, in front of arm */}
-        <line x1="35" y1="52" x2="35" y2="18" stroke="#8B4513" strokeWidth="2" strokeLinecap="round" />
-        {/* Staff glow */}
-        <circle cx="35" cy="15" r="4.5" fill="rgba(255,215,0,0.25)" />
-        {/* Staff orb */}
-        <circle cx="35" cy="15" r="2.8" fill="#ffd700" />
-        <circle cx="34" cy="14" r="1" fill="rgba(255,255,255,0.5)" />
-
-        {/* Head */}
-        <circle cx="20" cy="23" r="6.5" fill="#f4c284" />
-
-        {/* Beard */}
-        <path d="M 16.5 27.5 Q 20 34.5 23.5 27.5 Q 20 31.5 16.5 27.5 Z" fill="#f0f0f0" />
-
-        {/* Eyes */}
-        <circle cx="18" cy="22.5" r="0.9" fill="#1a1a1a" />
-        <circle cx="22" cy="22.5" r="0.9" fill="#1a1a1a" />
-
-        {/* Wizard hat cone */}
-        <polygon points="11,17 20,1 29,17" fill="#4a0e8f" />
-
-        {/* Hat band (gold stripe at base of cone) */}
-        <ellipse cx="20" cy="16" rx="8" ry="1.8" fill="#ffd700" />
-
-        {/* Hat brim */}
-        <ellipse cx="20" cy="17" rx="10.5" ry="2.8" fill="#3a0870" />
-
-        {/* Hat star dot near brim */}
-        <circle cx="13" cy="13.5" r="1.6" fill="#ffd700" />
-        <circle cx="13" cy="13.5" r="0.7" fill="#fff8" />
-      </svg>
-    </div>
-  );
-}
-
+// ---- Component ----
 export default function OfficePage() {
-  const [wallyStatus, setWallyStatus]     = useState<AgentStatus>("working");
-  const [wallyLocation, setWallyLocation] = useState<LocationKey>("wizardTower");
-  const [wallyMoving, setWallyMoving]     = useState(false);
-  const wallyMoveRef                      = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const rafRef    = useRef<number>(0);
+  const agentsRef = useRef<AgentState[]>([]);
+  const imgsRef   = useRef<Record<string, HTMLImageElement>>({});
 
-  const [patchStatus, setPatchStatus]     = useState<AgentStatus>("working");
-  const [patchLocation, setPatchLocation] = useState<LocationKey>("forge");
-  const [patchMoving, setPatchMoving]     = useState(false);
-  const patchMoveRef                      = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const [daliStatus, setDaliStatus]       = useState<AgentStatus>("working");
-  const [daliLocation, setDaliLocation]   = useState<LocationKey>("alchemyLab");
-  const [daliMoving, setDaliMoving]       = useState(false);
-  const daliMoveRef                       = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [statusDisplay, setStatusDisplay] = useState([
+    { name: "Wally", emoji: "🧙", color: "#3b82f6", status: "working" as AgentStatus, location: "Wizard's Tower" },
+    { name: "Patch", emoji: "🔨", color: "#f97316", status: "working" as AgentStatus, location: "The Forge" },
+    { name: "Dali",  emoji: "🎨", color: "#a855f7", status: "working" as AgentStatus, location: "Alchemy Lab" },
+  ]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const next = pickWallyState();
-      setWallyStatus(next.status);
-      setWallyLocation(next.location);
-      setWallyMoving(true);
-      if (wallyMoveRef.current) clearTimeout(wallyMoveRef.current);
-      wallyMoveRef.current = setTimeout(() => setWallyMoving(false), 7000);
-    }, 10000);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    let mounted = true;
 
-    return () => {
-      clearInterval(interval);
-      if (wallyMoveRef.current) clearTimeout(wallyMoveRef.current);
-    };
+    agentsRef.current = [
+      { name: "Wally", color: "#3b82f6", emoji: "🧙", ...WAYPOINTS.wizardTower, path: [], pathIndex: 0, currentWaypoint: "wizardTower", status: "working", locationLabel: "Wizard's Tower", nextDecisionTime: 12 },
+      { name: "Patch", color: "#f97316", emoji: "🔨", ...WAYPOINTS.forge,        path: [], pathIndex: 0, currentWaypoint: "forge",        status: "working", locationLabel: "The Forge",       nextDecisionTime: 14 },
+      { name: "Dali",  color: "#a855f7", emoji: "🎨", ...WAYPOINTS.alchemyLab,   path: [], pathIndex: 0, currentWaypoint: "alchemyLab",   status: "working", locationLabel: "Alchemy Lab",      nextDecisionTime: 16 },
+    ];
+
+    let pending = 3;
+    for (const name of ["wally", "patch", "dali"]) {
+      const img = new Image();
+      img.onload = img.onerror = () => {
+        imgsRef.current[name] = img;
+        if (--pending === 0 && mounted) startLoop();
+      };
+      img.src = `/sprite-${name}.png`;
+    }
+
+    let prevTime = 0;
+    let animTime = 0;
+
+    function startLoop() {
+      prevTime = performance.now();
+      rafRef.current = requestAnimationFrame(tick);
+    }
+
+    function tick(now: number) {
+      if (!mounted) return;
+      const dt = Math.min((now - prevTime) / 1000, 0.1);
+      prevTime = now;
+      animTime += dt;
+      update(dt);
+      render(animTime);
+      rafRef.current = requestAnimationFrame(tick);
+    }
+
+    function update(dt: number) {
+      let changed = false;
+      for (const a of agentsRef.current) {
+        if (a.pathIndex < a.path.length) {
+          const wpKey = a.path[a.pathIndex]!;
+          const wp = WAYPOINTS[wpKey];
+          const dx = wp.x - a.x, dy = wp.y - a.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const step = SPEED * dt;
+          if (dist <= step) {
+            a.x = wp.x; a.y = wp.y;
+            a.currentWaypoint = wpKey;
+            a.pathIndex++;
+          } else {
+            a.x += (dx / dist) * step;
+            a.y += (dy / dist) * step;
+          }
+        }
+        a.nextDecisionTime -= dt;
+        if (a.nextDecisionTime <= 0) {
+          const { dest, status } = pickDest(a.name);
+          const path = bfs(a.currentWaypoint, dest);
+          a.path = path; a.pathIndex = 1;
+          a.status = status;
+          a.locationLabel = LOCATION_LABELS[dest];
+          a.nextDecisionTime = 11 + Math.random() * 2;
+          changed = true;
+        }
+      }
+      if (changed) {
+        setStatusDisplay(agentsRef.current.map(a => ({
+          name: a.name, emoji: a.emoji, color: a.color,
+          status: a.status, location: a.locationLabel,
+        })));
+      }
+    }
+
+    function render(t: number) {
+      ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
+      drawFloor();
+      drawWalls();
+      drawTavern(t);
+      drawAlchemyLab(t);
+      drawForge(t);
+      drawRoundTable();
+      drawScribe(t);
+      drawWizardTower(t);
+      drawTorches(t);
+      drawAgents(t);
+    }
+
+    // ------------------------------------------------------------------ floor
+
+    function drawFloor() {
+      const tile = 40;
+      for (let row = 0; row * tile < CANVAS_H; row++) {
+        for (let col = 0; col * tile < CANVAS_W; col++) {
+          const v = ((row * 7 + col * 13) % 5) * 5;
+          const s = 44 + v;
+          ctx.fillStyle = `rgb(${s},${s},${s + 3})`;
+          ctx.fillRect(col * tile, row * tile, tile - 1, tile - 1);
+        }
+      }
+    }
+
+    // ------------------------------------------------------------------ walls
+
+    function drawWalls() {
+      ctx.fillStyle = "#1e1a14";
+      ctx.fillRect(0, 0, CANVAS_W, WALL);
+      ctx.fillRect(0, CANVAS_H - WALL, CANVAS_W, WALL);
+      ctx.fillRect(0, 0, WALL, CANVAS_H);
+      ctx.fillRect(CANVAS_W - WALL, 0, WALL, CANVAS_H);
+
+      ctx.fillStyle = "#2a2318";
+      for (let i = 0; i < 12; i++) {
+        ctx.fillRect(i * 78,      4,               73, 14);
+        ctx.fillRect(i * 78 + 38, 20,              73, 14);
+        ctx.fillRect(i * 78,      CANVAS_H - 36,   73, 14);
+        ctx.fillRect(i * 78 + 38, CANVAS_H - 20,   73, 14);
+      }
+      for (let i = 0; i < 8; i++) {
+        ctx.fillRect(4,               i * 78,      14, 73);
+        ctx.fillRect(21,              i * 78 + 38, 14, 73);
+        ctx.fillRect(CANVAS_W - 18,   i * 78,      14, 73);
+        ctx.fillRect(CANVAS_W - 35,   i * 78 + 38, 14, 73);
+      }
+      ctx.strokeStyle = "#0f0d09";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(WALL, WALL, CANVAS_W - WALL * 2, CANVAS_H - WALL * 2);
+    }
+
+    // ----------------------------------------------------------------- torches
+
+    function drawTorches(t: number) {
+      const pts = [
+        { x: 220, y: WALL,          dir: "top"   },
+        { x: 680, y: WALL,          dir: "top"   },
+        { x: WALL, y: 180,          dir: "left"  },
+        { x: WALL, y: 420,          dir: "left"  },
+        { x: CANVAS_W - WALL, y: 180, dir: "right" },
+        { x: CANVAS_W - WALL, y: 420, dir: "right" },
+      ];
+
+      for (const p of pts) {
+        const flicker = Math.sin(t * (8 + Math.sin(t * 0.7 + p.x) * 2)) * 0.25 + 0.75;
+        const glowX = p.x + (p.dir === "left" ? 40 : p.dir === "right" ? -40 : 0);
+        const glowY = p.y + (p.dir === "top"  ? 40 : 0);
+
+        const glow = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, 75);
+        glow.addColorStop(0, `rgba(255,150,30,${0.18 * flicker})`);
+        glow.addColorStop(1, "rgba(255,100,0,0)");
+        ctx.fillStyle = glow;
+        ctx.beginPath(); ctx.arc(glowX, glowY, 75, 0, Math.PI * 2); ctx.fill();
+
+        ctx.fillStyle = "#4a3520";
+        ctx.fillRect(p.x - 4, p.y + 2, 8, 10);
+
+        const fg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, 12 * flicker);
+        fg.addColorStop(0,   `rgba(255,230,100,${flicker})`);
+        fg.addColorStop(0.5, `rgba(255,100,0,${0.7 * flicker})`);
+        fg.addColorStop(1,   "rgba(200,20,0,0)");
+        ctx.fillStyle = fg;
+        ctx.beginPath();
+        ctx.ellipse(p.x, p.y - 2, 5 * flicker, 9 * flicker, 0, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // ------------------------------------------------------------------ rooms
+
+    function drawWizardTower(t: number) {
+      const cx = 760, cy = 490;
+
+      // Purple rug
+      ctx.beginPath(); ctx.arc(cx, cy, 80, 0, Math.PI * 2);
+      ctx.fillStyle = "#3b0764"; ctx.fill();
+      ctx.strokeStyle = "#7e22ce"; ctx.lineWidth = 3; ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx, cy, 60, 0, Math.PI * 2);
+      ctx.strokeStyle = "#6b21a8"; ctx.lineWidth = 1; ctx.stroke();
+
+      // Rotating rune marks
+      for (let i = 0; i < 6; i++) {
+        const ang = (i / 6) * Math.PI * 2 + t * 0.15;
+        const rx = cx + Math.cos(ang) * 52, ry = cy + Math.sin(ang) * 52;
+        ctx.save(); ctx.translate(rx, ry); ctx.rotate(ang);
+        ctx.strokeStyle = "#9333ea"; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(-5, -5); ctx.lineTo(5, 0); ctx.lineTo(-5, 5); ctx.stroke();
+        ctx.restore();
+        ctx.fillStyle = "#a855f7";
+        ctx.beginPath(); ctx.arc(rx, ry, 2, 0, Math.PI * 2); ctx.fill();
+      }
+
+      // Pulsing orb glow
+      const pulse = Math.sin(t * 1.8) * 0.25 + 0.75;
+      const og = ctx.createRadialGradient(cx, cy, 0, cx, cy, 40 * pulse);
+      og.addColorStop(0,   `rgba(147,197,253,${0.85 * pulse})`);
+      og.addColorStop(0.5, `rgba(59,130,246,${0.4 * pulse})`);
+      og.addColorStop(1,   "rgba(29,78,216,0)");
+      ctx.fillStyle = og;
+      ctx.beginPath(); ctx.arc(cx, cy, 40 * pulse, 0, Math.PI * 2); ctx.fill();
+
+      // Orb core
+      ctx.beginPath(); ctx.arc(cx, cy, 13, 0, Math.PI * 2);
+      ctx.fillStyle = "#bfdbfe"; ctx.fill();
+      ctx.fillStyle = "rgba(255,255,255,0.8)";
+      ctx.beginPath(); ctx.arc(cx - 4, cy - 4, 5, 0, Math.PI * 2); ctx.fill();
+
+      // Bookshelf (bottom-right wall)
+      ctx.fillStyle = "#78350f";
+      ctx.fillRect(CANVAS_W - WALL - 5, CANVAS_H - WALL - 8,  -65, -16);
+      ctx.fillRect(CANVAS_W - WALL - 5, CANVAS_H - WALL - 28, -65, -16);
+      const bkc = ["#dc2626","#2563eb","#16a34a","#ca8a04","#9333ea","#0891b2","#db2777"];
+      for (let shelf = 0; shelf < 2; shelf++) {
+        const sy2 = CANVAS_H - WALL - 10 - shelf * 20;
+        for (let b = 0; b < 6; b++) {
+          ctx.fillStyle = bkc[(b + shelf * 3) % bkc.length];
+          ctx.fillRect(CANVAS_W - WALL - 10 - b * 9, sy2 - 11, 7, 10);
+        }
+      }
+
+      label(ctx, "Wizard's Tower", cx, CANVAS_H - WALL - 5);
+    }
+
+    function drawForge(t: number) {
+      const cx = 760, cy = 100;
+      const flick = Math.sin(t * 11) * 0.2 + 0.8;
+
+      // Stone forge box against right wall
+      ctx.fillStyle = "#374151";
+      ctx.fillRect(CANVAS_W - WALL - 82, WALL + 4, 77, 78);
+      ctx.fillStyle = "#111827";
+      ctx.fillRect(CANVAS_W - WALL - 74, WALL + 10, 62, 60);
+
+      // Tri-flame fire
+      for (let i = 0; i < 3; i++) {
+        const ff = Math.sin(t * (10 + i * 3) + i) * 0.2 + 0.8;
+        const fx = cx - 12 + i * 12;
+        const fg = ctx.createRadialGradient(fx, WALL + 42, 0, fx, WALL + 42, 20 * ff);
+        fg.addColorStop(0,   `rgba(255,240,50,${ff})`);
+        fg.addColorStop(0.4, `rgba(255,90,0,${0.8 * ff})`);
+        fg.addColorStop(1,   "rgba(100,0,0,0)");
+        ctx.fillStyle = fg;
+        ctx.beginPath(); ctx.ellipse(fx, WALL + 42, 12, 20, 0, 0, Math.PI * 2); ctx.fill();
+      }
+
+      // Forge floor glow
+      const fg2 = ctx.createRadialGradient(cx, cy + 30, 0, cx, cy + 30, 110);
+      fg2.addColorStop(0, `rgba(255,90,0,${0.15 * flick})`);
+      fg2.addColorStop(1, "rgba(255,60,0,0)");
+      ctx.fillStyle = fg2;
+      ctx.beginPath(); ctx.arc(cx, cy + 30, 110, 0, Math.PI * 2); ctx.fill();
+
+      // Anvil
+      ctx.fillStyle = "#374151";
+      ctx.fillRect(cx - 25, cy + 55, 50, 14);
+      ctx.fillStyle = "#4b5563";
+      ctx.fillRect(cx - 20, cy + 43, 40, 14);
+      ctx.fillRect(cx - 10, cy + 69, 32, 8);
+      ctx.fillStyle = "#6b7280";
+      ctx.fillRect(cx - 20, cy + 43, 40, 3);
+
+      // Tool rack
+      ctx.fillStyle = "#78350f";
+      ctx.fillRect(cx - 82, cy + 30, 10, 58);
+      ctx.strokeStyle = "#9ca3af"; ctx.lineWidth = 2;
+      for (let i = 0; i < 4; i++) {
+        ctx.beginPath();
+        ctx.moveTo(cx - 82, cy + 38 + i * 13);
+        ctx.lineTo(cx - 62, cy + 48 + i * 13);
+        ctx.stroke();
+      }
+
+      label(ctx, "The Forge", cx, WALL + 92);
+    }
+
+    function drawAlchemyLab(t: number) {
+      const cx = 140, cy = 110;
+      const pc = ["#22c55e","#ef4444","#3b82f6","#a855f7","#f59e0b"];
+
+      // Wall shelves
+      ctx.fillStyle = "#92400e";
+      ctx.fillRect(WALL + 5, WALL + 8,  88, 8);
+      ctx.fillRect(WALL + 5, WALL + 24, 72, 8);
+      for (let i = 0; i < 5; i++) {
+        ctx.fillStyle = pc[i];
+        ctx.beginPath(); ctx.ellipse(WALL + 14 + i * 15, WALL + 14, 4, 6, 0, 0, Math.PI * 2); ctx.fill();
+      }
+      for (let i = 0; i < 4; i++) {
+        ctx.fillStyle = pc[(i + 2) % 5];
+        ctx.beginPath(); ctx.ellipse(WALL + 14 + i * 16, WALL + 30, 4, 6, 0, 0, Math.PI * 2); ctx.fill();
+      }
+
+      // Table
+      ctx.fillStyle = "#92400e";
+      ctx.fillRect(cx - 56, cy + 28, 112, 58);
+      ctx.fillStyle = "#78350f";
+      ctx.fillRect(cx - 56, cy + 28, 112, 5);
+      ctx.fillStyle = "#6b3a1f";
+      ctx.fillRect(cx - 53, cy + 86, 8, 16);
+      ctx.fillRect(cx + 45, cy + 86, 8, 16);
+
+      // Potion bottles on table
+      const potions = [
+        { x: cx - 38 }, { x: cx - 19 }, { x: cx + 1 }, { x: cx + 20 }, { x: cx + 40 },
+      ];
+      potions.forEach(({ x: px }, i) => {
+        ctx.fillStyle = pc[i];
+        ctx.beginPath(); ctx.ellipse(px, cy + 55, 6, 9, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#d1d5db"; ctx.fillRect(px - 2, cy + 44, 4, 5);
+        ctx.fillStyle = "#c4a87a"; ctx.fillRect(px - 1, cy + 42, 2, 3);
+        const bub = (Math.sin(t * 2.5 + px) + 1) / 2;
+        ctx.fillStyle = `rgba(255,255,255,${bub * 0.5})`;
+        ctx.beginPath(); ctx.arc(px + 2, cy + 51, 2, 0, Math.PI * 2); ctx.fill();
+      });
+
+      // Candles
+      for (const cx2 of [cx - 52, cx + 48]) {
+        ctx.fillStyle = "#f5f0e8"; ctx.fillRect(cx2 - 3, cy + 32, 6, 20);
+        ctx.fillStyle = "#6b7280"; ctx.fillRect(cx2 - 3, cy + 32, 6, 2);
+        const cf = Math.sin(t * 6 + cx2) * 0.2 + 0.8;
+        ctx.fillStyle = `rgba(255,200,0,${cf})`;
+        ctx.beginPath(); ctx.ellipse(cx2, cy + 29, 3, 5, 0, 0, Math.PI * 2); ctx.fill();
+      }
+
+      label(ctx, "Alchemy Lab", cx, WALL + 92);
+    }
+
+    function drawRoundTable() {
+      const cx = 450, cy = 300;
+
+      // Red rug
+      ctx.beginPath(); ctx.arc(cx, cy, 120, 0, Math.PI * 2);
+      ctx.fillStyle = "#7f1d1d"; ctx.fill();
+      ctx.strokeStyle = "#991b1b"; ctx.lineWidth = 3; ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx, cy, 100, 0, Math.PI * 2);
+      ctx.strokeStyle = "#b91c1c"; ctx.lineWidth = 1; ctx.stroke();
+
+      // 6 chairs
+      for (let i = 0; i < 6; i++) {
+        const ang = (i / 6) * Math.PI * 2 - Math.PI / 2;
+        const cx2 = cx + Math.cos(ang) * 95, cy2 = cy + Math.sin(ang) * 95;
+        ctx.save(); ctx.translate(cx2, cy2); ctx.rotate(ang + Math.PI / 2);
+        ctx.fillStyle = "#92400e"; ctx.fillRect(-10, -8, 20, 16);
+        ctx.fillStyle = "#78350f"; ctx.fillRect(-10, -8, 20, 4);
+        ctx.restore();
+      }
+
+      // Table top
+      ctx.beginPath(); ctx.arc(cx, cy, 70, 0, Math.PI * 2);
+      ctx.fillStyle = "#2d1810"; ctx.fill();
+      ctx.strokeStyle = "#78350f"; ctx.lineWidth = 4; ctx.stroke();
+
+      // Scroll
+      ctx.fillStyle = "#c9b47a"; ctx.fillRect(cx - 30, cy - 20, 60, 40);
+      ctx.strokeStyle = "#8b6914"; ctx.lineWidth = 0.8;
+      for (let i = 0; i < 5; i++) {
+        ctx.beginPath();
+        ctx.moveTo(cx - 24, cy - 13 + i * 7); ctx.lineTo(cx + 24, cy - 13 + i * 7);
+        ctx.stroke();
+      }
+      ctx.fillStyle = "#b8954a";
+      ctx.fillRect(cx - 34, cy - 20, 6, 40);
+      ctx.fillRect(cx + 28, cy - 20, 6, 40);
+
+      label(ctx, "The Round Table", cx, cy + 148);
+    }
+
+    function drawScribe(t: number) {
+      const cx = 175, cy = 300;
+
+      // Desk
+      ctx.fillStyle = "#92400e"; ctx.fillRect(cx - 48, cy - 25, 96, 62);
+      ctx.fillStyle = "#78350f"; ctx.fillRect(cx - 48, cy - 25, 96, 5);
+      ctx.fillStyle = "#6b3a1f";
+      ctx.fillRect(cx - 45, cy + 37, 8, 18); ctx.fillRect(cx + 37, cy + 37, 8, 18);
+
+      // Open book
+      ctx.fillStyle = "#f5f0e8";
+      ctx.fillRect(cx - 34, cy - 14, 30, 44); ctx.fillRect(cx + 4, cy - 14, 30, 44);
+      ctx.strokeStyle = "#b4a070"; ctx.lineWidth = 0.8;
+      for (let i = 0; i < 5; i++) {
+        ctx.beginPath();
+        ctx.moveTo(cx - 28, cy - 6 + i * 8); ctx.lineTo(cx - 6, cy - 6 + i * 8);
+        ctx.moveTo(cx + 8,  cy - 6 + i * 8); ctx.lineTo(cx + 30, cy - 6 + i * 8);
+        ctx.stroke();
+      }
+      ctx.strokeStyle = "#78350f"; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(cx, cy - 14); ctx.lineTo(cx, cy + 30); ctx.stroke();
+
+      // Quill
+      ctx.strokeStyle = "#f8f0c0"; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(cx + 28, cy - 22); ctx.lineTo(cx - 4, cy + 22); ctx.stroke();
+      ctx.fillStyle = "#e0d090";
+      ctx.beginPath();
+      ctx.moveTo(cx + 28, cy - 22); ctx.lineTo(cx + 36, cy - 30); ctx.lineTo(cx + 32, cy - 16);
+      ctx.fill();
+
+      // Candle
+      ctx.fillStyle = "#f5f0e8"; ctx.fillRect(cx + 34, cy - 10, 7, 26);
+      const cf = Math.sin(t * 5.5) * 0.2 + 0.8;
+      ctx.fillStyle = `rgba(255,200,50,${cf})`;
+      ctx.beginPath(); ctx.ellipse(cx + 37, cy - 13, 3, 5, 0, 0, Math.PI * 2); ctx.fill();
+
+      label(ctx, "Scribe's Corner", cx, cy + 62);
+    }
+
+    function drawTavern(t: number) {
+      const cx = 150, cy = 490;
+
+      // Warm amber glow
+      const ag = ctx.createRadialGradient(cx, cy, 0, cx, cy, 130);
+      ag.addColorStop(0, "rgba(251,191,36,0.08)"); ag.addColorStop(1, "rgba(251,191,36,0)");
+      ctx.fillStyle = ag;
+      ctx.beginPath(); ctx.arc(cx, cy, 130, 0, Math.PI * 2); ctx.fill();
+
+      // Two round tables
+      const tables: [number, number][] = [[cx - 38, cy - 10], [cx + 35, cy + 12]];
+      for (const [tx, ty] of tables) {
+        ctx.beginPath(); ctx.arc(tx, ty, 22, 0, Math.PI * 2);
+        ctx.fillStyle = "#6b3a1f"; ctx.fill();
+        ctx.strokeStyle = "#92400e"; ctx.lineWidth = 2; ctx.stroke();
+        // mugs
+        for (const [mx, my] of [[tx - 8, ty - 4], [tx + 6, ty + 4]] as [number, number][]) {
+          ctx.fillStyle = "#8b4513"; ctx.fillRect(mx - 4, my - 5, 8, 10);
+          ctx.fillStyle = "#a0522d"; ctx.fillRect(mx - 4, my - 5, 8, 2);
+        }
+      }
+      // Candle flicker on first table
+      const cf = Math.sin(t * 4.5 + 2) * 0.2 + 0.8;
+      ctx.fillStyle = `rgba(255,200,50,${cf * 0.6})`;
+      ctx.beginPath(); ctx.arc(tables[0][0] + 5, tables[0][1] - 11, 4, 0, Math.PI * 2); ctx.fill();
+
+      // Barrels
+      for (const [bx, by, sz] of [[cx + 65, cy - 22, 16], [cx + 80, cy - 2, 14]] as [number, number, number][]) {
+        ctx.beginPath(); ctx.ellipse(bx, by, sz, sz * 1.35, 0, 0, Math.PI * 2);
+        ctx.fillStyle = "#92400e"; ctx.fill();
+        ctx.strokeStyle = "#4b5563"; ctx.lineWidth = 2;
+        for (const ry of [-sz * 0.4, 0, sz * 0.4]) {
+          ctx.beginPath(); ctx.ellipse(bx, by + ry, sz, sz * 0.35, 0, 0, Math.PI * 2); ctx.stroke();
+        }
+      }
+
+      label(ctx, "The Tavern", cx, CANVAS_H - WALL - 5);
+    }
+
+    // ----------------------------------------------------------------- agents
+
+    function drawAgents(t: number) {
+      for (const a of agentsRef.current) {
+        const moving = a.pathIndex < a.path.length;
+        const bounce = moving ? Math.sin(t * 8) * 2 : 0;
+        const sx = a.x - 32, sy = a.y - 32 + bounce;
+
+        // shadow
+        ctx.fillStyle = "rgba(0,0,0,0.28)";
+        ctx.beginPath(); ctx.ellipse(a.x, a.y + 26, 22, 6, 0, 0, Math.PI * 2); ctx.fill();
+
+        const img = imgsRef.current[a.name.toLowerCase()];
+        if (img && img.complete && img.naturalWidth > 0) {
+          ctx.drawImage(img, sx, sy, 64, 64);
+        } else {
+          ctx.fillStyle = a.color;
+          ctx.beginPath(); ctx.arc(a.x, a.y, 22, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = "#fff"; ctx.font = "bold 11px sans-serif"; ctx.textAlign = "center";
+          ctx.fillText(a.name[0], a.x, a.y + 4);
+        }
+
+        // name label
+        ctx.font = "bold 12px sans-serif"; ctx.textAlign = "center";
+        ctx.lineWidth = 3; ctx.strokeStyle = "rgba(0,0,0,0.9)";
+        ctx.strokeText(a.name, a.x, sy - 4);
+        ctx.fillStyle = "#ffffff"; ctx.fillText(a.name, a.x, sy - 4);
+
+        // status dot
+        ctx.beginPath(); ctx.arc(a.x + 26, sy + 6, 5, 0, Math.PI * 2);
+        ctx.fillStyle = STATUS_COLORS[a.status]; ctx.fill();
+        ctx.strokeStyle = "#000"; ctx.lineWidth = 1; ctx.stroke();
+      }
+    }
+
+    // ----------------------------------------------------------------- util
+
+    function label(c: CanvasRenderingContext2D, text: string, x: number, y: number) {
+      c.fillStyle = "#fbbf24";
+      c.font = "bold 11px monospace";
+      c.textAlign = "center";
+      c.fillText(text, x, y);
+    }
+
+    return () => { mounted = false; cancelAnimationFrame(rafRef.current); };
   }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const next = pickPatchState();
-      setPatchStatus(next.status);
-      setPatchLocation(next.location);
-      setPatchMoving(true);
-      if (patchMoveRef.current) clearTimeout(patchMoveRef.current);
-      patchMoveRef.current = setTimeout(() => setPatchMoving(false), 7000);
-    }, 10000);
-
-    return () => {
-      clearInterval(interval);
-      if (patchMoveRef.current) clearTimeout(patchMoveRef.current);
-    };
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const next = pickDaliState();
-      setDaliStatus(next.status);
-      setDaliLocation(next.location);
-      setDaliMoving(true);
-      if (daliMoveRef.current) clearTimeout(daliMoveRef.current);
-      daliMoveRef.current = setTimeout(() => setDaliMoving(false), 7000);
-    }, 10000);
-
-    return () => {
-      clearInterval(interval);
-      if (daliMoveRef.current) clearTimeout(daliMoveRef.current);
-    };
-  }, []);
-
-  const wallyPos = LOCATIONS[wallyLocation];
-  const patchPos = LOCATIONS[patchLocation];
-  const daliPos  = LOCATIONS[daliLocation];
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%", overflow: "hidden" }}>
-      <style>{`
-        @keyframes walkCycle {
-          0%   { transform: translateY(0px) rotate(-1deg); }
-          25%  { transform: translateY(-3px) rotate(0deg); }
-          50%  { transform: translateY(-1px) rotate(1deg); }
-          75%  { transform: translateY(-3px) rotate(0deg); }
-          100% { transform: translateY(0px) rotate(-1deg); }
-        }
-        @keyframes idle {
-          0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-1px); }
-        }
-      `}</style>
-
-      {/* Room */}
-      <div
-        style={{
-          flex: 1,
-          position: "relative",
-          backgroundImage: "url('/office-bg.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          overflow: "hidden",
-        }}
-      >
-        {/* Wally sprite */}
-        <div
-          style={{
-            position: "absolute",
-            top: wallyPos.top,
-            left: wallyPos.left,
-            transform: "translate(-50%, -50%)",
-            transition: "top 7s ease-in-out, left 7s ease-in-out",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 2,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <span
-              style={{
-                fontSize: 11,
-                fontWeight: "bold",
-                color: "#fff",
-                textShadow: "0 1px 3px rgba(0,0,0,0.9)",
-                whiteSpace: "nowrap",
-              }}
-            >
-              Wally
-            </span>
-            <div
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                backgroundColor: STATUS_COLORS[wallyStatus],
-                flexShrink: 0,
-              }}
-            />
-          </div>
-          <WallySprite isMoving={wallyMoving} />
-        </div>
-
-        {/* Patch sprite */}
-        <div
-          style={{
-            position: "absolute",
-            top: patchPos.top,
-            left: patchPos.left,
-            transform: "translate(-50%, -50%)",
-            transition: "top 7s ease-in-out, left 7s ease-in-out",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 2,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <span
-              style={{
-                fontSize: 11,
-                fontWeight: "bold",
-                color: "#fff",
-                textShadow: "0 1px 3px rgba(0,0,0,0.9)",
-                whiteSpace: "nowrap",
-              }}
-            >
-              Patch
-            </span>
-            <div
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                backgroundColor: "#f97316",
-                flexShrink: 0,
-              }}
-            />
-          </div>
-          <PatchSprite isMoving={patchMoving} />
-        </div>
-
-        {/* Dali sprite */}
-        <div
-          style={{
-            position: "absolute",
-            top: daliPos.top,
-            left: daliPos.left,
-            transform: "translate(-50%, -50%)",
-            transition: "top 7s ease-in-out, left 7s ease-in-out",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 2,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <span
-              style={{
-                fontSize: 11,
-                fontWeight: "bold",
-                color: "#fff",
-                textShadow: "0 1px 3px rgba(0,0,0,0.9)",
-                whiteSpace: "nowrap",
-              }}
-            >
-              Dali
-            </span>
-            <div
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                backgroundColor: "#a855f7",
-                flexShrink: 0,
-              }}
-            />
-          </div>
-          <DaliSprite isMoving={daliMoving} />
-        </div>
+    <div style={{ display: "flex", flexDirection: "column", height: "100%", overflow: "hidden", background: "#0a0907" }}>
+      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", padding: 8 }}>
+        <canvas
+          ref={canvasRef}
+          width={CANVAS_W}
+          height={CANVAS_H}
+          style={{ display: "block", maxWidth: "100%", maxHeight: "100%" }}
+        />
       </div>
 
-      {/* Status bar */}
-      <div
-        style={{
-          backgroundColor: "rgba(0,0,0,0.85)",
-          padding: "6px 16px",
-          fontSize: 13,
-          color: "#e5e7eb",
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          flexShrink: 0,
-        }}
-      >
-        <span
-          style={{
-            width: 8,
-            height: 8,
-            borderRadius: "50%",
-            backgroundColor: STATUS_COLORS[wallyStatus],
-            display: "inline-block",
-            flexShrink: 0,
-          }}
-        />
-        <span>🧙 Wally · {wallyStatus.charAt(0).toUpperCase() + wallyStatus.slice(1)}</span>
-        <span style={{ color: "#4b5563", margin: "0 4px" }}>|</span>
-        <span
-          style={{
-            width: 8,
-            height: 8,
-            borderRadius: "50%",
-            backgroundColor: "#f97316",
-            display: "inline-block",
-            flexShrink: 0,
-          }}
-        />
-        <span>🔨 Patch · {patchStatus.charAt(0).toUpperCase() + patchStatus.slice(1)}</span>
-        <span style={{ color: "#4b5563", margin: "0 4px" }}>|</span>
-        <span
-          style={{
-            width: 8,
-            height: 8,
-            borderRadius: "50%",
-            backgroundColor: "#a855f7",
-            display: "inline-block",
-            flexShrink: 0,
-          }}
-        />
-        <span>🎨 Dali · {daliStatus.charAt(0).toUpperCase() + daliStatus.slice(1)}</span>
+      <div style={{
+        backgroundColor: "rgba(0,0,0,0.92)",
+        padding: "6px 16px",
+        fontSize: 13,
+        color: "#e5e7eb",
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        flexShrink: 0,
+        borderTop: "1px solid #374151",
+      }}>
+        {statusDisplay.map((a, i) => (
+          <span key={a.name} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            {i > 0 && <span style={{ color: "#4b5563", margin: "0 4px" }}>|</span>}
+            <span style={{
+              width: 8, height: 8, borderRadius: "50%",
+              backgroundColor: STATUS_COLORS[a.status],
+              display: "inline-block", flexShrink: 0,
+            }} />
+            <span>{a.emoji} {a.name} · {a.location}</span>
+          </span>
+        ))}
       </div>
     </div>
   );
