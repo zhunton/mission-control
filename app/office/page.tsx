@@ -58,20 +58,127 @@ function Torch({ style }: { style: React.CSSProperties }) {
   );
 }
 
+function AgentCharacter({
+  name,
+  avatar,
+  bodyColor,
+  status,
+  isMoving,
+}: {
+  name: string;
+  avatar: string;
+  bodyColor: string;
+  status: AgentStatus;
+  isMoving: boolean;
+}) {
+  const pos = SPOTS[status];
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: `${pos.left}%`,
+        top: `${pos.top}%`,
+        transform: "translate(-50%, -50%)",
+        transition: "top 6s linear, left 6s linear",
+        zIndex: 25,
+        animation: isMoving ? "walk 0.5s ease-in-out infinite" : "none",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          userSelect: "none",
+        }}
+      >
+        {/* Avatar head */}
+        <div style={{ position: "relative" }}>
+          <img
+            src={avatar}
+            alt={name}
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
+            }}
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: "50%",
+              objectFit: "cover",
+              display: "block",
+              border: "2px solid rgba(255,190,60,0.5)",
+              boxShadow: "0 0 8px rgba(255,160,0,0.25)",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              top: 1,
+              right: 1,
+              width: 10,
+              height: 10,
+              borderRadius: "50%",
+              background: STATUS_COLORS[status],
+              border: "1.5px solid #000",
+              boxShadow: `0 0 6px ${STATUS_COLORS[status]}`,
+              animation: "statusPulse 2s ease-in-out infinite",
+            }}
+          />
+        </div>
+        {/* Body */}
+        <div
+          style={{
+            width: 20,
+            height: 12,
+            background: bodyColor,
+            borderRadius: "3px 3px 0 0",
+            marginTop: 1,
+            opacity: 0.85,
+          }}
+        />
+        {/* Name label */}
+        <div
+          style={{
+            marginTop: 2,
+            fontSize: 8,
+            fontWeight: 700,
+            color: "#f0d878",
+            background: "rgba(8,4,0,0.88)",
+            border: "1px solid rgba(255,170,30,0.4)",
+            padding: "1px 6px",
+            whiteSpace: "nowrap",
+            lineHeight: "12px",
+            letterSpacing: "0.06em",
+          }}
+        >
+          {name}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function OfficePage() {
   const [status, setStatus] = useState<AgentStatus>("working");
+  const [isMoving, setIsMoving] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       const rand = Math.random();
-      setStatus(rand < 0.6 ? "working" : rand < 0.8 ? "idle" : "meeting");
-    }, 6000);
+      const next: AgentStatus = rand < 0.6 ? "working" : rand < 0.8 ? "idle" : "meeting";
+      setStatus((prev) => {
+        if (prev !== next) setIsMoving(true);
+        return next;
+      });
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
-  const pos = SPOTS[status];
-  const anim =
-    status === "working" ? "wallyBob" : status === "idle" ? "wallySway" : "wallyBounce";
+  useEffect(() => {
+    if (!isMoving) return;
+    const t = setTimeout(() => setIsMoving(false), 6200);
+    return () => clearTimeout(t);
+  }, [isMoving]);
 
   return (
     <div
@@ -109,19 +216,9 @@ export default function OfficePage() {
           0%, 100% { opacity: 0.85; text-shadow: 0 0 8px rgba(255,120,0,0.6); }
           50%       { opacity: 1;    text-shadow: 0 0 18px rgba(255,160,0,0.9); }
         }
-        @keyframes wallyBob {
+        @keyframes walk {
           0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-4px); }
-        }
-        @keyframes wallySway {
-          0%, 100% { transform: translateX(0px); }
-          25%       { transform: translateX(-3px); }
-          75%       { transform: translateX(3px); }
-        }
-        @keyframes wallyBounce {
-          0%, 100% { transform: translateY(0px); }
-          35%       { transform: translateY(-5px); }
-          65%       { transform: translateY(-2px); }
+          50%       { transform: translateY(-3px); }
         }
         @keyframes statusPulse {
           0%, 100% { opacity: 1; }
@@ -1105,78 +1202,15 @@ export default function OfficePage() {
         </div>
 
         {/* ══════════════════════════════════════
-            WALLY — moving character
+            AGENTS — slow-walking characters
         ════════════════════════════════════ */}
-        <div
-          style={{
-            position: "absolute",
-            left: `${pos.left}%`,
-            top: `${pos.top}%`,
-            transform: "translate(-50%, -50%)",
-            transition: "left 1.2s ease, top 1.2s ease",
-            zIndex: 25,
-          }}
-        >
-          <div style={{ animation: `${anim} 2.2s ease-in-out infinite` }}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                userSelect: "none",
-              }}
-            >
-              <div style={{ position: "relative" }}>
-                <img
-                  src="/wally-wizard.jpg"
-                  alt="Wally"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                  }}
-                  style={{
-                    width: 38,
-                    height: 38,
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                    display: "block",
-                    border: "2px solid rgba(255,190,60,0.5)",
-                    boxShadow: "0 0 8px rgba(255,160,0,0.25)",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 1,
-                    right: 1,
-                    width: 10,
-                    height: 10,
-                    borderRadius: "50%",
-                    background: STATUS_COLORS[status],
-                    border: "1.5px solid #000",
-                    boxShadow: `0 0 6px ${STATUS_COLORS[status]}`,
-                    animation: "statusPulse 2s ease-in-out infinite",
-                  }}
-                />
-              </div>
-              <div
-                style={{
-                  marginTop: 4,
-                  fontSize: 8,
-                  fontWeight: 700,
-                  color: "#f0d878",
-                  background: "rgba(8,4,0,0.88)",
-                  border: "1px solid rgba(255,170,30,0.4)",
-                  padding: "1px 6px",
-                  whiteSpace: "nowrap",
-                  lineHeight: "12px",
-                  letterSpacing: "0.06em",
-                }}
-              >
-                Wally
-              </div>
-            </div>
-          </div>
-        </div>
+        <AgentCharacter
+          name="Wally"
+          avatar="/wally-wizard.jpg"
+          bodyColor="#5b21b6"
+          status={status}
+          isMoving={isMoving}
+        />
 
         {/* Vignette */}
         <div
