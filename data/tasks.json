@@ -33,6 +33,61 @@
     "protected": false
   },
   {
+    "id": "5",
+    "title": "Pixel Art Avatars & Avatar Fix",
+    "description": "Integrate Wally (wizard) and Zach (king) pixel art avatars across Office, People, and sidebar. Fix broken <img> rendering with onError handlers.",
+    "why": "Visual identity for agents — medieval theme consistency across Mission Control",
+    "agent": "Patch",
+    "date": "Mar 29, 2026",
+    "status": "complete",
+    "priority": "medium",
+    "protected": false
+  },
+  {
+    "id": "6",
+    "title": "Add Patch & Dali to Mission Control",
+    "description": "Add Patch (Software Developer) and Dali (Image Developer) to org chart, People page, Office canvas, and Tasks. Fix role labels and profile pic rendering.",
+    "why": "Active agents should be visible and tracked in Mission Control",
+    "agent": "Patch",
+    "date": "Mar 29, 2026",
+    "status": "complete",
+    "priority": "medium",
+    "protected": false
+  },
+  {
+    "id": "7",
+    "title": "Canvas Office Room — Full Rebuild",
+    "description": "Replace background image + floating avatars with a fully coded canvas room. Dedicated workstations per agent, pathfinding, AI-generated pixel art sprites from Dali, slow walking behavior.",
+    "why": "Zach wants a real game-style environment, not a UI with a photo background. Castle aesthetic with actual agent characters walking between zones.",
+    "agent": "Patch",
+    "date": "Mar 30, 2026",
+    "status": "complete",
+    "priority": "high",
+    "protected": false
+  },
+  {
+    "id": "8",
+    "title": "Task Persistence — JSON File Storage",
+    "description": "Replace in-memory React state with persistent JSON file storage (/data/tasks.json). API routes for GET/POST/PATCH/DELETE. Protection rule: Zach-owned and backlog tasks cannot be deleted by syncs.",
+    "why": "Zach's manually-added backlog tasks were being wiped on every new build. Tasks need to survive deploys, syncs, and tab closes.",
+    "agent": "Patch",
+    "date": "Mar 30, 2026",
+    "status": "complete",
+    "priority": "high",
+    "protected": false
+  },
+  {
+    "id": "9",
+    "title": "Remove Filler Agents from Org Chart",
+    "description": "Remove Research Agent, Dev Agent, and Writing Agent from the People page. Active team only: Zach, Wally, Patch, Dali.",
+    "why": "Placeholder agents with no real work create noise. Only show active agents.",
+    "agent": "Patch",
+    "date": "Mar 30, 2026",
+    "status": "complete",
+    "priority": "low",
+    "protected": false
+  },
+  {
     "id": "4",
     "title": "Mission Control — ongoing improvements",
     "description": "Continuous development and improvement of Mission Control features",

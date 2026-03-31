@@ -19,6 +19,82 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "4",
+    date: "March 30, 2026",
+    title: "Canvas Office, Task Persistence & Agent Cleanup",
+    discussions: [
+      {
+        title: "Full Canvas Office Room Build",
+        thingsToRemember: [
+          "Zach asked to replace the background image + floating avatars with a fully coded canvas room",
+          "Patch built the canvas overnight using AI-generated pixel art sprites from Dali for each agent",
+          "Room has dedicated workstations per agent: Wizard Tower (Wally), The Forge (Patch), Alchemy Lab (Dali), Tavern (idle), Round Table (meetings), Scribe's Corner (docs)",
+          "Agents walk between waypoints using pathfinding — proportional speed, 10s cycle, arrival-then-reroute behavior",
+          "Wally built as SVG pixel art wizard with pointed hat, staff, robe, beard, walking animation",
+        ],
+        recommendations: [
+          "As new agents are added, give each a dedicated waypoint and hand-coded or AI-generated sprite",
+          "Consider adding click-to-navigate: click a zone, agent walks there on demand",
+        ],
+        decisions: [
+          "Canvas is the permanent format for the Office page — no more background image",
+          "Dali generates sprites when new agents need visuals",
+          "Wally confirmed as QA — reviews all Patch builds before closing tasks and pinging Zach",
+        ],
+      },
+      {
+        title: "Task Persistence via JSON File",
+        thingsToRemember: [
+          "Tasks were previously stored in React useState — wiped on every new build or tab close",
+          "Zach noticed his manually-added backlog tasks disappeared after overnight builds",
+          "Patch implemented task persistence: all tasks now stored in /data/tasks.json in the repo",
+          "API routes (GET/POST/PATCH/DELETE) handle read/write — tasks survive deploys and syncs",
+          "Protection rule: tasks assigned to Zach or with status 'backlog' cannot be deleted by syncs — only status updates are allowed",
+        ],
+        recommendations: [
+          "Daily memory sync should respect the protection rule and never wipe Zach's personal backlog items",
+          "When adding future sync automation, always check task owner and status before modifying",
+        ],
+        decisions: [
+          "Tasks are now persistent via JSON file — not lost on build or sync",
+          "Backlog and Zach-owned tasks are protected from automated overwrites",
+        ],
+      },
+      {
+        title: "Org Chart & Agent Cleanup",
+        thingsToRemember: [
+          "Zach asked to remove filler agents (Research Agent, Dev Agent, Writing Agent) from the People page",
+          "Active team is now: Zach (CEO), Wally (Director of Agents), Patch (Software Developer), Dali (Image Developer)",
+          "Zach's rule: don't create agents until there's a real role and real work for them",
+          "Future agents in consideration: Research (Perplexity API), Writing (Claude), Image Gen (already have Dali)",
+        ],
+        recommendations: [
+          "Only spin up a new agent when there's a concrete task that justifies it — not as placeholders",
+          "When ready, Perplexity API key takes ~5 min to set up for a Research Agent",
+        ],
+        decisions: [
+          "People page now shows only active agents — no placeholders",
+          "Agent creation philosophy: real problem first, then build the agent",
+        ],
+      },
+      {
+        title: "OpenClaw Update & AI Brief Delivery Fix",
+        thingsToRemember: [
+          "OpenClaw updated on the night of March 29 — brief network disruption caused noon brief to fail delivery",
+          "Zach asked about the missing noon brief on March 30 — Wally identified the error and manually refired it",
+          "March 30 brief highlights: OpenAI killed Sora (burned $15M/day, made $2.1M lifetime), March model avalanche (GPT-5.4, Gemini 3.1 Ultra, Grok 4.20, Mistral Small 4), MCP at 97M installs, OpenAI raised $110B",
+          "OpenAI API key also wired into agent auth store for semantic memory search after update",
+        ],
+        recommendations: [
+          "Add retry logic or a delivery confirmation check to the noon brief cron to catch failed sends",
+        ],
+        decisions: [
+          "Manual refire is acceptable for one-off failures — monitoring delivery reliability going forward",
+        ],
+      },
+    ],
+  },
+  {
     id: "3",
     date: "March 29, 2026",
     title: "Office Overhaul, Avatars & New Agents",
