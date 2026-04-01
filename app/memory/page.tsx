@@ -19,6 +19,36 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "5",
+    date: "March 31, 2026",
+    title: "Quiet Tuesday — AI Brief Closes Out a Wild Month",
+    discussions: [
+      {
+        title: "Daily AI Brief — End of March Recap",
+        thingsToRemember: [
+          "No direct Zach conversations on March 31 — all activity was automated crons",
+          "AI brief delivered successfully at noon via Telegram",
+          "GPT-5.4 named model of the month: full family (Pro, mini, nano), 1M token context, native Excel add-in, 'nano' variant designed as a subagent delegate — a real architecture shift",
+          "OpenAI raised $110B — biggest AI funding round ever, earmarked for inference infrastructure, not more training runs",
+          "Google shipped Gemini 3.1 Flash Live — real-time voice model with built-in audio watermarking (deepfake defense baked in from day one)",
+          "Arm launched 'Arm AGI CPU' — first data center chip built for running AI agents at rack scale; Meta is lead partner; Arm is no longer just a licensing business",
+          "OpenAI killed Sora's API on March 24 with no explanation — video AI strategy clearly shifting",
+          "MCP hit 97 million installs — the Model Context Protocol is now standard infrastructure, not experimental",
+          "Nebius dropping $10B on a data center in Finland — Europe building sovereign AI compute rather than renting from AWS/Azure",
+          "March 2026 bottom line: the AI race shifted from 'what can a model do' to 'who controls the infrastructure'",
+        ],
+        recommendations: [
+          "GPT-5.4 nano's subagent delegation architecture is worth tracking — this pattern (orchestrator model spawning fast cheap subagents) is likely where agentic AI workflows are heading",
+          "The infrastructure arms race (Nebius Finland, Arm AGI CPU, OpenAI $110B) is a signal for data center demand — directly relevant to Hunton Group's HT data center business",
+        ],
+        decisions: [
+          "AI brief format continues working well — no changes needed",
+          "Systems ran cleanly all day with no intervention required",
+        ],
+      },
+    ],
+  },
+  {
     id: "4",
     date: "March 30, 2026",
     title: "Canvas Office, Task Persistence & Agent Cleanup",
