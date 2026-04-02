@@ -1,0 +1,20 @@
+{
+  "morning": [
+    {
+      "id": "2026-04-02-placeholder",
+      "date": "April 2, 2026",
+      "title": "Morning Brief — April 2, 2026",
+      "content": "**\"A smooth sea never made a good sailor.\"**\n— English Proverb\n\nGood morning Zach. Here's what's happening:\n\n🇺🇸 U.S. News — Markets reacting to new tariff announcements from the White House affecting imports from 185+ countries. Dow futures down sharply overnight.\n\n🌡️ HVAC & Industry — Data center construction demand continues to surge across Texas, with multiple hyperscale facilities breaking ground in the DFW and Houston corridors. Strong pipeline for commercial HVAC contractors.\n\n— Wally",
+      "createdAt": "2026-04-02T07:30:00.000Z"
+    }
+  ],
+  "ai": [
+    {
+      "id": "2026-04-02-placeholder",
+      "date": "April 2, 2026",
+      "title": "AI Brief — April 2, 2026",
+      "content": "Here's your AI brief for April 2, 2026:\n\n• OpenAI shut down Sora citing $15M/day operating costs against only $2.1M in lifetime revenue — a rare public admission of unit economics failure.\n\n• March model avalanche: GPT-5.4, Gemini 3.1 Ultra, Grok 4.20, and Mistral Small 4 all dropped within the same week. Leapfrogging continues.\n\n• MCP (Model Context Protocol) hit 97M installs — becoming the de facto standard for tool/context integration across AI systems.\n\n• OpenAI closed a $110B funding round, the largest in private tech history.\n\n— Wally",
+      "createdAt": "2026-04-02T12:00:00.000Z"
+    }
+  ]
+}

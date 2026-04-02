@@ -11,11 +11,13 @@ import {
   Building2,
   Zap,
   GraduationCap,
+  Newspaper,
 } from "lucide-react";
 
 const navItems = [
   { href: "/tasks", label: "Tasks", icon: CheckSquare },
   { href: "/calendar", label: "Calendar", icon: Calendar },
+  { href: "/briefs", label: "Briefs", icon: Newspaper },
   { href: "/memory", label: "Memory", icon: Brain },
   { href: "/documents", label: "Documents", icon: FileText },
   { href: "/people", label: "People", icon: Users },
