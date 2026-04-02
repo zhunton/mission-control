@@ -15,80 +15,53 @@ interface CalendarEvent {
 }
 
 const WEEK_DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const HOURS = Array.from({ length: 14 }, (_, i) => i + 7); // 7am - 8pm
+const HOURS = Array.from({ length: 24 }, (_, i) => i); // 12am - 11pm (full day)
+
+function makeEvents(
+  id: string,
+  title: string,
+  startHour: number,
+  color: string,
+  agent: string,
+  description: string
+): CalendarEvent[] {
+  return Array.from({ length: 7 }, (_, day) => ({
+    id: `${id}-${day}`,
+    title,
+    day,
+    startHour,
+    duration: 0.5,
+    color,
+    agent,
+    description,
+  }));
+}
 
 const EVENTS: CalendarEvent[] = [
-  // Daily AI Brief — every day at noon, run by Wally
-  {
-    id: "1",
-    title: "Daily AI Brief",
-    day: 0,
-    startHour: 12,
-    duration: 0.5,
-    color: "#3b82f6",
-    agent: "Wally",
-    description: "Wally searches for top AI news and sends a daily brief to Zach via Telegram",
-  },
-  {
-    id: "2",
-    title: "Daily AI Brief",
-    day: 1,
-    startHour: 12,
-    duration: 0.5,
-    color: "#3b82f6",
-    agent: "Wally",
-    description: "Wally searches for top AI news and sends a daily brief to Zach via Telegram",
-  },
-  {
-    id: "3",
-    title: "Daily AI Brief",
-    day: 2,
-    startHour: 12,
-    duration: 0.5,
-    color: "#3b82f6",
-    agent: "Wally",
-    description: "Wally searches for top AI news and sends a daily brief to Zach via Telegram",
-  },
-  {
-    id: "4",
-    title: "Daily AI Brief",
-    day: 3,
-    startHour: 12,
-    duration: 0.5,
-    color: "#3b82f6",
-    agent: "Wally",
-    description: "Wally searches for top AI news and sends a daily brief to Zach via Telegram",
-  },
-  {
-    id: "5",
-    title: "Daily AI Brief",
-    day: 4,
-    startHour: 12,
-    duration: 0.5,
-    color: "#3b82f6",
-    agent: "Wally",
-    description: "Wally searches for top AI news and sends a daily brief to Zach via Telegram",
-  },
-  {
-    id: "6",
-    title: "Daily AI Brief",
-    day: 5,
-    startHour: 12,
-    duration: 0.5,
-    color: "#3b82f6",
-    agent: "Wally",
-    description: "Wally searches for top AI news and sends a daily brief to Zach via Telegram",
-  },
-  {
-    id: "7",
-    title: "Daily AI Brief",
-    day: 6,
-    startHour: 12,
-    duration: 0.5,
-    color: "#3b82f6",
-    agent: "Wally",
-    description: "Wally searches for top AI news and sends a daily brief to Zach via Telegram",
-  },
+  ...makeEvents(
+    "quiz",
+    "Daily Morning Quiz",
+    8,
+    "#f59e0b",
+    "Wally",
+    "6-question daily quiz covering HVAC, financials, and Hunton operations. Reply with answers for grading and feedback."
+  ),
+  ...makeEvents(
+    "brief",
+    "Daily AI Brief",
+    12,
+    "#3b82f6",
+    "Wally",
+    "Top AI news: model releases, funding, major announcements. Delivered via Telegram."
+  ),
+  ...makeEvents(
+    "memory",
+    "Daily Memory Sync",
+    0,
+    "#8b5cf6",
+    "Wally",
+    "Reviews the day conversations, updates MEMORY.md, syncs Mission Control tasks and memory page, pushes to GitHub."
+  ),
 ];
 
 const WEEK_START = new Date(2026, 2, 23); // March 23, 2026 (Mon)
@@ -111,7 +84,7 @@ export default function CalendarPage() {
   const hourHeight = 60;
 
   const getEventStyle = (event: CalendarEvent) => {
-    const topOffset = (event.startHour - 7) * hourHeight;
+    const topOffset = event.startHour * hourHeight;
     const height = event.duration * hourHeight - 4;
     return { top: topOffset, height: Math.max(height, 20) };
   };
@@ -319,7 +292,7 @@ export default function CalendarPage() {
                   }}
                 >
                   <span style={{ fontSize: 10, color: "#4b5563" }}>
-                    {hour > 12 ? `${hour - 12}pm` : hour === 12 ? "12pm" : `${hour}am`}
+                    {hour === 0 ? "12am" : hour < 12 ? `${hour}am` : hour === 12 ? "12pm" : `${hour - 12}pm`}
                   </span>
                 </div>
               ))}
@@ -382,7 +355,7 @@ export default function CalendarPage() {
                         {event.duration >= 0.75 && (
                           <div style={{ fontSize: 10, color: "#6b7280", marginTop: 2, display: "flex", alignItems: "center", gap: 3 }}>
                             <Clock size={9} />
-                            {event.startHour > 12 ? `${event.startHour - 12}:00pm` : event.startHour === 12 ? "12:00pm" : `${event.startHour}:00am`}
+                            {event.startHour === 0 ? "12:00am" : event.startHour < 12 ? `${event.startHour}:00am` : event.startHour === 12 ? "12:00pm" : `${event.startHour - 12}:00pm`}
                           </div>
                         )}
                         {event.agent && (
@@ -439,11 +412,13 @@ export default function CalendarPage() {
               <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: "#9ca3af" }}>
                 <Clock size={13} />
                 {WEEK_DAYS[selectedEvent.day]},{" "}
-                {selectedEvent.startHour > 12
-                  ? `${selectedEvent.startHour - 12}:00 PM`
+                {selectedEvent.startHour === 0
+                  ? "12:00 AM"
+                  : selectedEvent.startHour < 12
+                  ? `${selectedEvent.startHour}:00 AM`
                   : selectedEvent.startHour === 12
                   ? "12:00 PM"
-                  : `${selectedEvent.startHour}:00 AM`}
+                  : `${selectedEvent.startHour - 12}:00 PM`}
                 {" "}({selectedEvent.duration}h)
               </div>
               {selectedEvent.agent && (
