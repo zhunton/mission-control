@@ -10,6 +10,7 @@ import {
   Users,
   Building2,
   Zap,
+  GraduationCap,
 } from "lucide-react";
 
 const navItems = [
@@ -18,6 +19,7 @@ const navItems = [
   { href: "/memory", label: "Memory", icon: Brain },
   { href: "/documents", label: "Documents", icon: FileText },
   { href: "/people", label: "People", icon: Users },
+  { href: "/coaching", label: "Coaching", icon: GraduationCap },
   { href: "/office", label: "Office", icon: Building2 },
 ];
 

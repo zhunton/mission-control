@@ -88,6 +88,17 @@
     "protected": false
   },
   {
+    "id": "10",
+    "title": "Build Coaching Tab",
+    "description": "New Coaching tab in Mission Control with quiz session tracking, performance chart, category breakdowns, and session history with expandable question review.",
+    "why": "Track Zach's daily quiz performance, category strengths/weaknesses, and learning progress over time",
+    "agent": "Patch",
+    "date": "Apr 2, 2026",
+    "status": "complete",
+    "priority": "high",
+    "protected": false
+  },
+  {
     "id": "4",
     "title": "Mission Control — ongoing improvements",
     "description": "Continuous development and improvement of Mission Control features",
