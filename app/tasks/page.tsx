@@ -441,29 +441,38 @@ export default function TasksPage() {
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
   useEffect(() => {
-    fetch("/api/tasks")
-      .then((r) => r.json())
-      .then((data: Task[]) => setTasks(data));
+    const stored = localStorage.getItem("mc_tasks");
+    if (stored) {
+      setTasks(JSON.parse(stored));
+    } else {
+      fetch("/api/tasks")
+        .then((r) => r.json())
+        .then((data: Task[]) => {
+          setTasks(data);
+          localStorage.setItem("mc_tasks", JSON.stringify(data));
+        });
+    }
   }, []);
 
-  const addTask = async (task: Omit<Task, "id" | "protected">) => {
-    const res = await fetch("/api/tasks", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(task),
+  const addTask = (task: Omit<Task, "id" | "protected">) => {
+    const newTask: Task = {
+      ...task,
+      id: crypto.randomUUID(),
+      protected: false,
+    };
+    setTasks((prev) => {
+      const updated = [...prev, newTask];
+      localStorage.setItem("mc_tasks", JSON.stringify(updated));
+      return updated;
     });
-    const newTask: Task = await res.json();
-    setTasks((prev) => [...prev, newTask]);
   };
 
-  const moveTask = async (id: string, status: TaskStatus) => {
-    const res = await fetch("/api/tasks", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, status }),
+  const moveTask = (id: string, status: TaskStatus) => {
+    setTasks((prev) => {
+      const updated = prev.map((t) => (t.id === id ? { ...t, status } : t));
+      localStorage.setItem("mc_tasks", JSON.stringify(updated));
+      return updated;
     });
-    const updated: Task = await res.json();
-    setTasks((prev) => prev.map((t) => (t.id === id ? updated : t)));
   };
 
   const counts = {
