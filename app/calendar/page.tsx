@@ -39,6 +39,14 @@ function makeEvents(
 
 const EVENTS: CalendarEvent[] = [
   ...makeEvents(
+    "morning-brief",
+    "Morning Brief",
+    7.5,
+    "#10b981",
+    "Wally",
+    "Daily quote + U.S. news + HVAC/industry updates."
+  ),
+  ...makeEvents(
     "quiz",
     "Daily Morning Quiz",
     8,
@@ -63,6 +71,18 @@ const EVENTS: CalendarEvent[] = [
     "Reviews the day conversations, updates MEMORY.md, syncs Mission Control tasks and memory page, pushes to GitHub."
   ),
 ];
+
+function formatHour(startHour: number, uppercase = false): string {
+  const h = Math.floor(startHour);
+  const m = startHour % 1 === 0.5 ? "30" : "00";
+  const suffix = uppercase
+    ? h < 12 ? "AM" : "PM"
+    : h < 12 ? "am" : "pm";
+  if (h === 0) return `12:${m}${suffix}`;
+  if (h < 12) return `${h}:${m}${suffix}`;
+  if (h === 12) return `12:${m}${suffix}`;
+  return `${h - 12}:${m}${suffix}`;
+}
 
 const WEEK_START = new Date(2026, 2, 23); // March 23, 2026 (Mon)
 
@@ -355,7 +375,7 @@ export default function CalendarPage() {
                         {event.duration >= 0.75 && (
                           <div style={{ fontSize: 10, color: "#6b7280", marginTop: 2, display: "flex", alignItems: "center", gap: 3 }}>
                             <Clock size={9} />
-                            {event.startHour === 0 ? "12:00am" : event.startHour < 12 ? `${event.startHour}:00am` : event.startHour === 12 ? "12:00pm" : `${event.startHour - 12}:00pm`}
+                            {formatHour(event.startHour)}
                           </div>
                         )}
                         {event.agent && (
@@ -412,13 +432,7 @@ export default function CalendarPage() {
               <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: "#9ca3af" }}>
                 <Clock size={13} />
                 {WEEK_DAYS[selectedEvent.day]},{" "}
-                {selectedEvent.startHour === 0
-                  ? "12:00 AM"
-                  : selectedEvent.startHour < 12
-                  ? `${selectedEvent.startHour}:00 AM`
-                  : selectedEvent.startHour === 12
-                  ? "12:00 PM"
-                  : `${selectedEvent.startHour - 12}:00 PM`}
+                {formatHour(selectedEvent.startHour, true)}
                 {" "}({selectedEvent.duration}h)
               </div>
               {selectedEvent.agent && (
