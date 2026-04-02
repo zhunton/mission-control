@@ -19,6 +19,52 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "6",
+    date: "April 1, 2026",
+    title: "Coaching Tab Ships & Oracle Axes 30,000 Jobs",
+    discussions: [
+      {
+        title: "Coaching Tab — Built and Live",
+        thingsToRemember: [
+          "No direct Zach conversations on April 1 — all activity was automated crons + one build completion",
+          "At 11:47 PM CDT, system notification confirmed: Coaching tab built and live in Mission Control",
+          "Coaching tab features: quiz session tracking, performance chart, category breakdowns, session history with expandable question review",
+          "Task #10 completed — Patch delivered, Wally acknowledged via heartbeat",
+          "Coaching tab purpose: track Zach's daily quiz performance, category strengths/weaknesses, learning progress over time",
+        ],
+        recommendations: [
+          "Start using the Coaching tab to log quiz sessions — consistent data entry will surface meaningful trends over time",
+          "Consider adding a streak tracker to the Coaching tab to make it habit-forming",
+        ],
+        decisions: [
+          "Coaching tab shipped and deployed to Vercel — live and accessible",
+          "Task #10 marked complete in tasks.json",
+        ],
+      },
+      {
+        title: "Daily AI Brief — April 1",
+        thingsToRemember: [
+          "AI brief delivered successfully at noon via Telegram ✅",
+          "Oracle cut 30,000 jobs (~18% of global workforce) to fund AI data centers — largest layoff in Oracle's history; they are replacing people with infrastructure, not downsizing",
+          "OpenAI's $110B funding round officially closed — Amazon, Microsoft, Nvidia, SoftBank + ~$3B from individual investors; largest private capital raise in history",
+          "Q1 2026 broke every VC record: $297B invested globally into ~6,000 startups, up 150% QoQ and YoY — AI is the engine",
+          "Anthropic vs OpenAI rivalry now theatrically aggressive — both dropped major models on the same day (Claude Opus 4.6 vs GPT-5.3-Codex); Anthropic reportedly ran TV commercials",
+          "Anthropic 'Claude Mythos' leaked internally — an unannounced model with a potential new capability tier beyond Opus; no official confirmation from Anthropic",
+          "April 1 caveat: brief included a note to treat outlandish announcements with extra skepticism",
+        ],
+        recommendations: [
+          "Oracle's AI data center pivot is a direct signal for Hunton Group's HT division — data center HVAC demand will keep accelerating as companies like Oracle build out massive compute capacity",
+          "The $297B Q1 VC figure suggests AI infrastructure investment is still early-innings; HT's data center specialization is well-timed",
+          "Watch the Anthropic Claude Mythos situation — if a model significantly above Opus ships, it changes the capability ceiling for what AI can do autonomously",
+        ],
+        decisions: [
+          "AI brief format continues working well — no changes needed",
+          "Systems ran cleanly all day with no intervention required",
+        ],
+      },
+    ],
+  },
+  {
     id: "5",
     date: "March 31, 2026",
     title: "Quiet Tuesday — AI Brief Closes Out a Wild Month",
