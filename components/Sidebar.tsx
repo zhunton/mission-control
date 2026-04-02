@@ -18,10 +18,10 @@ const navItems = [
   { href: "/tasks", label: "Tasks", icon: CheckSquare },
   { href: "/calendar", label: "Calendar", icon: Calendar },
   { href: "/briefs", label: "Briefs", icon: Newspaper },
+  { href: "/coaching", label: "Coaching", icon: GraduationCap },
   { href: "/memory", label: "Memory", icon: Brain },
   { href: "/documents", label: "Documents", icon: FileText },
   { href: "/people", label: "People", icon: Users },
-  { href: "/coaching", label: "Coaching", icon: GraduationCap },
   { href: "/office", label: "Office", icon: Building2 },
 ];
 
