@@ -1,3 +1,69 @@
 {
-  "sessions": []
+  "sessions": [
+    {
+      "id": "2026-04-02",
+      "date": "April 2, 2026",
+      "score": 5.5,
+      "total": 6,
+      "percentage": 92,
+      "categories": {
+        "hvac": { "score": 1, "total": 2 },
+        "financial": { "score": 2, "total": 2 },
+        "hunton": { "score": 2.5, "total": 2 }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "category": "hvac",
+          "question": "What is the role of a chiller vs a cooling tower in a water-cooled HVAC system?",
+          "userAnswer": "A chiller chills water, a cooling tower expels heat from the condenser water loop using ambient air and evaporation.",
+          "correct": true,
+          "feedback": "Perfect. Chiller cools the chilled water loop, cooling tower rejects condenser heat via evaporation and ambient air."
+        },
+        {
+          "id": 2,
+          "category": "hvac",
+          "question": "What is the difference between EER and SEER, and which matters more for commercial/industrial systems?",
+          "userAnswer": "No answer.",
+          "correct": false,
+          "feedback": "EER measures efficiency at a fixed condition (95°F, full load). SEER measures across a full season. EER is more relevant for commercial/industrial — those systems run sustained loads, not seasonal cycles."
+        },
+        {
+          "id": 3,
+          "category": "financial",
+          "question": "Define gross margin for a service business and what it tells you about operations.",
+          "userAnswer": "Revenue minus cost of sales = gross profit. Shows operational efficiency before G&A and selling expenses. Forgot depreciation.",
+          "correct": true,
+          "feedback": "Correct. For HS, cost of sales = direct labor, materials, subcontractors. Depreciation is the expense type you blanked on. Gross margin shows how efficiently you're delivering the service before overhead."
+        },
+        {
+          "id": 4,
+          "category": "financial",
+          "question": "If revenue is $500,000 and COGS is $320,000, what is gross profit and gross margin %?",
+          "userAnswer": "Gross margin $180,000 and 36%.",
+          "correct": true,
+          "feedback": "Clean math. $500k - $320k = $180k gross profit, $180k / $500k = 36%."
+        },
+        {
+          "id": 5,
+          "category": "hunton",
+          "question": "Name all 5 divisions of Hunton Services and briefly describe each.",
+          "userAnswer": "Commercial Services, Industrial Services, BAS, Special Projects, HRS. Described each correctly.",
+          "correct": true,
+          "feedback": "All 5 correct with accurate descriptions."
+        },
+        {
+          "id": 6,
+          "category": "hunton",
+          "question": "What is billable backlog, how does it affect cash flow, and what does a shrinking billable backlog indicate?",
+          "userAnswer": "Complete but not yet invoiced work. Shrinking is good for cash flow. Initially confused with pipeline backlog — distinction clarified in follow-up.",
+          "correct": true,
+          "feedback": "Correct after clarification. Billable backlog = complete, not invoiced. Shrinking = faster invoicing = better cash flow. Key HS note: WIP and billable backlog are separate reports. WIP clears when job completes, billable backlog clears when invoiced."
+        }
+      ],
+      "strengths": ["HVAC systems knowledge", "Financial math", "HS divisional structure", "Billable backlog mechanics"],
+      "weaknesses": ["EER vs SEER (commercial context)", "Financial statement line items (depreciation)"],
+      "note": "Strong first quiz. 92% after correction. Sharp on operations and financial math. HVAC efficiency metrics need work."
+    }
+  ]
 }
