@@ -11,44 +11,51 @@ const documents = [
     agent: "Wally",
     date: "Apr 3, 2026",
     content: `# Hunton Family in the Compendium of American Genealogy
-Prepared by Wally | April 3, 2026
+Prepared by Wally | April 3, 2026 | Based on actual source text
 
-## Overview
-The Hunton family surname appears in the Compendium of American Genealogy (Virkus, 1925–1942), a 7-volume genealogical encyclopedia of prominent early American families. The Hunton entries are concentrated in Volume 3, with a cross-reference in Volume 4.
+## Source
+Abridged Compendium of American Genealogy, Volume 1
+Editor: Frederick Adams Virkus, F.I.A.G.
+Pages: 403–404
+Digital copy: archive.org/details/abridgedcompendi01virk
 
-## Where to Find the Entries
-- Volume 3, pp. 748–749: Primary Hunton lineage — full genealogical entry from William Hunton (~1670) through Eppa Hunton (1822–1908)
-- Volume 3, p. 1024: Secondary entry — Thomas Hunton (b. 1702), brother-line to William Hunton II
-- Volume 4, p. 567: Cross-reference only — links back to Volume 3, p. 748
+## Index Entries in Volume 1
+- Eppa Hunton — p. 403
+- Eppa Hunton Jr. — pp. 403–404
+- James Hunton — p. 403
+- Thomas Hunton — p. 403
+- William Hunton — p. 403
+- Virginia Semmes Payne Hunton — p. 404
 
-Digital Access: familysearch.org/library/books → search "Compendium of American Genealogy" Volume 3
+## Primary Entry: HUNTON, Eppa Jr. (pp. 403–404)
 
-## Huntons Listed
+**Subject:** Eppa Hunton Jr., born Prince William County, Virginia, April 14, 1855.
 
-### Primary Line (Vol. 3, pp. 748–749)
-- William Hunton (ca. 1670–1730) — Lancaster Co., VA → Richmond Co., VA. First documented American Hunton ancestor. Married Mary Ball — reportedly a sister of Mary Ball Washington (George Washington's mother).
-- William Hunton II (1695–1752) — Lancaster Co., VA. Planter. Married Elizabeth Rogers.
-- John Hunton (1720–1780) — Lancaster/Fauquier Co., VA. Revolutionary War service. Married Frances Slaughter.
-- William Hunton III (1755–1820) — Fauquier Co., VA. Married Sarah Blackwell. Grandfather of Eppa Hunton.
-- Eppa Hunton Sr. / Major Eppa Hunton (1780–1846) — Fauquier Co., VA. Married Martha Hunter.
-- Eppa Hunton Jr. (Sept. 22, 1822 – Oct. 11, 1908) — Confederate Brigadier General (8th Virginia Infantry). U.S. Congressman (1873–1881). U.S. Senator from Virginia (1892–1895). Married Lucy Caroline Weir.
+**6th generation:** Thomas Hunton — from England, settled Lancaster County, Virginia, ca. 1700. Married 1722, Mary Carrell.
 
-### Secondary Entry (Vol. 3, p. 1024)
-- Thomas Hunton (1702–1768) — Lancaster Co., VA. Brother-line to William Hunton II. Married Ann Jones.
+**5th generation:** (Son of Thomas) — moved to Fauquier County, Virginia. Married Judith.
 
-## Notable Facts
-- Mary Ball Connection: William Hunton (~1670) reportedly married Mary Ball, believed to be a sister of Mary Ball Washington — mother of President George Washington.
-- DAR Patriot Status: William Hunton III referenced under DAR #H487.
-- Eppa Hunton Jr. (1855–1932): Son of the General/Senator. Served in Prince William County, Virginia.
+**4th generation:** James Hunton (b. 1763) — married 1st, 1786, Hannah L. Brown of King George County, Virginia.
 
-## Recommended Verification
-1. Access Vol. 3 on FamilySearch or Internet Archive (borrow free)
-2. Lancaster County Deed Books (1654–1730) — confirm William Hunton land records
-3. Eppa Hunton's Autobiography — available on Internet Archive
-4. Virginia Magazine of History and Biography (1925) — Hunton genealogy article
-5. DAR Patriot Database — search "Hunton" to confirm #H487
+**3rd generation:** Eppa Hunton (b. 1789) — married Elizabeth Marye Brent.
 
-Research conducted via Perplexity AI deep research. Primary source verification recommended.`,
+**2nd generation (father):** Eppa Hunton (1822–1908) — lawyer; Virginia Secession Convention; Colonel, 8th Virginia Infantry; Brigadier General C.S.A. 1861–65 (wounded at Gettysburg); Congressman 1873–81; U.S. Senator 1892–95. Married 1848, Lucy Caroline Weir. Children: Elizabeth Marye (d. infancy); Eppa Jr.
+
+**Subject — Eppa Hunton Jr.:** University of Virginia, LL.B. 1877. Co-founded Mumford, Hunton, Williams & Anderson (became Hunton & Williams, now Hunton Andrews Kurth). Counsel for Southern Railway, Federal Reserve Bank of Richmond. President, Richmond, Fredericksburg & Potomac Railroad (1920). Virginia Legislature 1898; Virginia Constitutional Convention 1901. Residence: 810 W. Franklin St., Richmond, VA.
+
+**Married 1st:** Erva Winston Payne (1861–1897).
+**Married 2nd:** Virginia Semmes Payne (b. 1867), sister of first wife.
+**Children:** Mary Winter (b. and d. 1902); Eppa Hunton IV (b. July 31, 1904).
+
+## Key Facts
+
+Thomas Hunton came from England and settled in Lancaster County, Virginia ca. 1700 — 6 generations back from Eppa Jr. (b. 1855).
+
+The law firm Eppa Jr. co-founded became Hunton Andrews Kurth, one of Virginia's most prominent firms, still operating today.
+
+No "Mary Ball/Washington connection" confirmed in this source — earliest wife listed is Mary Carrell (married 1722).
+
+Source: Text extracted directly from OCR of archive.org digitized volume.`,
   },
 ];
 
