@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Download } from "lucide-react";
 
 const documents = [
   {
@@ -51,6 +52,99 @@ Research conducted via Perplexity AI deep research. Primary source verification 
   },
 ];
 
+function renderMarkdown(text: string): React.ReactNode[] {
+  const lines = text.split("\n");
+  const result: React.ReactNode[] = [];
+  let listItems: React.ReactNode[] = [];
+  let key = 0;
+
+  const flushList = () => {
+    if (listItems.length > 0) {
+      result.push(
+        <ul key={key++} style={{ margin: "6px 0 10px 0", paddingLeft: 20, listStyleType: "disc" }}>
+          {listItems}
+        </ul>
+      );
+      listItems = [];
+    }
+  };
+
+  const renderInline = (s: string): React.ReactNode => {
+    const parts = s.split(/(\*\*[^*]+\*\*)/g);
+    return parts.map((p, i) =>
+      p.startsWith("**") && p.endsWith("**") ? (
+        <strong key={i}>{p.slice(2, -2)}</strong>
+      ) : (
+        p
+      )
+    );
+  };
+
+  for (const raw of lines) {
+    const line = raw;
+
+    if (/^### /.test(line)) {
+      flushList();
+      result.push(
+        <div key={key++} style={{ fontSize: 13, fontWeight: 700, color: "#e5e7eb", marginTop: 16, marginBottom: 4 }}>
+          {renderInline(line.slice(4))}
+        </div>
+      );
+    } else if (/^## /.test(line)) {
+      flushList();
+      result.push(
+        <div key={key++} style={{ fontSize: 15, fontWeight: 700, color: "#f3f4f6", marginTop: 20, marginBottom: 6, borderBottom: "1px solid #2a2a2a", paddingBottom: 4 }}>
+          {renderInline(line.slice(3))}
+        </div>
+      );
+    } else if (/^# /.test(line)) {
+      flushList();
+      result.push(
+        <div key={key++} style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 4 }}>
+          {renderInline(line.slice(2))}
+        </div>
+      );
+    } else if (/^- /.test(line)) {
+      listItems.push(
+        <li key={key++} style={{ marginBottom: 3 }}>
+          {renderInline(line.slice(2))}
+        </li>
+      );
+    } else if (/^\d+\. /.test(line)) {
+      flushList();
+      result.push(
+        <div key={key++} style={{ marginBottom: 4, paddingLeft: 4 }}>
+          {renderInline(line)}
+        </div>
+      );
+    } else if (line.trim() === "") {
+      flushList();
+      result.push(<div key={key++} style={{ height: 8 }} />);
+    } else {
+      flushList();
+      result.push(
+        <div key={key++} style={{ marginBottom: 2 }}>
+          {renderInline(line)}
+        </div>
+      );
+    }
+  }
+
+  flushList();
+  return result;
+}
+
+function downloadDocument(title: string, content: string) {
+  const sanitized = title.replace(/[^a-z0-9\-_ ]/gi, "").trim().replace(/\s+/g, "-");
+  const blob = new Blob([content], { type: "text/markdown;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${sanitized}.md`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 export default function DocumentsPage() {
   const [selected, setSelected] = useState<string | null>(null);
 
@@ -76,15 +170,46 @@ export default function DocumentsPage() {
         >
           ← Back to Documents
         </button>
-        <div style={{ marginBottom: 20 }}>
-          <h1 style={{ fontSize: 20, fontWeight: 700, color: "#fff", margin: 0, marginBottom: 6 }}>{doc.title}</h1>
-          <div style={{ display: "flex", gap: 12, fontSize: 12, color: "#6b7280" }}>
-            <span>{doc.type}</span>
-            <span>·</span>
-            <span>{doc.agent}</span>
-            <span>·</span>
-            <span>{doc.date}</span>
+        <div style={{ marginBottom: 20, display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 16 }}>
+          <div>
+            <h1 style={{ fontSize: 20, fontWeight: 700, color: "#fff", margin: 0, marginBottom: 6 }}>{doc.title}</h1>
+            <div style={{ display: "flex", gap: 12, fontSize: 12, color: "#6b7280" }}>
+              <span>{doc.type}</span>
+              <span>·</span>
+              <span>{doc.agent}</span>
+              <span>·</span>
+              <span>{doc.date}</span>
+            </div>
           </div>
+          <button
+            onClick={() => downloadDocument(doc.title, doc.content)}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 6,
+              background: "#1e1e1e",
+              border: "1px solid #333",
+              borderRadius: 7,
+              color: "#9ca3af",
+              fontSize: 12,
+              fontWeight: 500,
+              cursor: "pointer",
+              padding: "6px 12px",
+              flexShrink: 0,
+              whiteSpace: "nowrap",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.borderColor = "#555";
+              (e.currentTarget as HTMLButtonElement).style.color = "#e5e7eb";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.borderColor = "#333";
+              (e.currentTarget as HTMLButtonElement).style.color = "#9ca3af";
+            }}
+          >
+            <Download size={13} />
+            Download
+          </button>
         </div>
         <div
           style={{
@@ -95,11 +220,10 @@ export default function DocumentsPage() {
             color: "#d1d5db",
             fontSize: 14,
             lineHeight: 1.75,
-            whiteSpace: "pre-wrap",
             fontFamily: "inherit",
           }}
         >
-          {doc.content}
+          {renderMarkdown(doc.content)}
         </div>
       </div>
     );
