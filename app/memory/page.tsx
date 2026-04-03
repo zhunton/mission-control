@@ -19,6 +19,52 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "7",
+    date: "April 2, 2026",
+    title: "Briefs Tab Ships & OpenAI Hits $852B",
+    discussions: [
+      {
+        title: "Briefs Tab — Built and Live",
+        thingsToRemember: [
+          "No direct Zach conversations on April 2 — all activity was automated crons + one build completion",
+          "Briefs tab built and deployed to Mission Control — displays the daily AI brief inside the app",
+          "Task completed alongside noon brief delivery — Patch shipped, system confirmed live",
+          "Briefs tab gives Zach a permanent record of daily AI news inside Mission Control",
+        ],
+        recommendations: [
+          "Consider adding historical brief storage — right now only the latest brief shows; archiving past briefs would let Zach reference trends over time",
+          "Could add a 'relevance to Hunton Group' tag per brief item to surface what's most actionable",
+        ],
+        decisions: [
+          "Briefs tab shipped and deployed to Vercel — live and accessible",
+          "Daily AI brief now lives both in Telegram (push) and Mission Control (pull)",
+        ],
+      },
+      {
+        title: "Daily AI Brief — April 2",
+        thingsToRemember: [
+          "AI brief delivered successfully at noon via Telegram ✅",
+          "OpenAI closes $122B round at $852B valuation — largest private capital raise in history (surpasses the $110B April 1 figure; round grew during close)",
+          "Q1 2026: $300B+ into AI startups, up 150%+ YoY — AI has essentially become the entire VC asset class",
+          "Anthropic leaked Claude Code source — signing system cracked within 24 hours of public release; major security/IP incident",
+          "Microsoft building own frontier models by 2027 — explicit move to reduce OpenAI dependency; partnership dynamics shifting at the top",
+          "Meta unveils prescription AI smart glasses — consumer AI wearables moving into medical/accessibility territory",
+          "Rebellions (South Korea) raises $400M pre-IPO — serious chip challenger to Nvidia emerging from Asia",
+          "Oracle, Amazon, Meta all announced major AI-driven layoffs — ~25K at Oracle alone; same pattern as March; human labor being replaced with compute at scale",
+        ],
+        recommendations: [
+          "The Oracle/Amazon/Meta layoff pattern is consistent with HT's data center trajectory — as hyperscalers replace headcount with infrastructure, HVAC demand for those data centers keeps climbing",
+          "Microsoft's move to build own frontier models could fragment the AI ecosystem — worth watching whether enterprise AI tools start to diverge by platform (Microsoft vs. OpenAI vs. Anthropic)",
+          "Rebellions chip challenge to Nvidia: if a credible alternative emerges, data center capex could shift — keep an eye on what Hunton's data center clients are speccing for cooling (Nvidia GPU density drives heat load)",
+        ],
+        decisions: [
+          "AI brief format continues working well — no changes needed",
+          "Systems ran cleanly all day with no intervention required",
+        ],
+      },
+    ],
+  },
+  {
     id: "6",
     date: "April 1, 2026",
     title: "Coaching Tab Ships & Oracle Axes 30,000 Jobs",
