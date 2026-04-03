@@ -21,9 +21,9 @@ const STATIONS = {
 };
 
 const AGENTS = [
-  { id: "wally", name: "Wally", avatar: "/wally-wizard.jpg", color: "#3b82f6", emoji: "🧙" },
-  { id: "patch", name: "Patch", avatar: "/patch-blacksmith.jpg", color: "#f97316", emoji: "🔨" },
-  { id: "dali", name: "Dali", avatar: "/dali-painter.jpg", color: "#a855f7", emoji: "🎨" },
+  { id: "wally", name: "Wally", sprite: "/character-wally.svg", emoji: "🧙" },
+  { id: "patch", name: "Patch", sprite: "/character-patch.svg", emoji: "🔨" },
+  { id: "dali", name: "Dali", sprite: "/character-dali.svg", emoji: "🎨" },
 ] as const;
 
 type AgentId = "wally" | "patch" | "dali";
@@ -147,17 +147,12 @@ export default function OfficePage() {
               </div>
               <div style={{ position: "relative", display: "inline-block" }}>
                 <img
-                  src={agent.avatar}
+                  src={agent.sprite}
                   style={{
-                    width: 44,
-                    height: 44,
-                    borderRadius: "50%",
-                    border: `2px solid ${agent.color}`,
+                    width: 64,
+                    height: "auto",
                     filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.9))",
                     display: "block",
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
                   }}
                 />
                 <div
