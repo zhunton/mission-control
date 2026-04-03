@@ -1,20 +1,42 @@
 {
   "morning": [
     {
-      "id": "2026-04-02-placeholder",
-      "date": "April 2, 2026",
-      "title": "Morning Brief — April 2, 2026",
-      "content": "**\"A smooth sea never made a good sailor.\"**\n— English Proverb\n\nGood morning Zach. Here's what's happening:\n\n🇺🇸 U.S. News — Markets reacting to new tariff announcements from the White House affecting imports from 185+ countries. Dow futures down sharply overnight.\n\n🌡️ HVAC & Industry — Data center construction demand continues to surge across Texas, with multiple hyperscale facilities breaking ground in the DFW and Houston corridors. Strong pipeline for commercial HVAC contractors.\n\n— Wally",
-      "createdAt": "2026-04-02T07:30:00.000Z"
+      "id": "2026-04-03",
+      "date": "April 3, 2026",
+      "title": "Morning Brief — April 3, 2026",
+      "content": "**\"You were born with wings. Why prefer to crawl through life?\"**\n— Rumi\n\nGood morning Zach. Here's what's happening:\n\n🇺🇸 U.S. News — Major tariff announcements from the White House targeting imports from 185+ countries. Markets reacting sharply — Dow futures down significantly overnight. Broad economic implications across manufacturing and consumer goods sectors.\n\n🌡️ HVAC & Industry — Data center construction demand continues surging across Texas. Multiple hyperscale facilities breaking ground in DFW and Houston corridors — strong forward pipeline for commercial HVAC contractors in the region.\n\n— Wally"
+,
+      "createdAt": "2026-04-03T07:30:00.000Z"
     }
   ],
   "ai": [
     {
-      "id": "2026-04-02-placeholder",
+      "id": "2026-04-03",
+      "date": "April 3, 2026",
+      "title": "AI Brief — April 3, 2026",
+      "content": "Here's your AI brief for April 3, 2026:\n\n• Google released Gemma 4 today — four open-weight models (E2B, E4B, 26B MoE, 31B Dense) under Apache 2.0 license. The 31B model is currently #3 open model in the world. Built on same research as Gemini 3. 400M+ developer downloads of the Gemma family to date.\n\n• Apache 2.0 licensing is the headline — anyone can use commercially for free. Largest gap-closing between open and closed frontier models yet.\n\n• Mobile-first focus: E2B and E4B sizes designed to run on-device. Next-gen Gemini Nano will be built on Gemma 4 architecture.\n\n— Wally",
+      "createdAt": "2026-04-03T12:00:00.000Z"
+    },
+    {
+      "id": "2026-04-02",
       "date": "April 2, 2026",
       "title": "AI Brief — April 2, 2026",
-      "content": "Here's your AI brief for April 2, 2026:\n\n• OpenAI shut down Sora citing $15M/day operating costs against only $2.1M in lifetime revenue — a rare public admission of unit economics failure.\n\n• March model avalanche: GPT-5.4, Gemini 3.1 Ultra, Grok 4.20, and Mistral Small 4 all dropped within the same week. Leapfrogging continues.\n\n• MCP (Model Context Protocol) hit 97M installs — becoming the de facto standard for tool/context integration across AI systems.\n\n• OpenAI closed a $110B funding round, the largest in private tech history.\n\n— Wally",
+      "content": "Here's your AI brief for April 2, 2026:\n\n• OpenAI closes $122B round at $852B valuation — largest VC raise in history (surpasses the $110B figure; round grew).\n\n• Q1 2026: $300B+ into AI startups, up 150%+ YoY — AI is the entire VC market right now.\n\n• Anthropic leaked Claude Code source — signing system cracked within 24 hours of release.\n\n• Microsoft building own frontier models by 2027 — reducing OpenAI dependency, major strategic shift.\n\n• Meta unveils prescription AI smart glasses — consumer AI wearables accelerating.\n\n• Rebellions (South Korea) raises $400M pre-IPO to challenge Nvidia on chips.\n\n• Oracle, Amazon, Meta announcing major AI-driven layoffs — ~25K at Oracle alone.\n\n— Wally",
       "createdAt": "2026-04-02T12:00:00.000Z"
+    },
+    {
+      "id": "2026-04-01",
+      "date": "April 1, 2026",
+      "title": "AI Brief — April 1, 2026",
+      "content": "Here's your AI brief for April 1, 2026:\n\n• Oracle cut 30,000 jobs (18% of workforce) to fund AI data centers — directly relevant to Hunton Group HT data center business.\n\n• OpenAI $110B round closed (Amazon, Microsoft, Nvidia, SoftBank) — largest private capital raise in history.\n\n• Q1 2026: $297B into ~6,000 startups globally — up 150% QoQ; AI buildout accelerating.\n\n• Anthropic 'Claude Mythos' leaked — potential new capability tier beyond Opus, no official confirmation.\n\n— Wally",
+      "createdAt": "2026-04-01T12:00:00.000Z"
+    },
+    {
+      "id": "2026-03-30",
+      "date": "March 30, 2026",
+      "title": "AI Brief — March 30, 2026",
+      "content": "Here's your AI brief for March 30, 2026:\n\n• OpenAI killed Sora — $15M/day operating costs against only $2.1M in lifetime revenue. Rare public admission of unit economics failure.\n\n• March model avalanche: GPT-5.4, Gemini 3.1 Ultra, Grok 4.20, and Mistral Small 4 all dropped within the same week. Leapfrogging continues at pace.\n\n• MCP (Model Context Protocol) hit 97M installs — becoming the de facto standard for tool/context integration across AI systems.\n\n• OpenAI raised $110B — largest private tech funding round in history.\n\n— Wally",
+      "createdAt": "2026-03-30T12:00:00.000Z"
     }
   ]
 }
