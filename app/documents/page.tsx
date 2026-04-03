@@ -141,31 +141,47 @@ function renderMarkdown(text: string): React.ReactNode[] {
   return result;
 }
 
-function markdownToPlainText(md: string): string {
-  const lines = md.split("\n").map((line) => {
-    // Headings: strip # prefix, add trailing blank line
-    const headingMatch = line.match(/^#{1,6}\s+(.*)/);
-    if (headingMatch) return headingMatch[1] + "\n";
-    // Bullet items: convert - to •
-    if (/^- /.test(line)) return "• " + line.slice(2);
-    return line;
-  });
-  return lines
-    .join("\n")
-    .replace(/\*\*([^*]+)\*\*/g, "$1")
-    .replace(/`/g, "");
-}
-
 function downloadDocument(title: string, content: string) {
-  const sanitized = title.replace(/[^a-z0-9\-_ ]/gi, "").trim().replace(/\s+/g, "-");
-  const plain = markdownToPlainText(content);
-  const blob = new Blob([plain], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `${sanitized}.txt`;
-  a.click();
-  URL.revokeObjectURL(url);
+  // Convert markdown to HTML
+  const html = content
+    .replace(/^# (.+)$/gm, "<h1>$1</h1>")
+    .replace(/^## (.+)$/gm, "<h2>$1</h2>")
+    .replace(/^### (.+)$/gm, "<h3>$1</h3>")
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/^- (.+)$/gm, "<li>$1</li>")
+    .replace(/(<li>.*<\/li>\n?)+/g, "<ul>$&</ul>")
+    .replace(/\n\n/g, "</p><p>")
+    .replace(/^(?!<[h|u|l|p])/gm, "")
+
+  const printWindow = window.open("", "_blank")
+  if (!printWindow) return
+
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>${title}</title>
+      <style>
+        body { font-family: Georgia, serif; font-size: 12pt; line-height: 1.6; margin: 1in; color: #000; }
+        h1 { font-size: 18pt; margin-bottom: 8pt; border-bottom: 1px solid #333; padding-bottom: 4pt; }
+        h2 { font-size: 14pt; margin-top: 16pt; margin-bottom: 6pt; }
+        h3 { font-size: 12pt; margin-top: 12pt; }
+        table { border-collapse: collapse; width: 100%; margin: 12pt 0; }
+        th, td { border: 1px solid #999; padding: 6pt 8pt; text-align: left; }
+        th { background: #f0f0f0; font-weight: bold; }
+        ul { margin: 8pt 0; padding-left: 20pt; }
+        li { margin: 3pt 0; }
+        p { margin: 8pt 0; }
+        @media print { body { margin: 0.75in; } }
+      </style>
+    </head>
+    <body>
+      <p>${html}</p>
+    </body>
+    </html>
+  `)
+  printWindow.document.close()
+  setTimeout(() => printWindow.print(), 500)
 }
 
 export default function DocumentsPage() {
@@ -231,7 +247,7 @@ export default function DocumentsPage() {
             }}
           >
             <Download size={13} />
-            Download
+            Download PDF
           </button>
         </div>
         <div
