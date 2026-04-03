@@ -141,13 +141,29 @@ function renderMarkdown(text: string): React.ReactNode[] {
   return result;
 }
 
+function markdownToPlainText(md: string): string {
+  const lines = md.split("\n").map((line) => {
+    // Headings: strip # prefix, add trailing blank line
+    const headingMatch = line.match(/^#{1,6}\s+(.*)/);
+    if (headingMatch) return headingMatch[1] + "\n";
+    // Bullet items: convert - to •
+    if (/^- /.test(line)) return "• " + line.slice(2);
+    return line;
+  });
+  return lines
+    .join("\n")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/`/g, "");
+}
+
 function downloadDocument(title: string, content: string) {
   const sanitized = title.replace(/[^a-z0-9\-_ ]/gi, "").trim().replace(/\s+/g, "-");
-  const blob = new Blob([content], { type: "text/markdown;charset=utf-8" });
+  const plain = markdownToPlainText(content);
+  const blob = new Blob([plain], { type: "text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `${sanitized}.md`;
+  a.download = `${sanitized}.txt`;
   a.click();
   URL.revokeObjectURL(url);
 }
