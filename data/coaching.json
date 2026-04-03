@@ -7,9 +7,18 @@
       "total": 6,
       "percentage": 92,
       "categories": {
-        "hvac": { "score": 1, "total": 2 },
-        "financial": { "score": 2, "total": 2 },
-        "hunton": { "score": 2.5, "total": 2 }
+        "hvac": {
+          "score": 1,
+          "total": 2
+        },
+        "financial": {
+          "score": 2,
+          "total": 2
+        },
+        "hunton": {
+          "score": 2.5,
+          "total": 2
+        }
       },
       "questions": [
         {
@@ -26,7 +35,7 @@
           "question": "What is the difference between EER and SEER, and which matters more for commercial/industrial systems?",
           "userAnswer": "No answer.",
           "correct": false,
-          "feedback": "EER measures efficiency at a fixed condition (95°F, full load). SEER measures across a full season. EER is more relevant for commercial/industrial — those systems run sustained loads, not seasonal cycles."
+          "feedback": "EER measures efficiency at a fixed condition (95\u00b0F, full load). SEER measures across a full season. EER is more relevant for commercial/industrial \u2014 those systems run sustained loads, not seasonal cycles."
         },
         {
           "id": 3,
@@ -56,14 +65,105 @@
           "id": 6,
           "category": "hunton",
           "question": "What is billable backlog, how does it affect cash flow, and what does a shrinking billable backlog indicate?",
-          "userAnswer": "Complete but not yet invoiced work. Shrinking is good for cash flow. Initially confused with pipeline backlog — distinction clarified in follow-up.",
+          "userAnswer": "Complete but not yet invoiced work. Shrinking is good for cash flow. Initially confused with pipeline backlog \u2014 distinction clarified in follow-up.",
           "correct": true,
           "feedback": "Correct after clarification. Billable backlog = complete, not invoiced. Shrinking = faster invoicing = better cash flow. Key HS note: WIP and billable backlog are separate reports. WIP clears when job completes, billable backlog clears when invoiced."
         }
       ],
-      "strengths": ["HVAC systems knowledge", "Financial math", "HS divisional structure", "Billable backlog mechanics"],
-      "weaknesses": ["EER vs SEER (commercial context)", "Financial statement line items (depreciation)"],
+      "strengths": [
+        "HVAC systems knowledge",
+        "Financial math",
+        "HS divisional structure",
+        "Billable backlog mechanics"
+      ],
+      "weaknesses": [
+        "EER vs SEER (commercial context)",
+        "Financial statement line items (depreciation)"
+      ],
       "note": "Strong first quiz. 92% after correction. Sharp on operations and financial math. HVAC efficiency metrics need work."
+    },
+    {
+      "id": "2026-04-03",
+      "date": "April 3, 2026",
+      "score": 3.5,
+      "total": 6,
+      "percentage": 58,
+      "categories": {
+        "hvac": {
+          "score": 0,
+          "total": 2
+        },
+        "financial": {
+          "score": 1.5,
+          "total": 2
+        },
+        "hunton": {
+          "score": 2,
+          "total": 2
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "category": "hvac",
+          "question": "What is compressor surge on a centrifugal chiller and what causes it?",
+          "userAnswer": "No answer.",
+          "correct": false,
+          "feedback": "Surge = flow reversal when pressure ratio exceeds what the impeller can handle. Sounds like a whomp/bang. Causes: low load, low refrigerant flow, fouled condenser. Trane chillers will unload or trip on surge."
+        },
+        {
+          "id": 2,
+          "category": "hvac",
+          "question": "What is a VFD and how is it used on commercial HVAC equipment?",
+          "userAnswer": "No answer.",
+          "correct": false,
+          "feedback": "Variable Frequency Drive \u2014 controls motor speed by varying electrical frequency. Allows partial load operation vs on/off cycling. Major energy saver. Trane uses VFDs heavily on CenTraVac centrifugal chillers, pumps, and AHU fans."
+        },
+        {
+          "id": 3,
+          "category": "financial",
+          "question": "Revenue $1.2M, COGS $840k, Operating expenses $180k. Calculate gross margin and operating margin.",
+          "userAnswer": "GM $360k (30%), Operating income $180k (15%). Said 15% is better.",
+          "correct": true,
+          "feedback": "Math correct. Framing note: whether 30% GM and 15% operating margin are 'good' depends on historical trend and benchmarks. The right read: 30% shows operational efficiency, 15% shows overhead is managed. Context always matters."
+        },
+        {
+          "id": 4,
+          "category": "hunton",
+          "question": "What is WIP and why is it important for Hunton Services teams?",
+          "userAnswer": "Work in progress \u2014 active jobs being worked. Critical for monthly financial forecasting at HS. Each team forecasts WIP monthly.",
+          "correct": true,
+          "feedback": "Excellent. Added nuance: stuck WIP (90% complete, not finishing) distorts forecasts. Worth watching."
+        },
+        {
+          "id": 5,
+          "category": "hunton",
+          "question": "Describe the team structure within a Hunton Services commercial team.",
+          "userAnswer": "ASM (P&L owner, team manager) > RC (admin/dispatch) / RCA (RC assistant) > Field Supervisor (job walks, safety, actual work, supervises techs) > Technicians.",
+          "correct": true,
+          "feedback": "Perfect. Every role accurate. Good catch on FS reporting nuance."
+        },
+        {
+          "id": 6,
+          "category": "hunton",
+          "question": "Describe HRS's business model and the two main rental lines.",
+          "userAnswer": "Rents chillers and generators to commercial/industrial. Two lines: planned rentals (redundancy during maintenance) and emergency rentals. Adding generator service division.",
+          "correct": true,
+          "feedback": "Accurate. Key talking point: HRS has the 2nd largest 500-ton chiller fleet in the nation \u2014 a real competitive moat."
+        }
+      ],
+      "strengths": [
+        "HS team structure",
+        "WIP and forecasting",
+        "HRS business model",
+        "Financial math"
+      ],
+      "weaknesses": [
+        "HVAC technical knowledge (starting from zero \u2014 expected)",
+        "Compressor surge",
+        "VFDs"
+      ],
+      "note": "58% \u2014 pulled down by zero HVAC technical background. All operational and financial answers were strong. Quiz rules updated: HVAC questions now start from ground zero, Trane-specific models, broad to specific progression."
     }
   ]
 }
