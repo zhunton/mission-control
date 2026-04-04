@@ -1,3 +1,64 @@
 {
-  "ideas": []
+  "ideas": [
+    {
+      "id": "1",
+      "title": "AI-Powered Lead Generation Service for Local B2B",
+      "category": "AI Services",
+      "status": "viable",
+      "potential": "high",
+      "timeRequired": "Minimal \u2014 3-5 hrs/week after setup",
+      "summary": "Use AI agents to identify, research, and qualify leads for small B2B businesses (contractors, service companies, commercial vendors). Deliver 50-100 qualified leads/month per client. Charge $300-600/month per client. 5-8 clients = $2,000-4,000/month.",
+      "details": "## The Idea\n\nUse Wally, Atlas, and Perplexity to automate the entire lead research and qualification process for B2B clients. Find prospects, research them, score their fit, and deliver a clean lead list on a recurring basis.\n\n## Why This Works for You\n\nHunton Group is itself a B2B company. You understand the sales cycle, what a qualified lead looks like, and how to speak the language. That's a massive edge. You could start by testing the service concept on HT or HS internally before selling it externally.\n\n## How It Works\n\n1. Client defines their ideal customer profile (industry, size, geography, pain point)\n2. Atlas researches and identifies prospects using Perplexity + web scraping\n3. Wally reviews and scores each lead\n4. Deliver a weekly CSV or Airtable board to the client with contact info and qualification notes\n5. Repeat on autopilot\n\n## Realistic Income\n\n- 5 clients \u00d7 $400/month = **$2,000/month**\n- 8 clients \u00d7 $400/month = **$3,200/month**\n- Ramp time: 2-3 months to first $1K\n\n## What's Needed\n\n- Perplexity API \u2705 (already connected)\n- Simple client intake form (Typeform or similar)\n- Airtable or Google Sheets for lead delivery\n- 1-2 clients to test/validate pricing\n\n## Wally's Assessment\n\n**Legitimacy: High.** This is a real service people pay for. The differentiator is that AI makes it scalable \u2014 you can serve 6 clients in the same time a human VA could serve 1. The risk is client acquisition (finding the first 2-3 clients). The Hunton Group network is a starting point.\n\n**Time commitment: 3-5 hrs/week** (reviewing output, client communication)\n\n## Game Plan\n\n1. Build the Atlas lead-gen workflow (1-2 days)\n2. Test it on a real niche (commercial HVAC contractors looking for data center clients?)\n3. Pitch 2 clients in Zach's network at $200/month as a trial\n4. Systemize and raise pricing to $400+/month\n",
+      "addedDate": "April 4, 2026",
+      "addedBy": "Wally + Atlas"
+    },
+    {
+      "id": "2",
+      "title": "Niche Industry Newsletter (AI-Generated, Human-Curated)",
+      "category": "Content",
+      "status": "exploring",
+      "potential": "medium",
+      "timeRequired": "2-3 hrs/week after launch",
+      "summary": "Use AI agents to research, write, and send a weekly niche newsletter in a specific industry (HVAC, commercial construction, data centers). Monetize via paid subscriptions ($9-19/month) or sponsorships. 200-400 paying subscribers = $1,800-7,600/month.",
+      "details": "## The Idea\n\nA weekly AI-researched newsletter covering a niche Zach knows well \u2014 commercial HVAC, data center construction, or commercial real estate in Texas. Atlas finds the stories, Wally writes the brief, Zach does a 15-minute review before it goes out.\n\n## Why This Works for You\n\nYou're inside Hunton Group, which is at the intersection of commercial HVAC and data centers. You see things before the market does. That's editorial edge money can't buy.\n\n## How It Works\n\n1. Atlas monitors news, trade publications, X, Reddit for industry stories weekly\n2. Wally drafts a 5-7 item newsletter with summaries and insights\n3. Zach does a quick 15-min review (optional \u2014 could even skip this once trust is built)\n4. Beehiiv or Substack sends it automatically to subscribers\n\n## Realistic Income\n\n- Sponsorships: $500-1,500/month once you hit 1,000 subscribers\n- Paid tier ($9/month \u00d7 200 paid): $1,800/month\n- Timeline: 6-9 months to meaningful revenue\n\n## What's Needed\n\n- Beehiiv account (free to start)\n- Perplexity API \u2705 (for research)\n- 3 months of consistent publishing to build audience\n- LinkedIn/X presence to distribute\n\n## Wally's Assessment\n\n**Legitimacy: Medium-High.** Newsletters work. The challenge is audience building \u2014 takes 3-6 months before monetization is real. But once the machine runs, it's nearly passive. Good fit given your HVAC/data center knowledge.\n\n**Risk:** Slow to monetize. Not for \"need cash now\" \u2014 this is a 6-month play.\n\n## Game Plan\n\n1. Pick the niche (recommendation: Data Center Infrastructure in Texas \u2014 hot topic, you have insider access)\n2. Set up Beehiiv, brand it (Dali handles the design)\n3. Atlas + Wally produce first 4 editions as a pilot\n4. Share on LinkedIn with your professional network\n5. Monitor open rates and growth before monetizing\n",
+      "addedDate": "April 4, 2026",
+      "addedBy": "Wally + Atlas"
+    },
+    {
+      "id": "3",
+      "title": "AI Automation Setup Service for Small HVAC or Trade Businesses",
+      "category": "AI Services",
+      "status": "viable",
+      "potential": "high",
+      "timeRequired": "Project-based \u2014 10-20 hrs per client setup, then passive",
+      "summary": "Offer done-for-you AI automation to small HVAC contractors, plumbers, or trade businesses. Set up lead capture, follow-up sequences, scheduling automation, and reporting \u2014 all AI-powered. Charge $1,500-3,000 per setup + $200-400/month maintenance.",
+      "details": "## The Idea\n\nSmall trade businesses (HVAC contractors, plumbers, electricians) are desperate for automation but have no technical ability to do it themselves. You have the tools, the industry knowledge, and the agent team to build it for them. One client setup = $2,000+. Recurring maintenance = $200-400/month.\n\n## Why This Works for You\n\nYou are inside the HVAC industry. You know the pain points. You know what an HVAC service company needs (dispatching, invoicing follow-up, scheduling reminders, WIP tracking). Nobody selling AI automation services knows this space like someone inside Hunton Group.\n\n## What You'd Actually Deliver\n\n- **Lead capture bot:** AI chatbot on their website that captures and qualifies incoming leads\n- **Follow-up automation:** Automated email/SMS follow-up after estimates\n- **Review request automation:** After job completion, auto-request Google reviews\n- **Monthly reporting:** Simple AI-generated report showing their key metrics\n\n## Realistic Income\n\n- 1 setup/month \u00d7 $2,000 = $2,000 project income\n- 5 maintenance clients \u00d7 $300/month = $1,500 recurring\n- Combined: **$3,500/month** at modest scale\n\n## What's Needed\n\n- Make.com or n8n account ($20-50/month)\n- Twilio for SMS ($20/month)\n- OpenAI API \u2705 (already connected)\n- A simple website or landing page to pitch the service\n\n## Wally's Assessment\n\n**Legitimacy: Very High.** This is a real gap. Small HVAC contractors don't have IT departments. They're already spending money on software that doesn't work. You can come in with something that actually fits their workflow because you understand it from the inside.\n\n**Biggest risk:** Time to set up each client. But once you have a template, it gets faster.\n\n## Game Plan\n\n1. Build a demo automation using a fictional HVAC company (2-3 days)\n2. Identify 2-3 independent HVAC contractors in Houston (not Hunton competitors \u2014 small residential guys)\n3. Offer the first setup at cost ($500) to get a case study\n4. Package it at $1,500-2,000 setup + $250/month\n5. Word of mouth in the trade community handles growth from there\n",
+      "addedDate": "April 4, 2026",
+      "addedBy": "Wally + Atlas"
+    },
+    {
+      "id": "4",
+      "title": "AI Research Reports \u2014 On-Demand for Executives",
+      "category": "AI Services",
+      "status": "exploring",
+      "potential": "medium",
+      "timeRequired": "2-4 hrs per report (Atlas handles most of it)",
+      "summary": "Offer on-demand deep research reports for executives and business owners who need competitive intelligence, market analysis, or due diligence. Atlas does the research, Wally edits and formats. Charge $200-500 per report. 8-10 reports/month = $2,000-4,000.",
+      "details": "## The Idea\n\nExecutives and business owners constantly need research they don't have time to do. Market analysis, competitor breakdowns, industry trend reports, due diligence on potential hires or acquisitions. Atlas can produce a thorough research report in 30 minutes that would take a human analyst 4-6 hours.\n\n## Why This Works for You\n\nYou've already seen this work \u2014 the Hunton genealogy research, the AI market briefs. Atlas is legitimately good at this. The question is whether people will pay for it on-demand.\n\n## How It Works\n\n1. Client submits a research request via a simple form\n2. Atlas runs the research using Perplexity deep research + web sources\n3. Wally edits, formats, adds analysis layer\n4. Client receives a polished PDF report within 24 hours\n\n## Realistic Income\n\n- 8 reports \u00d7 $300 average = $2,400/month\n- Could offer subscription: $500/month for 2 reports/month\n\n## What's Needed\n\n- Typeform or simple intake form\n- Stripe for payment processing\n- Report template (Dali designs the cover/layout)\n- Atlas + Perplexity API \u2705\n\n## Wally's Assessment\n\n**Legitimacy: Medium.** People do pay for research. The challenge is positioning \u2014 who specifically do you target and how do you reach them? Zach's LinkedIn network of JPMorgan contacts, finance professionals, and business owners is the distribution channel.\n\n**Best angle:** Position it as \"AI analyst on demand for busy executives\" \u2014 not a research firm, but a fast, affordable alternative.\n\n## Game Plan\n\n1. Build a simple landing page describing the service\n2. Offer 3 free reports to Zach's network for testimonials\n3. Price at $249/report to start\n4. Scale with Atlas handling more reports in parallel\n",
+      "addedDate": "April 4, 2026",
+      "addedBy": "Wally + Atlas"
+    },
+    {
+      "id": "5",
+      "title": "Automated Real Estate Market Reports (Houston/Texas Focus)",
+      "category": "Automation",
+      "status": "exploring",
+      "potential": "medium",
+      "timeRequired": "Minimal \u2014 fully automated once built",
+      "summary": "Weekly or monthly AI-generated real estate market reports for commercial real estate investors, agents, or property managers in Houston/Texas. Sell as subscription ($30-100/month) or to brokerages as white-label. 100 subscribers = $3,000-10,000/month.",
+      "details": "## The Idea\n\nCommercial and residential real estate investors in Houston need market data but don't have time to compile it. Atlas can pull data from public sources, analyze trends, and generate a formatted report automatically every week.\n\n## Why This Works for You\n\nHouston is one of the hottest real estate markets in the country. Data center development, industrial growth, commercial HVAC demand \u2014 Zach sees these trends through Hunton Group before most investors do. That's editorial edge.\n\n## How It Works\n\n1. Atlas pulls data from public sources (Zillow API, CoStar public data, news)\n2. Wally generates the analysis and narrative\n3. Report auto-sends to subscribers via Beehiiv or direct email\n4. Fully hands-off after initial setup\n\n## Realistic Income\n\n- 100 subscribers \u00d7 $30/month = $3,000/month\n- White-label to 3 brokerages \u00d7 $500/month = $1,500/month\n- Combined ceiling: **$5,000+/month** at scale\n\n## What's Needed\n\n- Real estate data APIs (some free, some $50-200/month)\n- Beehiiv or ConvertKit\n- Report template (Dali)\n- 3-month audience building period\n\n## Wally's Assessment\n\n**Legitimacy: Medium.** Data products work. The challenge is data sourcing \u2014 commercial real estate data is expensive. Start with residential Houston data (free APIs) and expand. The Hunton Group angle gives you insider context others can't match.\n\n## Game Plan\n\n1. Build a pilot report using free data sources (1 week)\n2. Share on LinkedIn and local Houston real estate groups\n3. Gauge interest before building subscription infrastructure\n4. If traction: set up Beehiiv + Stripe, charge $30-50/month\n",
+      "addedDate": "April 4, 2026",
+      "addedBy": "Wally + Atlas"
+    }
+  ]
 }
