@@ -41,23 +41,20 @@ const LOCATION_NAMES: Record<AgentId, Record<StationType, string>> = {
   dali: { working: "Painting Room", idle: "The Tavern", meeting: "Round Table" },
 };
 
-const WEIGHTS: Record<AgentId, [number, number, number]> = {
-  wally: [0.75, 0.10, 0.15],
-  patch: [0.65, 0.2, 0.15],
-  dali: [0.65, 0.2, 0.15],
+// Weights: [working, idle] — meeting station kept in STATIONS for manual trigger only
+const WEIGHTS: Record<AgentId, [number, number]> = {
+  wally: [0.80, 0.20],
+  patch: [0.75, 0.25],
+  dali: [0.75, 0.25],
 };
 
 function pickStation(agentId: AgentId, hasInProgress: boolean): StationType {
   // Wally is always working — use weights regardless of task status
   if (agentId !== "wally" && !hasInProgress) {
-    // No active task: only idle or meeting (10% meeting)
-    return Math.random() < 0.1 ? "meeting" : "idle";
+    return "idle";
   }
-  const [w, i] = WEIGHTS[agentId];
-  const r = Math.random();
-  if (r < w) return "working";
-  if (r < w + i) return "idle";
-  return "meeting";
+  const [w] = WEIGHTS[agentId];
+  return Math.random() < w ? "working" : "idle";
 }
 
 interface AgentState {
