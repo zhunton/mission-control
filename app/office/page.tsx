@@ -149,7 +149,7 @@ export default function OfficePage() {
                 <img
                   src={agent.sprite}
                   style={{
-                    width: 64,
+                    width: 128,
                     height: "auto",
                     filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.9))",
                     display: "block",
