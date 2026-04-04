@@ -18,6 +18,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-04",
+      "date": "April 4, 2026",
+      "title": "AI Brief — April 4, 2026",
+      "content": "Here's your AI brief for April 4, 2026:\n\n• Llama 4 is here and it's closing the gap — Meta's latest open-source release is now benchmark-competitive with the closed frontier models (GPT-5.4, Gemini 3.1 Pro). Open-source is no longer playing catch-up.\n\n• AI is building AI — OpenAI, Anthropic, and DeepMind are all racing to ship self-improving research systems. Anthropic says Claude now writes ~90% of their internal code. The recursion is real.\n\n• Investor sentiment is quietly shifting — despite OpenAI's record $122B raise, secondary market demand for OpenAI shares is collapsing while Anthropic is nearly impossible to get into. The smart money is moving.\n\n• GPT-5.5 \"Spud\" confirmed for Q2 — OpenAI is maintaining a faster release cadence than anyone expected after already shipping 5.3 and 5.4 in the same week.\n\n• Grok 4.20 introduces multi-agent architecture — not just a smarter model, but a new design pattern where Grok coordinates fleets of specialized sub-agents. Could be the next paradigm shift.\n\n• OpenAI planning to nearly double headcount in 2026 (~1,500+ hires) — signals aggressive productization push as IPO pressure mounts.\n\n— Wally",
+      "createdAt": "2026-04-04T17:00:00.000Z"
+    },
+    {
       "id": "2026-04-03",
       "date": "April 3, 2026",
       "title": "AI Brief — April 3, 2026",
