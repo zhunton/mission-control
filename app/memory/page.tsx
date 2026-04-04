@@ -19,6 +19,95 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "8",
+    date: "April 3, 2026",
+    title: "Office Overhaul v2, Atlas Joins the Team & Idea Lab Ships",
+    discussions: [
+      {
+        title: "Office Page — Full Rebuild (v2)",
+        thingsToRemember: [
+          "Patch rebuilt the Office page from scratch with a new SVG castle background and 128px SVG character sprites",
+          "Agent positions are now coordinate-mapped to specific stations and tied to real task status (working/idle)",
+          "Wally is hardcoded to always show as 'working' — never idle",
+          "Round Table removed from the NPC random wandering cycle — reserved for deliberate use",
+          "Coordinate mapping tool added temporarily to place agents precisely, then removed when done",
+        ],
+        recommendations: [
+          "Now that positions are tied to task status, keeping tasks.json accurate matters more — it drives the visual state of the office",
+          "Consider adding hover tooltips to sprites showing agent name + current task",
+        ],
+        decisions: [
+          "Office page rebuilt with SVG background + 128px sprites — live and deployed",
+          "Agent visual state tied to real task data (not random)",
+          "Wally always-working behavior locked in by design",
+        ],
+      },
+      {
+        title: "Documents Tab — Improved",
+        thingsToRemember: [
+          "Markdown rendering now works properly in the Documents tab",
+          "Download saves as clean .txt file",
+          "PDF download added via browser print dialog",
+          "Hunton genealogy document updated with accurate Compendium text",
+        ],
+        recommendations: [
+          "Consider adding a document creation UI so Zach can add new docs directly from Mission Control without editing code",
+        ],
+        decisions: [
+          "Documents tab improvements deployed — .txt download, PDF, markdown rendering all live",
+        ],
+      },
+      {
+        title: "New Agents: Iris NPC & Atlas (Research)",
+        thingsToRemember: [
+          "Iris added as an ambient NPC in the castle Office — decorative/environmental, not a task agent",
+          "Atlas added as a Research Agent — has a profile photo, appears in the People page org chart, and is stationed in the Alchemy Room on the Office canvas",
+          "Atlas represents a real research capability role — to be activated when Perplexity or similar is wired in",
+        ],
+        recommendations: [
+          "When Atlas gets a real backend (Perplexity API), wire it to the Research Agent slot and add it to the task system",
+        ],
+        decisions: [
+          "Atlas added to org chart and Office — placeholder until real research capability is connected",
+          "Iris added as ambient NPC — no task role",
+        ],
+      },
+      {
+        title: "Idea Lab Tab — Ships",
+        thingsToRemember: [
+          "Idea Lab tab built and deployed late evening April 3 (~11:22 PM CDT)",
+          "New tab in Mission Control for capturing and developing ideas",
+        ],
+        recommendations: [
+          "Start populating Idea Lab with active ideas — it's only useful if used consistently",
+        ],
+        decisions: [
+          "Idea Lab tab live and deployed to Vercel",
+        ],
+      },
+      {
+        title: "Daily AI Brief — April 3",
+        thingsToRemember: [
+          "AI brief delivered successfully at noon via Telegram ✅",
+          "OpenAI's $122B round getting messy — institutional holders trying to offload ~$600M in shares, finding buyers 'almost impossible'; smart money quietly pivoting to Anthropic",
+          "Q1 2026: $297B into ~6,000 AI startups globally — up 150%+ YoY, consistent with prior reporting",
+          "US-Israel military campaign against Iran entering week 5; Iran retaliated with strike on Kuwaiti oil refinery — geopolitical risk elevated",
+          "HVAC: April 2026 price increase list published by ACHR News",
+          "Morning brief included Ryan Holiday quote: 'The obstacle in the path becomes the path'",
+        ],
+        recommendations: [
+          "The HVAC price increase list is directly relevant — Hunton Group procurement and customer quoting will be affected; worth reviewing the ACHR News article in detail",
+          "OpenAI round instability is a signal — if the smart money is moving to Anthropic, watch for Anthropic model/product announcements to accelerate",
+          "Iran conflict and Kuwaiti oil refinery strike: if oil/energy disruption escalates, it could hit HVAC equipment costs via commodity prices",
+        ],
+        decisions: [
+          "No system changes — all automated crons ran cleanly",
+          "No direct Zach conversations; all activity was build notifications + automated brief delivery",
+        ],
+      },
+    ],
+  },
+  {
     id: "7",
     date: "April 2, 2026",
     title: "Briefs Tab Ships & OpenAI Hits $852B",
