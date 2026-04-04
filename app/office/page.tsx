@@ -29,6 +29,26 @@ const AGENTS = [
 type AgentId = "wally" | "patch" | "dali";
 type StationType = "working" | "idle" | "meeting";
 
+const IRIS_WAYPOINTS = [
+  { top: "45%", left: "70.1%" },   // Tavern — 40% weight (home base)
+  { top: "22.2%", left: "53%" },   // Wandering point 2 — 20%
+  { top: "47.4%", left: "36.9%" }, // Wandering point 3 — 20%
+  { top: "65.8%", left: "62.3%" }, // Wandering point 4 — 20%
+];
+const IRIS_WEIGHTS = [0.40, 0.20, 0.20, 0.20];
+
+function pickIrisWaypoint(current: number): number {
+  const remaining = IRIS_WAYPOINTS.map((_, i) => i).filter((i) => i !== current);
+  const weights = remaining.map((i) => IRIS_WEIGHTS[i]);
+  const total = weights.reduce((a, b) => a + b, 0);
+  let r = Math.random() * total;
+  for (let i = 0; i < remaining.length; i++) {
+    r -= weights[i];
+    if (r <= 0) return remaining[i];
+  }
+  return remaining[remaining.length - 1];
+}
+
 const STATUS_COLORS: Record<StationType, string> = {
   working: "#22c55e",
   idle: "#eab308",
@@ -79,6 +99,12 @@ export default function OfficePage() {
   const [coords, setCoords] = useState<{ top: string; left: string } | null>(null);
   const officeRef = useRef<HTMLDivElement>(null);
 
+  const [irisState, setIrisState] = useState<{ waypointIndex: number; isMoving: boolean }>({
+    waypointIndex: 0,
+    isMoving: false,
+  });
+  const irisIndexRef = useRef(0);
+
   const [agentStates, setAgentStates] = useState<Record<AgentId, AgentState>>({
     wally: { station: "idle", isMoving: false },
     patch: { station: "idle", isMoving: false },
@@ -125,6 +151,24 @@ export default function OfficePage() {
       }, 12000);
     });
     return () => intervals.forEach(clearInterval);
+  }, []);
+
+  // Iris patrol — random 8–14s interval, weighted waypoint selection
+  useEffect(() => {
+    function scheduleNext() {
+      const delay = 8000 + Math.random() * 6000;
+      return setTimeout(() => {
+        const next = pickIrisWaypoint(irisIndexRef.current);
+        irisIndexRef.current = next;
+        setIrisState({ waypointIndex: next, isMoving: true });
+        setTimeout(() => {
+          setIrisState((prev) => ({ ...prev, isMoving: false }));
+        }, 7500);
+        timerRef.current = scheduleNext();
+      }, delay);
+    }
+    const timerRef = { current: scheduleNext() };
+    return () => clearTimeout(timerRef.current);
   }, []);
 
   return (
@@ -221,6 +265,49 @@ export default function OfficePage() {
             </div>
           );
         })}
+
+        {/* Iris — castle maiden NPC */}
+        {(() => {
+          const wp = IRIS_WAYPOINTS[irisState.waypointIndex];
+          return (
+            <div
+              style={{
+                position: "absolute",
+                top: wp.top,
+                left: wp.left,
+                transform: "translate(-50%, -50%)",
+                transition: "top 7s ease-in-out, left 7s ease-in-out",
+                zIndex: 10,
+                textAlign: "center",
+                animation: irisState.isMoving
+                  ? "agentWalk 0.4s ease-in-out infinite"
+                  : "agentIdle 2s ease-in-out infinite",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 10,
+                  fontWeight: "bold",
+                  color: "white",
+                  marginBottom: 3,
+                  textShadow: "0 1px 4px rgba(0,0,0,1)",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Iris
+              </div>
+              <img
+                src="/character-iris.svg"
+                style={{
+                  width: 128,
+                  height: "auto",
+                  filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.9))",
+                  display: "block",
+                }}
+              />
+            </div>
+          );
+        })()}
 
         {/* Coordinate tool panel */}
         {coords && (
