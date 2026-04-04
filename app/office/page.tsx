@@ -96,7 +96,6 @@ async function fetchInProgressAgents(): Promise<Set<AgentId>> {
 }
 
 export default function OfficePage() {
-  const [coords, setCoords] = useState<{ top: string; left: string } | null>(null);
   const officeRef = useRef<HTMLDivElement>(null);
 
   const [irisState, setIrisState] = useState<{ waypointIndex: number; isMoving: boolean }>({
@@ -187,13 +186,7 @@ export default function OfficePage() {
       {/* Office container */}
       <div
         ref={officeRef}
-        style={{ flex: 1, position: "relative", overflow: "hidden", cursor: "crosshair" }}
-        onClick={(e) => {
-          const rect = officeRef.current!.getBoundingClientRect();
-          const top = (((e.clientY - rect.top) / rect.height) * 100).toFixed(1) + "%";
-          const left = (((e.clientX - rect.left) / rect.width) * 100).toFixed(1) + "%";
-          setCoords({ top, left });
-        }}
+        style={{ flex: 1, position: "relative", overflow: "hidden" }}
       >
         <img
           src="/office-background.svg"
@@ -309,30 +302,6 @@ export default function OfficePage() {
           );
         })()}
 
-        {/* Coordinate tool panel */}
-        {coords && (
-          <div
-            style={{
-              position: "absolute",
-              top: 10,
-              right: 10,
-              background: "rgba(0,0,0,0.85)",
-              color: "#0f0",
-              fontFamily: "monospace",
-              fontSize: 13,
-              padding: "8px 12px",
-              borderRadius: 6,
-              border: "1px solid #0f0",
-              zIndex: 100,
-              pointerEvents: "none",
-              lineHeight: 1.6,
-            }}
-          >
-            <div style={{ fontWeight: "bold", marginBottom: 4, color: "#7f7" }}>📍 Coords</div>
-            <div>top: &quot;{coords.top}&quot;</div>
-            <div>left: &quot;{coords.left}&quot;</div>
-          </div>
-        )}
       </div>
 
       {/* Status bar */}
