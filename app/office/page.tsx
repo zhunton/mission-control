@@ -18,15 +18,21 @@ const STATIONS = {
     idle: { top: "31.9%", left: "81.3%" },
     meeting: { top: "44.4%", left: "42.1%" },
   },
+  atlas: {
+    working: { top: "65%", left: "35.8%" },
+    idle: { top: "45%", left: "87.5%" },
+    meeting: { top: "46.6%", left: "47.3%" },
+  },
 };
 
 const AGENTS = [
   { id: "wally", name: "Wally", sprite: "/character-wally.svg", emoji: "🧙" },
   { id: "patch", name: "Patch", sprite: "/character-patch.svg", emoji: "🔨" },
   { id: "dali", name: "Dali", sprite: "/character-dali.svg", emoji: "🎨" },
+  { id: "atlas", name: "Atlas", sprite: "/character-atlas.svg", emoji: "🔬" },
 ] as const;
 
-type AgentId = "wally" | "patch" | "dali";
+type AgentId = "wally" | "patch" | "dali" | "atlas";
 type StationType = "working" | "idle" | "meeting";
 
 const IRIS_WAYPOINTS = [
@@ -59,6 +65,7 @@ const LOCATION_NAMES: Record<AgentId, Record<StationType, string>> = {
   wally: { working: "Wizard's Orb", idle: "The Tavern", meeting: "Round Table" },
   patch: { working: "The Forge", idle: "The Tavern", meeting: "Round Table" },
   dali: { working: "Painting Room", idle: "The Tavern", meeting: "Round Table" },
+  atlas: { working: "Alchemy Room", idle: "The Tavern", meeting: "Round Table" },
 };
 
 // Weights: [working, idle] — meeting station kept in STATIONS for manual trigger only
@@ -66,6 +73,7 @@ const WEIGHTS: Record<AgentId, [number, number]> = {
   wally: [0.80, 0.20],
   patch: [0.75, 0.25],
   dali: [0.75, 0.25],
+  atlas: [0.75, 0.25],
 };
 
 function pickStation(agentId: AgentId, hasInProgress: boolean): StationType {
@@ -89,23 +97,13 @@ async function fetchInProgressAgents(): Promise<Set<AgentId>> {
   for (const task of tasks) {
     if (task.status === "in-progress") {
       const id = task.agent.toLowerCase() as AgentId;
-      if (id === "wally" || id === "patch" || id === "dali") active.add(id);
+      if (id === "wally" || id === "patch" || id === "dali" || id === "atlas") active.add(id);
     }
   }
   return active;
 }
 
 export default function OfficePage() {
-  const officeRef = useRef<HTMLDivElement>(null);
-  const [coords, setCoords] = useState<{ top: string; left: string } | null>(null);
-
-  function handleOfficeClick(e: React.MouseEvent<HTMLDivElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const top = (((e.clientY - rect.top) / rect.height) * 100).toFixed(1) + "%";
-    const left = (((e.clientX - rect.left) / rect.width) * 100).toFixed(1) + "%";
-    setCoords({ top, left });
-  }
-
   const [irisState, setIrisState] = useState<{ waypointIndex: number; isMoving: boolean }>({
     waypointIndex: 0,
     isMoving: false,
@@ -116,6 +114,7 @@ export default function OfficePage() {
     wally: { station: "idle", isMoving: false },
     patch: { station: "idle", isMoving: false },
     dali: { station: "idle", isMoving: false },
+    atlas: { station: "idle", isMoving: false },
   });
   const activeAgents = useRef<Set<AgentId>>(new Set());
 
@@ -127,6 +126,7 @@ export default function OfficePage() {
         wally: { station: "working", isMoving: false },
         patch: { station: active.has("patch") ? "working" : "idle", isMoving: false },
         dali: { station: active.has("dali") ? "working" : "idle", isMoving: false },
+        atlas: { station: active.has("atlas") ? "working" : "idle", isMoving: false },
       });
     });
   }, []);
@@ -193,32 +193,8 @@ export default function OfficePage() {
 
       {/* Office container */}
       <div
-        ref={officeRef}
-        onClick={handleOfficeClick}
-        style={{ flex: 1, position: "relative", overflow: "hidden", cursor: "crosshair" }}
+        style={{ flex: 1, position: "relative", overflow: "hidden" }}
       >
-        {/* Coordinate panel */}
-        {coords && (
-          <div
-            style={{
-              position: "absolute",
-              top: 12,
-              right: 12,
-              zIndex: 100,
-              background: "rgba(0,0,0,0.85)",
-              color: "#0f0",
-              fontFamily: "monospace",
-              fontSize: 13,
-              padding: "8px 14px",
-              borderRadius: 6,
-              border: "1px solid #0f0",
-              pointerEvents: "none",
-              whiteSpace: "nowrap",
-            }}
-          >
-            top: {coords.top}<br />left: {coords.left}
-          </div>
-        )}
         <img
           src="/office-background.svg"
           alt="Office"
