@@ -73,6 +73,7 @@ const AGENTS: Agent[] = [
     role: "Researcher",
     status: "working",
     emoji: "🔬",
+    avatar: "/atlas-alchemist.jpg",
     color: "#10b981",
     description: "Research Agent responsible for gathering information, analyzing data, and surfacing insights to support Wally and the team.",
     skills: ["Research", "Analysis", "Data Gathering", "Synthesis"],
