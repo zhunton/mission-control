@@ -164,6 +164,87 @@
         "VFDs"
       ],
       "note": "58% \u2014 pulled down by zero HVAC technical background. All operational and financial answers were strong. Quiz rules updated: HVAC questions now start from ground zero, Trane-specific models, broad to specific progression."
+    },
+    {
+      "id": "2026-04-04",
+      "date": "April 4, 2026",
+      "score": 5.5,
+      "total": 6,
+      "percentage": 92,
+      "categories": {
+        "hvac": {
+          "score": 1.5,
+          "total": 2
+        },
+        "financial": {
+          "score": 2,
+          "total": 2
+        },
+        "hunton": {
+          "score": 2,
+          "total": 2
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "category": "hvac",
+          "question": "What are the main components of an AHU?",
+          "userAnswer": "Outside damper, coils, fan wall, ductwork.",
+          "correct": false,
+          "feedback": "Partially correct. Key miss: filters (most important maintenance item). Full list: coils, fan/blower, filter section, dampers (outside air + return air), mixing box. Ductwork is downstream distribution, not part of the AHU."
+        },
+        {
+          "id": 2,
+          "category": "hvac",
+          "question": "Difference between air-cooled and water-cooled chillers \u2014 when to use each?",
+          "userAnswer": "Air-cooled uses fans + ambient air. Water-cooled uses cooling towers, higher tonnage, more precise \u2014 best for hospitals and critical applications.",
+          "correct": true,
+          "feedback": "Excellent. Added note: water-cooled more energy efficient at full load \u2014 key data center selling point for HT."
+        },
+        {
+          "id": 3,
+          "category": "financial",
+          "question": "Revenue $1.2M, COGS $660k, OpEx $120k \u2014 calculate GP, GP%, OP, OP%. What is ASM responsible for?",
+          "userAnswer": "GP $540k (45%), OP $420k (35%). ASM responsible for gross margin only \u2014 that's what they control.",
+          "correct": true,
+          "feedback": "Perfect math and accountability. ASMs own direct costs which drive gross margin. G&A overhead above is outside their control."
+        },
+        {
+          "id": 4,
+          "category": "financial",
+          "question": "Biggest cost risk in a service business when work slows down?",
+          "userAnswer": "Labor \u2014 techs leave if no work. Fewer hours = less burden absorbed = hurts overhead offset.",
+          "correct": true,
+          "feedback": "Strong. Burden absorption point is sophisticated \u2014 more hours = more burden absorbed = overhead offset. Correct."
+        },
+        {
+          "id": 5,
+          "category": "hunton",
+          "question": "Explain DTB, DBO, and Pay Velocity. What is the DTB goal at HS?",
+          "userAnswer": "DTB = days from job complete to invoice. DBO = days from invoice to payment. Pay Velocity = full chain. DTB goal = 5 days. High billable backlog is a symptom of high DTB, not the cause.",
+          "correct": true,
+          "feedback": "Best answer of any quiz session so far. Perfect chain, correct goals, and the symptom vs. cause distinction on billable backlog is real operational understanding."
+        },
+        {
+          "id": 6,
+          "category": "hunton",
+          "question": "When would a building rent a 500-ton chiller from HRS vs buying?",
+          "userAnswer": "Planned maintenance on chiller with no redundancy, one of two chillers down, no budget for new equipment, or prefer off-balance-sheet as an operating expense.",
+          "correct": true,
+          "feedback": "Perfect. All scenarios covered. Off-balance-sheet preference is CFO-level thinking."
+        }
+      ],
+      "strengths": [
+        "KPI chain (DTB/DBO/Pay Velocity)",
+        "Financial math and accountability",
+        "HRS rental use cases",
+        "Chiller systems"
+      ],
+      "weaknesses": [
+        "AHU component list \u2014 filters missing"
+      ],
+      "note": "92% \u2014 strong session. Best single answer was the DTB/Pay Velocity explanation. AHU filters are the one gap to watch."
     }
   ]
 }
