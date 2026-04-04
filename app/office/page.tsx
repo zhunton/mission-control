@@ -47,7 +47,11 @@ const WEIGHTS: Record<AgentId, [number, number, number]> = {
   dali: [0.65, 0.2, 0.15],
 };
 
-function pickStation(agentId: AgentId): StationType {
+function pickStation(agentId: AgentId, hasInProgress: boolean): StationType {
+  if (!hasInProgress) {
+    // No active task: only idle or meeting (10% meeting)
+    return Math.random() < 0.1 ? "meeting" : "idle";
+  }
   const [w, i] = WEIGHTS[agentId];
   const r = Math.random();
   if (r < w) return "working";
@@ -60,17 +64,53 @@ interface AgentState {
   isMoving: boolean;
 }
 
+async function fetchInProgressAgents(): Promise<Set<AgentId>> {
+  const res = await fetch("/api/tasks");
+  const tasks: { agent: string; status: string }[] = await res.json();
+  const active = new Set<AgentId>();
+  for (const task of tasks) {
+    if (task.status === "in-progress") {
+      const id = task.agent.toLowerCase() as AgentId;
+      if (id === "wally" || id === "patch" || id === "dali") active.add(id);
+    }
+  }
+  return active;
+}
+
 export default function OfficePage() {
   const [agentStates, setAgentStates] = useState<Record<AgentId, AgentState>>({
-    wally: { station: "working", isMoving: false },
-    patch: { station: "working", isMoving: false },
-    dali: { station: "working", isMoving: false },
+    wally: { station: "idle", isMoving: false },
+    patch: { station: "idle", isMoving: false },
+    dali: { station: "idle", isMoving: false },
   });
+  const activeAgents = useRef<Set<AgentId>>(new Set());
+
+  // On load: fetch tasks and set initial stations
+  useEffect(() => {
+    fetchInProgressAgents().then((active) => {
+      activeAgents.current = active;
+      setAgentStates({
+        wally: { station: active.has("wally") ? "working" : "idle", isMoving: false },
+        patch: { station: active.has("patch") ? "working" : "idle", isMoving: false },
+        dali: { station: active.has("dali") ? "working" : "idle", isMoving: false },
+      });
+    });
+  }, []);
+
+  // Re-check task status every 60 seconds
+  useEffect(() => {
+    const taskInterval = setInterval(() => {
+      fetchInProgressAgents().then((active) => {
+        activeAgents.current = active;
+      });
+    }, 60000);
+    return () => clearInterval(taskInterval);
+  }, []);
 
   useEffect(() => {
     const intervals = AGENTS.map((agent) => {
       return setInterval(() => {
-        const newStation = pickStation(agent.id);
+        const newStation = pickStation(agent.id, activeAgents.current.has(agent.id));
         setAgentStates((prev) => ({
           ...prev,
           [agent.id]: { station: newStation, isMoving: true },
