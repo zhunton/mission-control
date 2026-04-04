@@ -42,13 +42,14 @@ const LOCATION_NAMES: Record<AgentId, Record<StationType, string>> = {
 };
 
 const WEIGHTS: Record<AgentId, [number, number, number]> = {
-  wally: [0.6, 0.2, 0.2],
+  wally: [0.75, 0.10, 0.15],
   patch: [0.65, 0.2, 0.15],
   dali: [0.65, 0.2, 0.15],
 };
 
 function pickStation(agentId: AgentId, hasInProgress: boolean): StationType {
-  if (!hasInProgress) {
+  // Wally is always working — use weights regardless of task status
+  if (agentId !== "wally" && !hasInProgress) {
     // No active task: only idle or meeting (10% meeting)
     return Math.random() < 0.1 ? "meeting" : "idle";
   }
@@ -90,7 +91,7 @@ export default function OfficePage() {
     fetchInProgressAgents().then((active) => {
       activeAgents.current = active;
       setAgentStates({
-        wally: { station: active.has("wally") ? "working" : "idle", isMoving: false },
+        wally: { station: "working", isMoving: false },
         patch: { station: active.has("patch") ? "working" : "idle", isMoving: false },
         dali: { station: active.has("dali") ? "working" : "idle", isMoving: false },
       });
