@@ -12,6 +12,7 @@ import {
   Zap,
   GraduationCap,
   Newspaper,
+  Lightbulb,
 } from "lucide-react";
 
 const navItems = [
@@ -19,6 +20,7 @@ const navItems = [
   { href: "/calendar", label: "Calendar", icon: Calendar },
   { href: "/briefs", label: "Briefs", icon: Newspaper },
   { href: "/coaching", label: "Coaching", icon: GraduationCap },
+  { href: "/idea-lab", label: "Idea Lab", icon: Lightbulb },
   { href: "/memory", label: "Memory", icon: Brain },
   { href: "/documents", label: "Documents", icon: FileText },
   { href: "/people", label: "People", icon: Users },
