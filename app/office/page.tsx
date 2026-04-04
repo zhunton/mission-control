@@ -97,6 +97,14 @@ async function fetchInProgressAgents(): Promise<Set<AgentId>> {
 
 export default function OfficePage() {
   const officeRef = useRef<HTMLDivElement>(null);
+  const [coords, setCoords] = useState<{ top: string; left: string } | null>(null);
+
+  function handleOfficeClick(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const top = (((e.clientY - rect.top) / rect.height) * 100).toFixed(1) + "%";
+    const left = (((e.clientX - rect.left) / rect.width) * 100).toFixed(1) + "%";
+    setCoords({ top, left });
+  }
 
   const [irisState, setIrisState] = useState<{ waypointIndex: number; isMoving: boolean }>({
     waypointIndex: 0,
@@ -186,8 +194,31 @@ export default function OfficePage() {
       {/* Office container */}
       <div
         ref={officeRef}
-        style={{ flex: 1, position: "relative", overflow: "hidden" }}
+        onClick={handleOfficeClick}
+        style={{ flex: 1, position: "relative", overflow: "hidden", cursor: "crosshair" }}
       >
+        {/* Coordinate panel */}
+        {coords && (
+          <div
+            style={{
+              position: "absolute",
+              top: 12,
+              right: 12,
+              zIndex: 100,
+              background: "rgba(0,0,0,0.85)",
+              color: "#0f0",
+              fontFamily: "monospace",
+              fontSize: 13,
+              padding: "8px 14px",
+              borderRadius: 6,
+              border: "1px solid #0f0",
+              pointerEvents: "none",
+              whiteSpace: "nowrap",
+            }}
+          >
+            top: {coords.top}<br />left: {coords.left}
+          </div>
+        )}
         <img
           src="/office-background.svg"
           alt="Office"
