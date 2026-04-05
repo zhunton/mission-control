@@ -19,6 +19,63 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "9",
+    date: "April 4, 2026",
+    title: "Quiet Saturday — Llama 4 Closes the Gap & Iran Escalates",
+    discussions: [
+      {
+        title: "Automated Systems — All Crons Ran Clean",
+        thingsToRemember: [
+          "No direct Zach conversations on April 4 — quiet Saturday",
+          "Morning brief, daily quiz, and AI market brief all delivered successfully via Telegram",
+          "Midnight sync from April 3→4 had errored (tasks.json write failure) — resolved in the April 4→5 sync",
+          "No new tasks added or completed; no system changes",
+        ],
+        recommendations: [
+          "The tasks.json write failure pattern has now happened twice — consider adding error recovery or a retry mechanism to the midnight sync cron",
+        ],
+        decisions: [
+          "No changes made — all systems nominal by end of day",
+        ],
+      },
+      {
+        title: "Morning Brief — April 4",
+        thingsToRemember: [
+          "Iran shot down two U.S. military aircraft — the first planes downed since the conflict began five weeks ago; one crew member rescued, one still missing",
+          "Trump called it 'It's war' but said the incidents won't affect Iran negotiations",
+          "Iran conflict is squeezing global energy markets — oil prices elevated, regional energy infrastructure under threat; real Q2 operational variable for building systems and data center operators",
+          "NASA Artemis II crew is nearly halfway to the moon — four astronauts aboard Orion in translunar transit after April 2 launch; first crewed lunar mission since 1972",
+        ],
+        recommendations: [
+          "Sustained oil price pressure from the Iran conflict could hit HVAC equipment and refrigerant costs via commodity chains — worth tracking into Q2 procurement",
+          "The Artemis II mission is a signal of renewed aerospace investment; could mean data center/compute demand from federal/space sector over the next 2-3 years",
+        ],
+        decisions: [
+          "No system changes — morning brief delivered as scheduled",
+        ],
+      },
+      {
+        title: "Daily AI Brief — April 4",
+        thingsToRemember: [
+          "Llama 4 ships from Meta — now benchmark-competitive with GPT-5.4 and Gemini 3.1 Pro; open-source has officially closed the gap with closed frontier models",
+          "OpenAI, Anthropic, and DeepMind all racing to ship self-improving research systems; Anthropic reports Claude writes ~90% of their internal code",
+          "Investor sentiment has quietly shifted — OpenAI secondary market demand collapsing while Anthropic is nearly impossible to get into; the smart money has already moved",
+          "GPT-5.5 'Spud' confirmed for Q2 — OpenAI maintaining faster release cadence than expected after shipping 5.3 and 5.4 in the same week",
+          "Grok 4.20 introduces multi-agent architecture — orchestrator model coordinating fleets of specialized sub-agents; a potential new design paradigm for AI systems",
+          "OpenAI planning to nearly double headcount in 2026 (~1,500+ hires) — aggressive productization push as IPO pressure mounts",
+        ],
+        recommendations: [
+          "Llama 4 reaching frontier parity is a structural shift — open-source AI is now a viable alternative to OpenAI/Anthropic APIs for many use cases; could change the cost model for AI-powered tools",
+          "The multi-agent orchestration pattern (Grok 4.20, Wally's own architecture) is becoming the norm — Mission Control's agent model is well-positioned relative to where the industry is heading",
+          "OpenAI's collapsing secondary demand paired with Anthropic's scarcity is a signal — if Anthropic ships Claude Mythos (or equivalent), the power balance at the frontier could shift fast",
+        ],
+        decisions: [
+          "No system changes — AI brief delivered as scheduled",
+        ],
+      },
+    ],
+  },
+  {
     id: "8",
     date: "April 3, 2026",
     title: "Office Overhaul v2, Atlas Joins the Team & Idea Lab Ships",
