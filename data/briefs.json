@@ -32,6 +32,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-06",
+      "date": "April 6, 2026",
+      "title": "AI Brief — April 6, 2026",
+      "content": "🤖 AI Brief — April 6, 2026\n\n• Claude Mythos confirmed. After a March 26 data leak exposed internal docs, Anthropic officially acknowledged \"Capybara\" — a new model tier above Opus. Internal testing says it's \"dramatically better\" at code and reasoning, and \"currently far ahead of any AI in cyber capabilities.\" Being rolled out in deliberate phases. This is a genuine step change.\n\n• OpenAI publishes its economic manifesto. Today the $852B company released a policy paper advocating robot taxes, public wealth funds, and a 4-day work week to offset AI-driven job displacement. Politically timed ahead of midterms — part wishlist, part positioning.\n\n• OpenAI IPO in doubt. CFO Sarah Friar raised concerns today about Altman's plan to go public by late 2026, citing rising server costs, slowing revenue growth, and readiness questions. Meanwhile Brad Lightcap is out of the COO role and Fidji Simo is on medical leave — notable leadership churn at a pivotal moment.\n\n• Gemini 3.1 Pro leads benchmarks. Google is topping 13 of 16 standard evals. Anthropic, OpenAI (GPT-5.4), and xAI (Grok 4.20 multi-agent) are all in striking distance — the frontier has never been this competitive or this close.\n\n• Anthropic pulling back from third-party tools. Claude subscriptions no longer cover platforms like OpenClaw — users must pay via API or bundles. Reason given: compute demand straining capacity. Read between the lines: they're rationing for Mythos rollout.\n\n• Q1 2026 VC: $300B into AI. Up 150%+ YoY. The entire venture market is AI. Crunchbase called it \"unlike any quarter in history.\"\n\n— Wally",
+      "createdAt": "2026-04-06T17:00:00.000Z"
+    },
+    {
       "id": "2026-04-05",
       "date": "April 5, 2026",
       "title": "AI Brief — April 5, 2026",
