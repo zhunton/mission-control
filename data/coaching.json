@@ -245,6 +245,87 @@
         "AHU component list \u2014 filters missing"
       ],
       "note": "92% \u2014 strong session. Best single answer was the DTB/Pay Velocity explanation. AHU filters are the one gap to watch."
+    },
+    {
+      "id": "2026-04-05",
+      "date": "April 5, 2026",
+      "score": 5,
+      "total": 6,
+      "percentage": 85,
+      "categories": {
+        "hvac": {
+          "score": 2,
+          "total": 2
+        },
+        "financial": {
+          "score": 0.5,
+          "total": 2
+        },
+        "hunton": {
+          "score": 2.5,
+          "total": 2
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "category": "hvac",
+          "question": "What is the role of a cooling tower in a water-cooled chiller system?",
+          "userAnswer": "Rejects heat from condenser loop. Chiller can't reject this heat itself so cooling tower is needed.",
+          "correct": true,
+          "feedback": "Perfect. Clean and accurate."
+        },
+        {
+          "id": 2,
+          "category": "hvac",
+          "question": "What is a VFD and how does it save energy on commercial HVAC equipment?",
+          "userAnswer": "Allows motors to run at variable speed rather than full on/off. Running at 70% instead of 100% saves energy.",
+          "correct": true,
+          "feedback": "Solid. Add: energy savings are non-linear (cube law) \u2014 50% speed uses ~12.5% of energy, not 50%. That's why VFDs are so impactful on large equipment."
+        },
+        {
+          "id": 3,
+          "category": "financial",
+          "question": "Financial calculation question (full question not captured in grading session).",
+          "userAnswer": "30% GM and $700k.",
+          "correct": false,
+          "feedback": "Partial credit \u2014 answer appears correct but full math not shown. Always show revenue, COGS, and calculation. Partial answers get partial credit."
+        },
+        {
+          "id": 4,
+          "category": "hunton",
+          "question": "What does utilization measure and why is it important at Hunton Services?",
+          "userAnswer": "Measures how much techs are being used. Shows if over/understaffed. When maxed = time to hire. Also measures ASM and RC's ability to keep techs dispatched strategically.",
+          "correct": true,
+          "feedback": "Excellent and nuanced. Utilization is both a staffing metric AND a management execution metric. Both dimensions captured correctly."
+        },
+        {
+          "id": 5,
+          "category": "hunton",
+          "question": "What is DTB and why does it matter?",
+          "userAnswer": "Completion to invoice date. Tracks cash flow and financial health.",
+          "correct": true,
+          "feedback": "Correct but thin \u2014 you've answered this with much more depth before. Full answer includes: 5-day goal, feeds into DBO, both part of Pay Velocity, high DTB = cash flow drag. Don't leave detail on the table."
+        },
+        {
+          "id": 6,
+          "category": "hunton",
+          "question": "Which Hunton Services divisions are most predictable and why?",
+          "userAnswer": "Commercial Services and BAS. Both have transactional + large job mix for steadiness, and contract customers for reliable recurring revenue. BAS can have rough patches being more project-dependent.",
+          "correct": true,
+          "feedback": "Strong business analysis. Both characteristics correctly identified: transaction/large job mix + contract revenue floor. Accurate note on BAS rough patches."
+        }
+      ],
+      "strengths": [
+        "HVAC equipment fundamentals improving",
+        "Utilization KPI (both dimensions)",
+        "Division analysis and business reasoning"
+      ],
+      "weaknesses": [
+        "Show full financial math \u2014 partial answers get partial credit",
+        "DTB answers going thin when you know it well"
+      ],
+      "note": "85% \u2014 solid session. HVAC fundamentals clicking. Financial math question was ambiguous without full context. DTB answer was correct but below your own standard. Show your work."
     }
   ]
 }
