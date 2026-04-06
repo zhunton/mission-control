@@ -19,6 +19,65 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "10",
+    date: "April 5, 2026",
+    title: "Quiet Sunday — SpaceX Acquires xAI & Iran Escalation Hits Hard Deadline",
+    discussions: [
+      {
+        title: "Automated Systems — All Crons Ran Clean",
+        thingsToRemember: [
+          "No direct Zach conversations on April 5 — quiet Sunday",
+          "Morning brief, daily quiz, and AI market brief all ran and delivered via cron announce",
+          "Telegram delivery routing through cron announce (no active main session at fire time) — expected behavior",
+          "Midnight sync from April 4→5 ran clean with no errors",
+        ],
+        recommendations: [
+          "Telegram delivery via cron announce is working but Zach doesn't see it in real-time — may be worth wiring a fallback direct message for critical briefs",
+        ],
+        decisions: [
+          "No system changes — all automations nominal",
+        ],
+      },
+      {
+        title: "Morning Brief — April 5",
+        thingsToRemember: [
+          "Trump confirmed rescue of both F-15E crew members shot down over Iran — via special forces/CIA op; Iran reports 5 killed in rescue strikes",
+          "Trump threatening to hit Iranian power plants by Tuesday unless Strait of Hormuz reopened by 10am ET Monday — hard deadline, not posturing",
+          "Strait of Hormuz standoff: sustained closure means oil/power price spikes hitting commercial building operating costs and data center markets into Q2",
+          "This is a direct Hunton Group exposure — HVAC equipment, refrigerants, and energy costs all downstream of oil/commodity chains",
+        ],
+        recommendations: [
+          "If Strait of Hormuz remains closed past Monday, Hunton Group procurement should be watching refrigerant and commodity pricing closely — Q2 forecasts may need revision",
+          "The Monday 10am ET deadline is real — Tuesday could see significant escalation; worth having visibility on any open big-ticket proposals that could be affected",
+        ],
+        decisions: [
+          "No system changes — morning brief delivered as scheduled",
+        ],
+      },
+      {
+        title: "Daily AI Brief — April 5",
+        thingsToRemember: [
+          "SpaceX acquires xAI for $250B — biggest AI industry consolidation in history; Musk now controls rockets, satellites, Grok model, and Starlink data/compute pipeline",
+          "Anthropic drops Claude Mythos 5 — world's first 10-trillion-parameter model; purpose-built for cybersecurity, research, and long-range multi-step planning; new frontier capability tier",
+          "GPT-5.4 'Thinking' crosses the human threshold on OS-level tasks — 75% on OSWorld benchmark (up 27.7 pts from GPT-5.2); agentic desktop workflows are a production reality",
+          "Google TurboQuant cuts inference memory 6x; Gemini 3.1 Flash-Lite is 2.5x faster than its predecessor — AI cost is approaching zero",
+          "Utah gives AI a medical license — first state to let AI autonomously renew drug prescriptions; regulatory doors are cracking open",
+          "OpenAI $122B round: shares almost impossible to move on secondary markets; Anthropic nearly oversubscribed — smart money has fully rotated to Anthropic",
+          "Q1 2026: $297B into AI startups (consistent figure; up ~150% QoQ)",
+        ],
+        recommendations: [
+          "SpaceX/xAI merger is the most significant structural shift in AI yet — Musk now has a vertically integrated AI+compute+satellite stack; watch how this changes Grok's capabilities and market position",
+          "Claude Mythos 5 at 10T parameters is a real leap — if it delivers on long-range reasoning, it could displace GPT-5.4 as the default for complex agentic work (including Wally's own stack)",
+          "AI cost dropping to near-zero via TurboQuant and similar advances will accelerate commoditization — the moat will increasingly be the product layer, not the model",
+          "Utah AI medical licensing is a leading indicator — watch for other states to follow; opens a new vertical for AI-native health startups",
+        ],
+        decisions: [
+          "No system changes — AI brief delivered as scheduled",
+        ],
+      },
+    ],
+  },
+  {
     id: "9",
     date: "April 4, 2026",
     title: "Quiet Saturday — Llama 4 Closes the Gap & Iran Escalates",
