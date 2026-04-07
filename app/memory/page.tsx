@@ -19,6 +19,70 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "11",
+    date: "April 6, 2026",
+    title: "Quiz Feedback, Claude Mythos Confirmed & OpenAI IPO Wobbles",
+    discussions: [
+      {
+        title: "Quiz Coaching — Zach's First Direct Feedback",
+        thingsToRemember: [
+          "Zach submitted quiz session 3 (April 5 HVAC answers) just before midnight — scored 85% (5/6); cooling towers + VFDs",
+          "Running scores: 92%, 92%, 85% — HVAC trending up; financial math needs full work shown, not just conclusions",
+          "Zach told Wally directly: 'Many of these seem repetitive. I want you to dig deeper into KPIs, new technical stuff not just cooling towers.'",
+          "He wants harder HVAC: refrigeration cycle components, Trane-specific tech, compressor types — not surface-level definitions",
+          "He wants harder finance: EBITDA, variance analysis, full P&L scenarios — partial credit not accepted going forward",
+          "Quiz cron updated immediately after feedback",
+        ],
+        recommendations: [
+          "Keep escalating difficulty week over week — Zach is progressing fast on HVAC fundamentals; the quiz should stay slightly ahead of him",
+          "For finance questions, require full work shown (formulas + numbers) not just final answers — builds real fluency for CEO-level conversations",
+          "Consider adding scenario-based operations questions tied to real Hunton Group situations",
+        ],
+        decisions: [
+          "Quiz cron updated to harder questions — softballs eliminated",
+          "Financial math now requires full work shown, not just conclusions",
+        ],
+      },
+      {
+        title: "Morning Brief — April 6",
+        thingsToRemember: [
+          "Iran did NOT reopen the Strait of Hormuz by Trump's Monday 10am ET hard deadline — conflict now officially dubbed 'Operation Epic Fury' (week 6); gas prices spiking domestically",
+          "Trump fired AG Pam Bondi and replaced her with Deputy AG Todd Blanch",
+          "CNN poll: 31% approve of Trump's economy handling — down from 39% in January",
+          "Bloom Energy 2026 Data Center Power Report: AI compute demand is outpacing grid capacity; widening interconnection timelines driving demand for on-site power alternatives — direct tailwind for HT data center business",
+          "Trump proposing $1.5T Pentagon budget ('Golden Dome' missile defense, subs, fighters) — largest defense spend proposal in U.S. history",
+        ],
+        recommendations: [
+          "Bloom Energy report is the most actionable item for Hunton Group — grid capacity lag is a structural tailwind for HT's data center HVAC specialization; worth referencing in any business case or data center proposal",
+          "Operation Epic Fury escalation means oil/commodity price pressure continues into Q2; Hunton procurement should be tracking refrigerant and equipment cost exposure",
+        ],
+        decisions: [
+          "No system changes — morning brief delivered as scheduled",
+        ],
+      },
+      {
+        title: "Daily AI Brief — April 6",
+        thingsToRemember: [
+          "Claude Mythos officially confirmed — Anthropic acknowledged 'Capybara': a new model tier above Opus; internal testing says 'dramatically better' at code and reasoning; 'currently far ahead of any AI in cyber capabilities'; deliberate phased rollout underway",
+          "OpenAI published an economic manifesto: robot taxes, public wealth funds, 4-day work week to offset AI displacement — policy paper timed ahead of midterms; part wishlist, part positioning",
+          "OpenAI IPO in doubt: CFO Sarah Friar raised concerns about going public by late 2026 (rising server costs, slowing revenue growth, readiness); Brad Lightcap out as COO, Fidji Simo on medical leave — notable leadership churn at a pivotal moment",
+          "Gemini 3.1 Pro leads 13/16 standard benchmarks; GPT-5.4, Grok 4.20, and Claude all within striking distance — frontier models are converging fast",
+          "Anthropic pulling back from third-party platforms: Claude subscriptions no longer cover tools like OpenClaw — users must pay via API or bundles; suspected rationing ahead of Mythos rollout",
+          "Q1 2026 VC: $300B into AI startups, up 150%+ YoY — Crunchbase called it 'unlike any quarter in history'",
+        ],
+        recommendations: [
+          "Claude Mythos confirmation is the biggest structural AI story in weeks — if the cyber capabilities claim holds, it changes the threat model for enterprise security and the capability ceiling for agentic AI work",
+          "OpenAI's leadership churn (COO out, CMO on leave, CFO pushing back on IPO) paired with Anthropic's Mythos rollout suggests the power balance at the frontier could shift faster than expected in Q2",
+          "The Anthropic platform pullback (OpenClaw, etc.) is worth watching for Wally's own stack — may need API fallback or bundle arrangement to maintain capability access",
+          "Gemini 3.1 Pro leading benchmarks is a real shift — Google is no longer trailing; enterprise AI tool choices may start factoring in Gemini as a primary option, not just a hedge",
+        ],
+        decisions: [
+          "No system changes — AI brief delivered as scheduled via cron announce",
+        ],
+      },
+    ],
+  },
+  {
     id: "10",
     date: "April 5, 2026",
     title: "Quiet Sunday — SpaceX Acquires xAI & Iran Escalation Hits Hard Deadline",
