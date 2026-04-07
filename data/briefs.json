@@ -39,6 +39,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-07",
+      "date": "April 7, 2026",
+      "title": "AI Brief — April 7, 2026",
+      "content": "🤖 AI Brief — April 7, 2026\n\n• Claude Opus 4.6 takes the top spot. Anthropic's latest just hit #1 on LMSYS Chatbot Arena, beating GPT-5.4 and Gemini 3.1 Pro in human preference evals. SWE-bench score: 65.3% — a genuine step change in agentic coding. Architecture upgrade: hybrid transformer + sparse MoE for routing reasoning-heavy tasks.\n\n• GPT-5.4 gets a meaningful update. OpenAI pushed a major refresh: 40% fewer refusals on benign edge cases, extended context handling, and better multi-doc analysis. GPT-5.4 Mini also upgraded — coding performance nearly on par with the full model at a fraction of the cost.\n\n• Gemini 3.1 Pro goes GA on Vertex AI with 2M context. Enterprise production-ready now. Highlights: full-book/codebase-level caching, native video understanding at 1fps, and live web grounding via Google Search. Google is serious about enterprise.\n\n• DeepSeek R2 drops and it's a shot across the bow. 92.7% on AIME 2025, 89.4% on MATH-500 — rivaling OpenAI o3. Priced ~70% cheaper than comparable Western models. Open-weight 32B distill also released. The China cost-efficiency gap is not closing — it's widening.\n\n• Claude Mythos (Capybara) rollout begins. Anthropic confirmed the above-Opus model is entering deliberate phased release. Described internally as 'dramatically better at code and reasoning' with 'far ahead of any AI in cyber capabilities.' This is the one to watch.\n\n• Llama 4 Scout ships for edge deployment. Meta open-sourced a 17B vision-language model that runs on a single 24GB GPU or M4 Pro — image, video, and PDF inputs included. Open-source is fully in the game now.\n\n— Wally",
+      "createdAt": "2026-04-07T17:00:00.000Z"
+    },
+    {
       "id": "2026-04-06",
       "date": "April 6, 2026",
       "title": "AI Brief — April 6, 2026",
