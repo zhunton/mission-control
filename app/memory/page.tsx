@@ -19,6 +19,116 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "12",
+    date: "April 7, 2026",
+    title: "Chuckl Takes Shape, App Lab Ships & Satellite HVAC Idea",
+    discussions: [
+      {
+        title: "Cron Delivery Feedback — Fixed Immediately",
+        thingsToRemember: [
+          "Zach flagged at 10:51 PM that all 3 crons (morning brief, AI brief, quiz) were sending preamble messages before the actual content — fixed on the spot",
+          "All 3 crons updated: morning brief, AI brief, quiz now start directly with content, no intro text before the delivery",
+          "Quiz also adjusted: reduced from 6 long questions to shorter format — lesson first, then 3 targeted questions per session",
+          "Zach's message was cut off mid-sentence on the quiz complaint — but the intent was clear enough to act on immediately",
+        ],
+        recommendations: [
+          "Continue monitoring cron delivery quality — Zach notices when the format drifts; stay clean and direct",
+          "The quiz reduction to 3 questions is a quality-of-life win; watch engagement/completion rates going forward",
+        ],
+        decisions: [
+          "All 3 cron payloads updated: no more preamble, start directly with content",
+          "Quiz format changed: lesson + 3 questions instead of 6 long standalone questions",
+        ],
+      },
+      {
+        title: "Idea Lab Critique & App Ideas Expansion",
+        thingsToRemember: [
+          "Zach called out that the Idea Lab ideas were too service-heavy and required too much of his ongoing time — not what he wanted",
+          "He asked for underserved market app ideas that could generate passive or near-passive income — no high-maintenance service businesses",
+          "Atlas ran parallel research threads on micro-SaaS and underserved app markets; 4 new ideas added to Idea Lab by deadline (8am)",
+          "New Idea Lab entries: Field Service App for HVAC/Trade Contractors, Testimonial/Social Proof Tool, Job Profitability Calculator, Drop-off Analytics Dashboard for SMBs",
+          "Wally flagged Field Service HVAC App as the top pick: insider knowledge moat, $75/month, 50 customers = $3,750 MRR; Patch can build the MVP",
+          "Testimonial tool (idea #7) noted as a proven model — Senja.io at $1M+ ARR — could bundle with field service app",
+        ],
+        recommendations: [
+          "Field Service HVAC App is the most defensible idea on the list — Zach's Hunton Group experience is a genuine moat no outside founder can replicate",
+          "Start with a validated pain point conversation with 5-10 HVAC contractors before building — kill or confirm the idea in a week",
+          "The Testimonial Tool is the easiest to build and has the clearest comps; consider it as a potential second bet if field service stalls",
+        ],
+        decisions: [
+          "4 new app ideas added to Idea Lab — all weighted toward low-maintenance, subscription-based revenue models",
+          "Idea Lab is for concepts only; App Lab (built same evening) is for apps actively in progress",
+        ],
+      },
+      {
+        title: "Chuckl — Product Concept Locked & Prototype v2 Built",
+        thingsToRemember: [
+          "Zach pitched Chuckl: a utility app for browsing and stashing reaction GIFs and images — inspired by how people hoard reactions across camera rolls, Discord, Telegram, etc.",
+          "Original junior dev prototype had a full social Feed page and Profile page — explicitly cut after Wally pushback; Zach agreed",
+          "Final concept: utility only — browse categories, search, stash, copy to clipboard. No feed, no followers, no social layer.",
+          "Monetization: free tier (20-30 stash limit, conversion happens at limit) → $2.99/month unlimited",
+          "Content sourcing: GIPHY API (free) as the base + curated approval-based library for premium-feel reactions",
+          "Stack: React Native (faster for Patch than Swift native)",
+          "Patch built prototype v2 with all social elements removed; deployed to Vercel; repo at /Users/wallybot/Projects/chuckl",
+          "Outstanding for morning of April 8: gamification analysis + GIPHY differentiation strategy",
+          "Zach asked that before shipping, Patch should test it, then make upgrades based on findings",
+        ],
+        recommendations: [
+          "The stash-limit freemium model is the correct conversion hook — people hit the wall right when they're most engaged and have highest willingness to pay",
+          "GIPHY differentiation is the real existential question: the answer is curation + UX, not content volume. GIPHY has everything; Chuckl should have the best reactions, organized for instant access.",
+          "Gamification should be lightweight: stash streak (use the app 3 days in a row), reaction badges (your 'Happy' stash is on fire), unlock categories at milestones — not points/leaderboards",
+          "React Native is the right call — faster to ship, Patch knows it, and it's a prototype; native Swift can come later if the idea validates",
+        ],
+        decisions: [
+          "Social layer completely removed — utility-only product direction locked",
+          "Prototype v2 built and deployed to Vercel by Patch",
+          "App Lab entry created in Mission Control with full Chuckl breakdown",
+          "Satellite HVAC lead tool discussion deferred to April 8",
+        ],
+      },
+      {
+        title: "Satellite Imagery HVAC Lead Detection Tool — Added to Backlog",
+        thingsToRemember: [
+          "Zach's idea: build software that uses satellite imagery + Google Maps API to detect cooling towers, RTUs, and commercial HVAC equipment on building rooftops",
+          "The tool would identify buildings with aging or detectable equipment and generate qualified leads for HVAC service companies — especially Hunton Group",
+          "First-mover advantage in a building's service contract is everything in this industry — catching a lead before a competitor does is the whole game",
+          "If it works internally, could become a standalone SaaS product sold to other HVAC companies",
+          "Added to tasks.json as task #12 (Zach-owned, protected backlog, high priority)",
+          "Plan to discuss building further on April 8",
+        ],
+        recommendations: [
+          "This idea has a real moat: Zach understands the HVAC sales cycle, what equipment looks like from above, and what a 'qualified lead' means in this industry — that domain knowledge is the secret weapon",
+          "Start with a proof of concept using Google Maps Static API + a computer vision model (YOLO or similar) to detect circular cooling tower footprints and rectangular RTU shapes on rooftops",
+          "The property data enrichment layer (owner contact info, building age) is what turns a detection into a lead — worth scoping that API piece early",
+          "If validated, pricing to HVAC companies could be $500-2,000/month per territory — significantly higher ARR than consumer apps",
+        ],
+        decisions: [
+          "Task added to backlog — Zach-owned, protected, high priority",
+          "No build started yet — discussion and planning on April 8",
+        ],
+      },
+      {
+        title: "Daily AI Brief — April 7",
+        thingsToRemember: [
+          "Claude Opus 4.6 hits #1 on LMSYS Chatbot Arena, beating GPT-5.4 and Gemini 3.1 Pro in human preference evals; SWE-bench 65.3%; hybrid transformer + sparse MoE architecture",
+          "GPT-5.4 gets major refresh: 40% fewer refusals, better multi-doc analysis; GPT-5.4 Mini nearly on par with full model at fraction of cost",
+          "Gemini 3.1 Pro goes GA on Vertex AI with 2M context — full enterprise production readiness; full-book caching, native video understanding at 1fps, live web grounding",
+          "DeepSeek R2 drops with 92.7% AIME 2025 and 89.4% MATH-500 — rivaling OpenAI o3, priced ~70% cheaper than comparable Western models; open-weight 32B distill also released; China cost efficiency gap widening",
+          "Claude Mythos (Capybara) phased rollout officially begins — confirmed by Anthropic; 'dramatically better' at code/reasoning, 'far ahead of any AI in cyber capabilities'",
+          "Llama 4 Scout: 17B vision-language model for edge deployment, runs on single 24GB GPU or M4 Pro — image, video, PDF inputs; open-source fully in the game",
+        ],
+        recommendations: [
+          "DeepSeek R2 at 70% cheaper than Western models is the most structurally significant story — if it holds up, AI cost curves are about to inflect again",
+          "Claude Mythos rollout is the capability story to watch — if cyber claims hold, enterprise security AI and agentic workflows will be in a different league",
+          "Gemini GA on Vertex is quietly important for enterprise — Google is no longer the also-ran; Hunton Group's tech partners and data center clients may start evaluating Gemini seriously",
+        ],
+        decisions: [
+          "No system changes — AI brief delivered as scheduled via cron",
+        ],
+      },
+    ],
+  },
+  {
     id: "11",
     date: "April 6, 2026",
     title: "Quiz Feedback, Claude Mythos Confirmed & OpenAI IPO Wobbles",
