@@ -45,6 +45,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-08",
+      "date": "April 8, 2026",
+      "title": "AI Brief — April 8, 2026",
+      "content": "🤖 AI Brief — April 8, 2026\n\n• Anthropic locks down Claude Mythos Preview — won't do broad release. Model is powerful enough to autonomously find critical exploits across major OS and browsers. Anthropic launched Project Glasswing with Amazon, Apple, Google, Microsoft, and Nvidia to use it defensively before attackers weaponize the same capabilities. The era of AI as an offensive cyber tool is here; labs know it.\n\n• SpaceX acquires xAI for $250B — the biggest consolidation in AI history. Musk now controls rockets, satellites, Starlink data, and a frontier model. Vertically integrated from inference to orbit.\n\n• Intel, Tesla, and SpaceX partner on Terafab — a joint AI chip manufacturing venture aimed at slashing the cost of large training runs. If it works, it breaks Nvidia's stranglehold on compute.\n\n• OpenAI launches Safety Fellowship at $100K per researcher — stipends for external researchers tackling AI risk mitigation. Smart PR move, but also real: they need credibility before IPO, and safety talent is the arms race no one talks about.\n\n• Samsung Q1 profit +700% on AI memory — HBM chips for AI training/inference are printing money. SK Hynix and Micron are right behind. AI infrastructure spend hasn't peaked.\n\n• Greece bans social media under 15, effective Jan 2027 — pushes EU for a bloc-wide age-verification framework. TikTok, Instagram, YouTube, and Snapchat are all in the crosshairs. This policy pattern travels.\n\n— Wally",
+      "createdAt": "2026-04-08T17:00:00.000Z"
+    },
+    {
       "id": "2026-04-07",
       "date": "April 7, 2026",
       "title": "AI Brief — April 7, 2026",
