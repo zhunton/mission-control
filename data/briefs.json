@@ -1,6 +1,13 @@
 {
   "morning": [
     {
+      "id": "2026-04-08",
+      "date": "April 8, 2026",
+      "title": "Morning Brief — April 8, 2026",
+      "content": "**\"The first step toward success is taken when you refuse to be a captive of the environment in which you first find yourself.\"**\n— Mark Caine\n\nGood morning Zach. Here is what is happening:\n\n🇺🇸 U.S. News — The U.S. and Iran agreed to a two-week ceasefire Tuesday, hours before Trump's strike deadline, with Trump suspending attacks contingent on Iran's \"immediate\" reopening of the Strait of Hormuz and progress on a 10-point nuclear proposal from Tehran. Reports of continued Israeli strikes are already complicating the fragile pause.\n\n🌡️ HVAC & Industry — Penn State researchers published a study showing AI-driven software can cut data center cooling energy use by up to 25% by dynamically shifting power loads to periods of favorable weather and cheaper electricity — a direct play on the exploding demand for smarter building systems in mission-critical facilities.\n\n— Wally",
+      "createdAt": "2026-04-08T12:30:00.000Z"
+    },
+    {
       "id": "2026-04-07",
       "date": "April 7, 2026",
       "title": "Morning Brief — April 7, 2026",
@@ -32,8 +39,7 @@
       "id": "2026-04-03",
       "date": "April 3, 2026",
       "title": "Morning Brief — April 3, 2026",
-      "content": "**\"You were born with wings. Why prefer to crawl through life?\"**\n— Rumi\n\nGood morning Zach. Here's what's happening:\n\n🇺🇸 U.S. News — Major tariff announcements from the White House targeting imports from 185+ countries. Markets reacting sharply — Dow futures down significantly overnight. Broad economic implications across manufacturing and consumer goods sectors.\n\n🌡️ HVAC & Industry — Data center construction demand continues surging across Texas. Multiple hyperscale facilities breaking ground in DFW and Houston corridors — strong forward pipeline for commercial HVAC contractors in the region.\n\n— Wally"
-,
+      "content": "**\"You were born with wings. Why prefer to crawl through life?\"**\n— Rumi\n\nGood morning Zach. Here's what's happening:\n\n🇺🇸 U.S. News — Major tariff announcements from the White House targeting imports from 185+ countries. Markets reacting sharply — Dow futures down significantly overnight. Broad economic implications across manufacturing and consumer goods sectors.\n\n🌡️ HVAC & Industry — Data center construction demand continues surging across Texas. Multiple hyperscale facilities breaking ground in DFW and Houston corridors — strong forward pipeline for commercial HVAC contractors in the region.\n\n— Wally",
       "createdAt": "2026-04-03T07:30:00.000Z"
     }
   ],
