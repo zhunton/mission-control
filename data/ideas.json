@@ -59,6 +59,54 @@
       "details": "## The Idea\n\nCommercial and residential real estate investors in Houston need market data but don't have time to compile it. Atlas can pull data from public sources, analyze trends, and generate a formatted report automatically every week.\n\n## Why This Works for You\n\nHouston is one of the hottest real estate markets in the country. Data center development, industrial growth, commercial HVAC demand \u2014 Zach sees these trends through Hunton Group before most investors do. That's editorial edge.\n\n## How It Works\n\n1. Atlas pulls data from public sources (Zillow API, CoStar public data, news)\n2. Wally generates the analysis and narrative\n3. Report auto-sends to subscribers via Beehiiv or direct email\n4. Fully hands-off after initial setup\n\n## Realistic Income\n\n- 100 subscribers \u00d7 $30/month = $3,000/month\n- White-label to 3 brokerages \u00d7 $500/month = $1,500/month\n- Combined ceiling: **$5,000+/month** at scale\n\n## What's Needed\n\n- Real estate data APIs (some free, some $50-200/month)\n- Beehiiv or ConvertKit\n- Report template (Dali)\n- 3-month audience building period\n\n## Wally's Assessment\n\n**Legitimacy: Medium.** Data products work. The challenge is data sourcing \u2014 commercial real estate data is expensive. Start with residential Houston data (free APIs) and expand. The Hunton Group angle gives you insider context others can't match.\n\n## Game Plan\n\n1. Build a pilot report using free data sources (1 week)\n2. Share on LinkedIn and local Houston real estate groups\n3. Gauge interest before building subscription infrastructure\n4. If traction: set up Beehiiv + Stripe, charge $30-50/month\n",
       "addedDate": "April 4, 2026",
       "addedBy": "Wally + Atlas"
+    },
+    {
+      "id": "6",
+      "title": "Field Service Route & Invoice App for HVAC/Trade Contractors",
+      "category": "App / SaaS",
+      "status": "viable",
+      "potential": "high",
+      "timeRequired": "Minimal \u2014 subscription revenue, no ongoing service work",
+      "summary": "A simple mobile app for independent HVAC contractors and small trade businesses. Handles route optimization, job scheduling, automated invoicing, and customer review requests \u2014 all in one place. $49-99/month per team. 50 customers = $2,500-5,000/month MRR.",
+      "details": "## The Idea\n\nIndependent HVAC contractors, plumbers, and electricians are running their businesses on spreadsheets, whiteboards, or overpriced enterprise software. A simple AI-powered app that handles scheduling, routing, invoicing, and review collection would fill a massive gap.\n\n## Why This Is the Right Market\n\nYou're inside Hunton Group \u2014 you know this customer intimately. You know the pain points, the workflow, the terminology. Nobody building software for HVAC contractors actually understands the job like someone who works in HVAC. That's a rare competitive advantage.\n\n## Core Features (MVP)\n\n1. **Job scheduling** \u2014 simple calendar, assign jobs to techs\n2. **Route optimizer** \u2014 best order to run jobs each day (saves fuel, time)\n3. **Mobile invoicing** \u2014 tech completes job, invoice goes out immediately\n4. **Automated review requests** \u2014 SMS sent after job completion\n5. **Simple dashboard** \u2014 revenue today, jobs complete, outstanding invoices\n\n## Why Current Solutions Fail\n\n- ServiceTitan, Housecall Pro, Jobber = $200-500/month, too complex for small shops\n- No AI-driven features in affordable tier\n- Not built by people who understand the trade\n\n## Realistic Revenue\n\n- $49/month solo tier, $99/month team tier\n- 50 customers \u00d7 $75 avg = **$3,750/month MRR**\n- 200 customers = **$15,000/month MRR**\n- Fully passive once built \u2014 subscription model\n\n## Build Plan\n\n1. Build MVP with Patch in 2-3 weeks (Next.js + Supabase + Stripe)\n2. Test with 2-3 independent HVAC contractors in Houston (use Hunton network)\n3. Get testimonials, refine based on feedback\n4. Market on HVAC Facebook groups, trade forums, word of mouth\n\n## Wally's Assessment\n\n**Legitimacy: Very High.** This is the idea I'm most excited about for Zach. The market is real, the pain is real, and the insider knowledge edge is irreplaceable. Micro-SaaS in vertical markets is working \u2014 Plausible Analytics, SavvyCal, Closet Tools are all examples of niche tools hitting $30-100K MRR with tiny teams.\n\n**Time commitment after launch: 2-3 hrs/week max.** Handle support, iterate on features.\n",
+      "addedDate": "April 8, 2026",
+      "addedBy": "Wally + Atlas"
+    },
+    {
+      "id": "7",
+      "title": "AI-Powered Testimonial & Review Collection Tool",
+      "category": "App / SaaS",
+      "status": "exploring",
+      "potential": "medium",
+      "timeRequired": "Near-passive after launch",
+      "summary": "A simple tool that automates collection of video and text testimonials from customers, then generates embed codes for websites. Proven market \u2014 Senja.io hit $1M+ ARR with 2 founders doing this exact thing. $19-49/month. Very buildable.",
+      "details": "## The Idea\n\nEvery small business needs social proof (testimonials, reviews) but collecting them is painful. A dead-simple tool that sends automated requests, collects video or text responses, and gives embeddable widgets is a proven business model.\n\n## Why It Works\n\nSenja.io is doing $1M+ ARR ($83K/month) with 2 people. Testimonial.to is doing similar numbers. The market is validated and not winner-take-all \u2014 there's room for niche players, especially ones targeting specific industries (HVAC contractors, trade businesses, local service companies).\n\n## Angle for Zach\n\nBuild it specifically for trade and field service businesses. They desperately need Google reviews and testimonials but have no system for collecting them. Pair it with the Field Service app idea (idea #6) as a bundle.\n\n## Core Features\n\n1. Automated review request via SMS/email after job complete\n2. One-click video or text testimonial submission (mobile-friendly)\n3. Embeddable widget for their website\n4. Google Review direct link integration\n5. Dashboard showing review volume and ratings\n\n## Realistic Revenue\n\n- $19/month small business tier\n- 200 customers \u00d7 $25 avg = **$5,000/month**\n- Bundled with field service app = higher LTV\n\n## Build Plan\n\n- Patch builds MVP in 1-2 weeks\n- Launch on Product Hunt and HVAC Facebook groups\n- Free tier to drive adoption, convert to paid\n\n## Wally's Assessment\n\n**Legitimacy: High.** Proven model, proven market. The differentiator is niche focus on trades. Simple to build, simple to explain, easy to sell.\n",
+      "addedDate": "April 8, 2026",
+      "addedBy": "Wally + Atlas"
+    },
+    {
+      "id": "8",
+      "title": "Job Profitability Calculator for HVAC/Trade Contractors",
+      "category": "App / SaaS",
+      "status": "exploring",
+      "potential": "high",
+      "timeRequired": "Minimal \u2014 subscription tool",
+      "summary": "A simple app that calculates true job profitability for trade contractors \u2014 factoring in labor, parts, drive time, burden, and overhead. Most contractors have no idea which jobs actually make money. $29-59/month. Massive underserved market.",
+      "details": "## The Idea\n\nMost independent HVAC contractors and trade businesses have no idea which jobs are actually profitable. They bill by the hour or by a flat rate but never account for drive time, burden, overhead allocation, or parts markup. A simple tool that inputs job details and outputs true margin would be immediately valuable.\n\n## The Inside Edge\n\nYou've been doing financial analysis at Hunton Services \u2014 tracking GP%, burden, overhead allocation, WIP, utilization. You understand this better than any software founder building for this market. You know what numbers ASMs track and why. That knowledge directly translates into product design.\n\n## Core Features\n\n1. Job input: hours, parts cost, drive time, tech rate\n2. Auto-apply burden % and overhead allocation\n3. Output: true job profit, margin %, and recommended billing rate\n4. Monthly summary: most/least profitable job types\n5. \"What-if\" scenarios: what if I raised my rate by $10/hour?\n\n## Realistic Revenue\n\n- $29/month solo, $59/month for small teams\n- 100 customers \u00d7 $40 avg = **$4,000/month**\n\n## Wally's Assessment\n\n**Legitimacy: High.** Nobody in the trades knows their real numbers. This is the insight you get from working inside Hunton \u2014 you know what financial visibility looks like and what contractors are missing. Very buildable in 1-2 weeks.\n",
+      "addedDate": "April 8, 2026",
+      "addedBy": "Wally + Atlas"
+    },
+    {
+      "id": "9",
+      "title": "Privacy-First Analytics for Small Business Websites",
+      "category": "App / SaaS",
+      "status": "exploring",
+      "potential": "medium",
+      "timeRequired": "Near-passive \u2014 infrastructure product",
+      "summary": "A simple, privacy-focused website analytics tool targeting small businesses who want to understand their traffic without Google's complexity or cookie consent requirements. $9-19/month. Plausible Analytics is doing $100K+ MRR with 3 people doing exactly this.",
+      "details": "## The Idea\n\nGoogle Analytics is overwhelming for small businesses. Privacy regulations (GDPR, CCPA) make cookie-based tracking a legal headache. Plausible Analytics ($100K+ MRR), Fathom ($80K+ MRR), and SimpleAnalytics ($40K+ MRR) are all proving there's a massive market for simple, privacy-first alternatives.\n\n## The Opportunity\n\nDespite multiple competitors, this market keeps growing because small businesses keep getting frustrated with Google Analytics. A version targeting trade businesses and HVAC contractors (with integrations for their booking/service software) could carve out a defensible niche.\n\n## Wally's Assessment\n\n**Legitimacy: Medium.** The market is proven but competitive. The differentiator would need to be clear \u2014 either a lower price point ($9/month vs $9-19 for competitors) or industry-specific features. Less exciting than ideas 6-8 which use Zach's unique industry knowledge. Worth exploring but not the top priority.\n",
+      "addedDate": "April 8, 2026",
+      "addedBy": "Wally + Atlas"
     }
   ]
 }
