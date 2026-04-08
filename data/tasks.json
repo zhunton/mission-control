@@ -112,8 +112,8 @@
   {
     "id": "13",
     "title": "Office Page Overhaul v2",
-    "description": "Full rebuild: new SVG castle background, 128px character sprites, coordinate-mapped agent positions tied to real task status, Wally always-working behavior, Round Table out of NPC random cycle, Iris NPC added, Atlas placed in Alchemy Room.",
-    "why": "Makes agent positions dynamic and ties visual state to real task data.",
+    "description": "Review and discuss the Sandler Selling System \u2014 a consultative sales methodology focused on qualifying prospects, controlling the conversation, and reversing traditional sales dynamics. Context: Hunton Group has used Sandler historically across all companies. HS is doing a refresh now because the company has grown. This is for HS's dedicated sales team (not techs or ASMs), who sell service contracts and project work. Goal is to make the sales process more efficient and controlled.",
+    "why": "The Sandler refresh is happening at HS now. As Zach learns the business, understanding the sales methodology the team is trained on \u2014 why it works, how it applies to HS's specific selling environment \u2014 helps him lead and evaluate the sales organization more effectively.",
     "agent": "Patch",
     "date": "Apr 3, 2026",
     "status": "complete",
