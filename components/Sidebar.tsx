@@ -13,6 +13,7 @@ import {
   GraduationCap,
   Newspaper,
   Lightbulb,
+  Rocket,
 } from "lucide-react";
 
 const navItems = [
@@ -21,6 +22,7 @@ const navItems = [
   { href: "/briefs", label: "Briefs", icon: Newspaper },
   { href: "/coaching", label: "Coaching", icon: GraduationCap },
   { href: "/idea-lab", label: "Idea Lab", icon: Lightbulb },
+  { href: "/app-lab", label: "App Lab", icon: Rocket },
   { href: "/memory", label: "Memory", icon: Brain },
   { href: "/documents", label: "Documents", icon: FileText },
   { href: "/people", label: "People", icon: Users },

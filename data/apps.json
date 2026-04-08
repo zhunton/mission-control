@@ -1,0 +1,36 @@
+{
+  "apps": [
+    {
+      "id": "chuckl",
+      "name": "Chuckl",
+      "tagline": "Your personal reaction library — browse, stash, deploy.",
+      "status": "planning",
+      "platform": "iOS (React Native)",
+      "stage": "Concept Defined",
+      "overview": "A utility app that serves as a personal hub for reaction GIFs and images. Users browse a curated library organized by category/mood, stash their favorites for instant access, and copy them to clipboard to use in any chat or comment. No social feed — pure utility.",
+      "painPoint": "People want to use the perfect reaction GIF or image when commenting on social media or in chats, but there is no clean place to organize and access them. Camera rolls get cluttered, GIPHY is low-quality and inconsistent, and finding the right reaction in the moment is friction-heavy.",
+      "strengths": [
+        "Clear, specific pain point that people actually feel",
+        "No direct competitor solving this exact utility use case",
+        "Simple core loop: browse → stash → copy → share",
+        "Freemium model with natural conversion trigger (stash limit)",
+        "Content sourced from community submissions — scales without ongoing work",
+        "React Native allows cross-platform expansion later"
+      ],
+      "challenges": [
+        "Content cold start — need a quality seed library before launch",
+        "Content moderation — approving user submissions takes ongoing effort",
+        "Discovery — how do users find the app? Marketing matters",
+        "GIPHY/Tenor are free alternatives for GIFs (Chuckl's value is curation + stash UX, not just GIF access)",
+        "Apple App Store review process for user-generated content apps"
+      ],
+      "monetization": "Freemium: free tier limited to 20-30 stashed reactions. Premium tier: $2.99/month for unlimited stash. Conversion trigger hits at the right moment — when users are most engaged and have hit their limit.",
+      "timeline": "4-6 weeks for MVP with Patch. Week 1-2: design + data model. Week 3-4: core browse/search/stash functionality. Week 5-6: polish, seed content library, TestFlight beta.",
+      "techStack": "React Native (iOS first), Supabase (backend + image storage), Stripe (payments), Expo (build/deploy tooling)",
+      "gamePlan": "## Phase 1 — Foundation (Weeks 1-2)\n- Define category taxonomy (emotions/moods: agreement, shock, laughing, no thanks, awkward, hype, etc.)\n- Set up Supabase backend: reactions table, users table, stash table\n- Design core screens: Browse, Search, Stash, Settings\n- Curate seed library of 200-300 high-quality reactions across all categories\n\n## Phase 2 — Build (Weeks 3-4)\n- Browse page with category filters\n- Search functionality\n- Stash feature (save to profile, copy to clipboard)\n- User accounts (sign up / log in)\n- Free tier stash limit enforcement\n\n## Phase 3 — Polish & Beta (Weeks 5-6)\n- Stripe payment integration for premium tier\n- User submission flow (submit a reaction for approval)\n- Admin review queue (Wally/Zach approves submissions)\n- TestFlight beta with small user group\n- App Store submission prep\n\n## Phase 4 — Launch\n- App Store launch\n- Marketing: TikTok/Instagram demo videos showing the use case\n- Outreach to meme/reaction communities on Reddit, Discord\n- Iterate based on user feedback",
+      "notes": "Name: Chuckl (based on 'chuckle'). Clean, memorable, on-brand.\n\nKey design principle: speed. Opening the app and finding the right reaction should take under 10 seconds. Friction kills this use case.\n\nFuture consideration: Android / web extension for desktop browser use.",
+      "addedDate": "April 8, 2026",
+      "lastUpdated": "April 8, 2026"
+    }
+  ]
+}
