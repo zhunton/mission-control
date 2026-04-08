@@ -175,5 +175,16 @@
     "status": "backlog",
     "priority": "high",
     "protected": true
+  },
+  {
+    "id": "13",
+    "title": "Discuss: Sandler Selling System",
+    "description": "Review and discuss the Sandler Selling System \u2014 a consultative sales methodology focused on qualifying prospects, uncovering pain, and reversing traditional sales dynamics. Explore how it applies to Hunton Group's sales process across HT, HS, and CVZ.",
+    "why": "Zach is learning the business top to bottom with a path to CEO. Understanding proven sales methodologies \u2014 and how they apply to Hunton's complex B2B sales cycles \u2014 is critical for both personal development and improving company performance.",
+    "agent": "Zach",
+    "date": "Apr 8, 2026",
+    "status": "backlog",
+    "priority": "medium",
+    "protected": true
   }
 ]
