@@ -36,7 +36,7 @@
     "id": "5",
     "title": "Pixel Art Avatars & Avatar Fix",
     "description": "Integrate Wally (wizard) and Zach (king) pixel art avatars across Office, People, and sidebar. Fix broken <img> rendering with onError handlers.",
-    "why": "Visual identity for agents — medieval theme consistency across Mission Control",
+    "why": "Visual identity for agents \u2014 medieval theme consistency across Mission Control",
     "agent": "Patch",
     "date": "Mar 29, 2026",
     "status": "complete",
@@ -56,7 +56,7 @@
   },
   {
     "id": "7",
-    "title": "Canvas Office Room — Full Rebuild",
+    "title": "Canvas Office Room \u2014 Full Rebuild",
     "description": "Replace background image + floating avatars with a fully coded canvas room. Dedicated workstations per agent, pathfinding, AI-generated pixel art sprites from Dali, slow walking behavior.",
     "why": "Zach wants a real game-style environment, not a UI with a photo background. Castle aesthetic with actual agent characters walking between zones.",
     "agent": "Patch",
@@ -67,7 +67,7 @@
   },
   {
     "id": "8",
-    "title": "Task Persistence — JSON File Storage",
+    "title": "Task Persistence \u2014 JSON File Storage",
     "description": "Replace in-memory React state with persistent JSON file storage (/data/tasks.json). API routes for GET/POST/PATCH/DELETE. Protection rule: Zach-owned and backlog tasks cannot be deleted by syncs.",
     "why": "Zach's manually-added backlog tasks were being wiped on every new build. Tasks need to survive deploys, syncs, and tab closes.",
     "agent": "Patch",
@@ -100,9 +100,9 @@
   },
   {
     "id": "12",
-    "title": "Documents Tab — Markdown, Download & PDF",
+    "title": "Documents Tab \u2014 Markdown, Download & PDF",
     "description": "Proper markdown rendering, .txt download, and PDF generation (via print dialog) added to Documents tab. Hunton genealogy document updated with accurate Compendium text.",
-    "why": "Documents tab needed polish to be actually useful — raw text wasn't readable and there was no way to save a doc.",
+    "why": "Documents tab needed polish to be actually useful \u2014 raw text wasn't readable and there was no way to save a doc.",
     "agent": "Patch",
     "date": "Apr 3, 2026",
     "status": "complete",
@@ -124,7 +124,7 @@
     "id": "14",
     "title": "Add Atlas Research Agent",
     "description": "Atlas added to org chart (People page) with profile photo and placed in the Alchemy Room on the Office canvas.",
-    "why": "Research Agent role — placeholder until Perplexity or similar is wired in.",
+    "why": "Research Agent role \u2014 placeholder until Perplexity or similar is wired in.",
     "agent": "Patch",
     "date": "Apr 3, 2026",
     "status": "complete",
@@ -144,7 +144,7 @@
   },
   {
     "id": "4",
-    "title": "Mission Control — ongoing improvements",
+    "title": "Mission Control \u2014 ongoing improvements",
     "description": "Continuous development and improvement of Mission Control features",
     "why": "Patch owns the technical build of Mission Control. As new features are needed, Patch implements them under Wally's direction.",
     "agent": "Patch",
@@ -155,14 +155,25 @@
   },
   {
     "id": "11",
-    "title": "Review Karpathy Tweet — AI & Programming Refactor",
+    "title": "Review Karpathy Tweet \u2014 AI & Programming Refactor",
     "description": "Andrej Karpathy posted that he's never felt more behind as a programmer due to AI's rapid pace. He says the profession is being 'dramatically refactored' and that he could be 10x more powerful if he properly strung together tools available over the last year. Worth reviewing and discussing implications.",
-    "why": "Karpathy is one of the sharpest minds in AI. When he says programmers are falling behind their own tools, it's a signal worth paying attention to — both for how we operate and for the side income ideas we're exploring.",
+    "why": "Karpathy is one of the sharpest minds in AI. When he says programmers are falling behind their own tools, it's a signal worth paying attention to \u2014 both for how we operate and for the side income ideas we're exploring.",
     "agent": "Zach",
     "date": "Apr 3, 2026",
     "status": "backlog",
     "priority": "medium",
     "protected": true,
     "link": "https://x.com/karpathy/status/2039805659525644595"
+  },
+  {
+    "id": "12",
+    "title": "Discuss: Satellite Imagery HVAC Lead Detection Tool",
+    "description": "Explore building a software tool that uses satellite imagery and Google Maps API to detect cooling towers, RTUs, and commercial HVAC equipment on building rooftops. The tool would identify buildings with aging or detectable equipment and generate qualified leads for HVAC service companies \u2014 particularly Hunton Group.",
+    "why": "Hunton Services and Hunton Trane both need a steady pipeline of commercial leads. A satellite-based detection tool could identify buildings with equipment that needs service or replacement before a competitor does. First-mover advantage in a building's service contract is everything in this industry. If this works, it could also become a standalone product sold to other HVAC companies.",
+    "agent": "Zach",
+    "date": "Apr 7, 2026",
+    "status": "backlog",
+    "priority": "high",
+    "protected": true
   }
 ]
