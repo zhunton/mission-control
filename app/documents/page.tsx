@@ -88,8 +88,9 @@ Every detected building gets scored automatically:
 - **Equipment type** — Complexity and value tier. Chiller > cooling tower > RTU.
 - **Building size** — Budget likelihood and organizational complexity.
 - **Location** — Service route efficiency for your team.
+- **Pull Through Revenue** — For every $1 of service agreement revenue, HVAC contractors typically generate $1-$4 in additional pull through (repair, emergency service, parts) revenue on the backend. A $45K/year service agreement may represent $45K-$180K in total annual opportunity.
 
-**Output:** "This building is a $25,000/year service opportunity — 3.2 miles from your nearest tech."
+**Output:** "This building is a $25,000/year service agreement opportunity — with $25,000-$100,000 in estimated pull through revenue. Total annual opportunity: up to $125,000."
 
 Not just a list of buildings. A ranked, prioritized pipeline your sales team can work immediately.
 
