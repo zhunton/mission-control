@@ -13,6 +13,8 @@ const documents = [
     content: `# VantaScout
 ## A Map of Every HVAC Asset You Can Sell Service On
 
+A web-based tool that uses satellite/aerial imagery and AI computer vision to detect commercial HVAC equipment (cooling towers, RTUs, chillers) on building rooftops. Cross-references with property data to generate qualified leads for HVAC service companies — identifying buildings with aging or detectable equipment before competitors do.
+
 ---
 
 ## The Problem
