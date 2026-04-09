@@ -5,6 +5,140 @@ import { Download } from "lucide-react";
 
 const documents = [
   {
+    id: "vantascout-overview",
+    title: "VantaScout — Product Overview",
+    type: "Strategy",
+    agent: "Wally",
+    date: "Apr 9, 2026",
+    content: `# VantaScout
+## A Map of Every HVAC Asset You Can Sell Service On
+
+---
+
+## The Problem
+
+Commercial HVAC contractors are flying blind when it comes to prospecting. Generic lead tools tell you a building is 100,000 square feet. That's useless.
+
+Contractors don't think in square feet. They think in units.
+
+**"How many RTUs are on that roof? How many cooling towers? What's the full service footprint?"**
+
+That's the question that determines whether a building is worth pursuing — and no tool in the market answers it. Until now.
+
+---
+
+## What VantaScout Does
+
+VantaScout uses satellite and aerial imagery combined with AI computer vision to detect and count commercial HVAC equipment on building rooftops — RTUs, cooling towers, chillers, condensing units — across an entire city.
+
+The output is simple and immediately actionable:
+
+> **"Building at 1420 Main St, Houston TX — 8 RTUs, 2 cooling towers, 1 chiller. Estimated annual service value: $45,000."**
+
+Every commercial building. Mapped. Scored. Ready to prospect.
+
+---
+
+## Three Revenue Use Cases
+
+### 1. Service Agreement Prospecting *(Most Important)*
+
+Service agreements are the lifeblood of commercial HVAC. Recurring revenue, predictable margins, long-term customer relationships. The challenge is finding them.
+
+A building with 8 RTUs and 2 cooling towers is not just a lead — it is a $30,000-$60,000/year service contract waiting to be proposed. VantaScout identifies these buildings before your competitors do.
+
+**What contractors get:**
+- Full equipment inventory by building
+- Unit counts by type (RTU, cooling tower, chiller, etc.)
+- Total serviceable footprint — the number that determines contract value
+- Contact information for building owners and facility managers
+
+**Why this wins:** Service agreements are priced and planned per unit. Contractors need unit counts to build proposals. VantaScout gives them that data in seconds instead of requiring a site visit.
+
+---
+
+### 2. Replacement and Capital Projects
+
+Large commercial systems do not last forever. Older buildings with aging equipment represent high-margin replacement opportunities — new chillers, cooling tower rebuilds, RTU changeouts.
+
+VantaScout identifies:
+- Buildings with visually detectable aging equipment
+- Older structures with older installed systems
+- Large tonnage equipment where replacement jobs are six-figure projects
+
+---
+
+### 3. Competitive Intelligence and Market Awareness
+
+Know your territory better than anyone:
+- Which buildings have equipment you are not currently servicing
+- Where competitors are active
+- New construction with fresh equipment that needs first-year service contracts
+- Buildings recently upgraded — identify before competitors lock in long-term agreements
+
+---
+
+## The Lead Scoring Model
+
+Every detected building gets scored automatically:
+
+- **Equipment count** — Revenue potential. More units = bigger contract.
+- **Equipment type** — Complexity and value tier. Chiller > cooling tower > RTU.
+- **Building size** — Budget likelihood and organizational complexity.
+- **Location** — Service route efficiency for your team.
+
+**Output:** "This building is a $25,000/year service opportunity — 3.2 miles from your nearest tech."
+
+Not just a list of buildings. A ranked, prioritized pipeline your sales team can work immediately.
+
+---
+
+## The Internal Advantage
+
+Before VantaScout is a product, it is a competitive weapon for the companies that pilot it first.
+
+Running VantaScout against an existing customer database immediately surfaces:
+- **Missed buildings** — commercial properties in your territory you have never called on
+- **Under-served accounts** — existing customers with equipment you are not currently maintaining
+- **Priority targets** — ranked by estimated contract value
+
+For a company with a large territory, this is the difference between a sales team prospecting blind and a sales team working from a complete map of the opportunity.
+
+---
+
+## Why This Does Not Exist Yet
+
+Solar companies use satellite imagery to identify viable rooftops and sell those leads to solar installers. Roofing companies use aerial imagery to detect damage for storm-response marketing.
+
+Nobody has applied this model to commercial HVAC — despite the fact that the need is larger, the contracts are more valuable, and the technology is proven.
+
+Academic research has demonstrated 87-91% accuracy in detecting commercial rooftop HVAC equipment from aerial imagery. The gap is real and unoccupied.
+
+---
+
+## Technical Foundation
+
+- **Imagery:** High-resolution aerial imagery (Nearmap, EagleView)
+- **AI Model:** Computer vision fine-tuned for commercial HVAC equipment detection
+- **Property Data:** Cross-referenced with building ownership databases
+- **Platform:** Web-based SaaS dashboard with territory selection, equipment map, lead export, and CRM integration
+
+---
+
+## Positioning
+
+**Not:** "AI that detects old equipment"
+
+**Yes:** "A map of every HVAC asset you can sell service on"
+
+VantaScout is a prospecting platform. The core value is knowing where the equipment is and how much of it there is. That answer alone changes how a commercial HVAC company prospects, plans, and grows.
+
+---
+
+*Prepared by Wally — April 9, 2026*
+*VantaScout is currently in research and validation phase.*`,
+  },
+  {
     id: "hunton-genealogy",
     title: "Hunton Family — Compendium of American Genealogy",
     type: "Research",
