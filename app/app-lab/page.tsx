@@ -20,6 +20,8 @@ interface App {
   notes: string;
   addedDate: string;
   lastUpdated: string;
+  prototypeUrl?: string;
+  repoUrl?: string;
 }
 
 const BLUE = "#3b82f6";
@@ -415,6 +417,18 @@ export default function AppLabPage() {
                       <div style={{ fontSize: 10, color: "#6b7280", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>Last Updated</div>
                       <div style={{ fontSize: 13, color: "#d1d5db" }}>{selected.lastUpdated}</div>
                     </div>
+                    {selected.prototypeUrl && (
+                      <div>
+                        <div style={{ fontSize: 10, color: "#6b7280", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>Prototype</div>
+                        <a href={selected.prototypeUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: BLUE, textDecoration: "underline" }}>View</a>
+                      </div>
+                    )}
+                    {selected.repoUrl && (
+                      <div>
+                        <div style={{ fontSize: 10, color: "#6b7280", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>Repo</div>
+                        <a href={selected.repoUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: BLUE, textDecoration: "underline" }}>View</a>
+                      </div>
+                    )}
                   </div>
                 </div>
 
