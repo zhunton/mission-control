@@ -315,6 +315,15 @@ Triggered when user tries to stash item #31.
 - Can remove content (flag for removal)
 - Curator status set in Supabase user table
 
+**How featuring works (the simple version):**
+- All uploads go live instantly — no approval queue, no delay
+- Premium Users (curators) see a ⭐ star button on every reaction that regular users cannot see
+- Tapping ⭐ flips is_featured = true in the database — instant effect
+- The reaction gets a gold badge and a 2x ranking boost
+- Regular users never see the star button
+- Curators can also un-feature by tapping ⭐ again
+- This is post-publish curation, not pre-publish gating — the feed stays fresh regardless of curator activity
+
 **Content ranking formula:**
 - Stash score = stash count (all time)
 - Trending score = stash count in last 48hrs × recency weight
