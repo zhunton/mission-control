@@ -191,7 +191,7 @@ No top navigation bar. Clean, app-style.
 - Bottom strip always visible: reaction label | stash count | STASH button | COPY button
 - Timestamp badge top-right corner: "New" (within 24hrs) or "Xd ago"
 - GIF badge top-left if animated
-- Featured badge (gold star or crown) for curator-elevated content
+- Featured badge (gold star or crown) for Vault Keeper-elevated content
 
 **Behavior:**
 - STASH button: adds to user stash, increments stash count, button turns filled/confirmed
@@ -306,23 +306,55 @@ Triggered when user tries to stash item #31.
 
 | Tier | How it gets there | Ranking |
 |------|-------------------|---------|
-| Featured | Curator (Premium User) marks as featured | Top of feed/library, gold badge |
+| Featured | Vault Keeper marks as featured | Top of feed/library, gold badge |
 | Standard | Any user upload | Normal ranking by stash count/recency |
 
-**Curator role:**
+**Vault Keeper role:**
 - Small group of trusted users (Zach + designated friends)
 - Can mark any reaction as "Featured"
 - Can remove content (flag for removal)
-- Curator status set in Supabase user table
+- Vault Keeper status set in Supabase user table
 
 **How featuring works (the simple version):**
 - All uploads go live instantly — no approval queue, no delay
-- Premium Users (curators) see a ⭐ star button on every reaction that regular users cannot see
+- Vault Keepers see a ⭐ star button on every reaction that regular users cannot see
 - Tapping ⭐ flips is_featured = true in the database — instant effect
 - The reaction gets a gold badge and a 2x ranking boost
 - Regular users never see the star button
-- Curators can also un-feature by tapping ⭐ again
-- This is post-publish curation, not pre-publish gating — the feed stays fresh regardless of curator activity
+- Vault Keepers can also un-feature by tapping ⭐ again
+- This is post-publish curation, not pre-publish gating — the feed stays fresh regardless of Vault Keeper activity
+
+---
+
+## Profile Tags (Achievement System)
+
+Users can earn profile tags based on achievements and display one tag on their profile. Tags create identity, drive engagement, and reward specific behaviors.
+
+### The Four Launch Tags
+
+| Tag | How to Earn | What it drives |
+|-----|-------------|---------------|
+| **Vault Keeper** | Manually assigned by Zach — trusted curators only | Quality control, featured content elevation |
+| **OG** | Joined within the first 30 days of launch — never earnable again | Early adoption, word of mouth |
+| **Hoarder** | Stashed 500+ reactions | Heavy stash usage, retention |
+| **Archivist** | Uploaded 20+ reactions that are still live after 30 days | Quality content contributions (delayed to prevent spam) |
+
+### Tag Rules
+- Each user can display only ONE tag on their profile at a time (their choice)
+- Tags are permanent once earned — except Vault Keeper (can be removed by admin)
+- OG tag is the most exclusive — once the 30-day window closes, it is gone forever
+- Archivist requires posts to still be live after 30 days — removed/flagged posts do not count toward the threshold
+
+### Archivist Anti-Spam Logic
+The 30-day live requirement is the key spam deterrent:
+- Spammed posts get flagged and removed → do not count
+- Only quality content that survives moderation counts toward Archivist
+- Counter resets if posts are removed — keeps the bar meaningful
+
+### Database Column
+Add a \`profile_tag\` column to the users table (text, nullable) — stores the currently displayed tag.
+
+---
 
 **Content ranking formula:**
 - Stash score = stash count (all time)
@@ -362,7 +394,7 @@ Triggered when user tries to stash item #31.
 | type | text | "gif" or "image" |
 | stash_count | int | incremented on each stash |
 | trending_score | float | updated periodically |
-| is_featured | bool | set by curators |
+| is_featured | bool | set by Vault Keepers |
 | is_new | bool | true for first 24hrs |
 | submitted_by | uuid | user id |
 | created_at | timestamp | |
@@ -372,7 +404,7 @@ Triggered when user tries to stash item #31.
 |--------|------|-------|
 | id | uuid | matches Supabase Auth uid |
 | username | text | |
-| is_curator | bool | curator/premium user status |
+| is_curator | bool | Vault Keeper status |
 | is_premium | bool | paid subscriber |
 | stash_count | int | current stash size |
 | created_at | timestamp | |
