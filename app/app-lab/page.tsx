@@ -22,6 +22,7 @@ interface App {
   lastUpdated: string;
   prototypeUrl?: string;
   repoUrl?: string;
+  icon?: string;
 }
 
 const BLUE = "#3b82f6";
@@ -310,13 +311,22 @@ export default function AppLabPage() {
                 >
                   <div
                     style={{
-                      fontSize: 14,
-                      fontWeight: 700,
-                      color: "#f3f4f6",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
                       marginBottom: 4,
                     }}
                   >
-                    {app.name}
+                    {app.icon && (
+                      <img
+                        src={app.icon}
+                        alt={app.name}
+                        style={{ width: 32, height: 32, borderRadius: 6, flexShrink: 0, objectFit: "cover" }}
+                      />
+                    )}
+                    <div style={{ fontSize: 14, fontWeight: 700, color: "#f3f4f6" }}>
+                      {app.name}
+                    </div>
                   </div>
                   <div
                     style={{
@@ -379,9 +389,18 @@ export default function AppLabPage() {
                 >
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 16 }}>
                     <div>
-                      <h2 style={{ fontSize: 22, fontWeight: 700, color: "#fff", margin: "0 0 6px 0" }}>
-                        {selected.name}
-                      </h2>
+                      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+                        {selected.icon && (
+                          <img
+                            src={selected.icon}
+                            alt={selected.name}
+                            style={{ width: 32, height: 32, borderRadius: 6, flexShrink: 0, objectFit: "cover" }}
+                          />
+                        )}
+                        <h2 style={{ fontSize: 22, fontWeight: 700, color: "#fff", margin: 0 }}>
+                          {selected.name}
+                        </h2>
+                      </div>
                       <div style={{ fontSize: 14, color: "#9ca3af", marginBottom: 14 }}>
                         {selected.tagline}
                       </div>
