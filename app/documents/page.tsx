@@ -142,6 +142,255 @@ VantaScout is a prospecting platform. The core value is knowing where the equipm
 *VantaScout is currently in research and validation phase.*`,
   },
   {
+    id: "chuckl-ui-spec",
+    title: "Chuckl — UI/UX Spec for React Native Build",
+    type: "Product",
+    agent: "Wally",
+    date: "Apr 10, 2026",
+    content: `# Chuckl — UI/UX Specification
+## React Native Build Reference Document
+*Prepared by Wally | April 10, 2026*
+
+---
+
+## Overview
+
+Chuckl is a utility app for browsing and stashing reaction GIFs and images. The core loop is simple: browse → stash → copy → paste into any chat. Everything in the design should serve that loop. Fast, clean, zero friction.
+
+**Platform:** iOS first (React Native + Expo)
+**Backend:** Supabase
+**Design language:** Dark, bold, minimal. Space Mono + Bebas Neue fonts. Accent: #FF3B30 (red-coral).
+
+---
+
+## Navigation
+
+**3 tabs, bottom navigation bar:**
+
+| Tab | Icon | Description |
+|-----|------|-------------|
+| Feed | Home/stream icon | Newest approved reactions, newest first |
+| Library | Grid icon | Full browsable library |
+| Profile | Person icon | User profile + Stash |
+
+No top navigation bar. Clean, app-style.
+
+---
+
+## Screen 1: Feed
+
+**Purpose:** Discovery. New content lands here first. Feels alive and fresh.
+
+**Header:**
+- Left: CHUCKL logo (icon + wordmark)
+- Right: + button (accent red, 32x32, rounded square) — opens submission modal
+
+**Content:**
+- Single column feed
+- Each card: reaction content (full width, 4:3 aspect ratio) + persistent bottom strip
+- Bottom strip always visible: reaction label | stash count | STASH button | COPY button
+- Timestamp badge top-right corner: "New" (within 24hrs) or "Xd ago"
+- GIF badge top-left if animated
+- Featured badge (gold star or crown) for curator-elevated content
+
+**Behavior:**
+- STASH button: adds to user stash, increments stash count, button turns filled/confirmed
+- COPY button: copies media URL to clipboard, shows toast "Copied! Ready to paste"
+- Freemium: if user hits 30 stash limit, show upgrade modal instead of stashing
+
+**Submission Modal (+ button):**
+- Title: "Submit a Reaction"
+- File picker: select GIF or image from camera roll or URL
+- Category dropdown: all categories
+- Label text input: what is this reaction called?
+- Submit button → toast "Submitted! We will add it if it is fire 🔥"
+- Content goes live immediately (open uploads model)
+
+---
+
+## Screen 2: Library
+
+**Purpose:** Browse and discover. The full catalog, organized and searchable.
+
+**Header:**
+- Search bar (full width): "search reactions..."
+
+**Sort controls (below search):**
+- 3 toggle options: Most Stashed | Trending | New
+- Default: Most Stashed
+
+**Category chips (horizontal scroll below sort):**
+All | Reactions | Hype | Awkward | Savage | Confused | Relatable | Wholesome | No Thanks | Agreement | Shock
+
+**Content:**
+- Single column feed (same card style as Feed)
+- Default sort: stash count descending within selected category
+- New items (within 24hrs): shown in discovery window regardless of stash count, with "New" badge
+- Featured items: shown with gold badge, weighted higher in ranking
+
+**Behavior:**
+- Category chip filters library in real-time
+- Sort toggle re-sorts immediately
+- Same STASH/COPY behavior as Feed
+
+---
+
+## Screen 3: Profile
+
+**Header area:**
+- Banner image (gradient or pattern, accent color)
+- Avatar (user initials circle, 60x60) positioned bottom-left of banner, overlapping
+- Gear icon (top-right of banner) → opens Settings sheet
+- Username below avatar
+- Stash stats: X / 30 stashed | X GIFs | X Pics
+
+**Settings Sheet (gear icon):**
+- Notifications toggle
+- Dark Mode (disabled, already dark)
+- Upgrade to Premium ($2.99/month) — prominent CTA button
+
+**MY STASH section:**
+- Search bar: "search your stash..."
+- Category chips (same as Library) — filters stash
+- 3-column grid (Instagram style, 2px gaps, square cells)
+- No labels visible in grid view — just the content
+
+**Stash Viewer (tap any item):**
+- Full screen overlay (dark background)
+- Reaction content centered, large
+- Bottom strip: label | stash count | REMOVE button | COPY button
+- Top: X close button (left) | position counter "3 / 12" (center) | share icon (right)
+- Left/right arrows to navigate between stashed items (wraps around)
+- REMOVE: removes from stash, advances to next, closes if last item
+
+**Freemium counter:**
+- Progress bar under stash stats: fills as limit approaches
+- At 30/30: bar turns red, upgrade prompt shown
+
+---
+
+## Auth Screens
+
+**Sign Up:**
+- App icon + wordmark centered
+- Email + password fields
+- Continue button (accent red, full width)
+- "Or continue with Apple" button (Apple Sign-In)
+- "Already have an account? Log in" link
+
+**Log In:**
+- Same layout
+- Email + password
+- Apple Sign-In
+- "Forgot password?" link
+- "New here? Sign up" link
+
+---
+
+## Freemium Upgrade Modal
+
+Triggered when user tries to stash item #31.
+
+- Icon: lock or stash icon
+- Headline: "Stash Full!"
+- Body: "Upgrade to Premium for unlimited stash — plus priority in featured content."
+- Price: $2.99 / month
+- Primary CTA: "Upgrade Now" (accent red, full width)
+- Secondary: "Not now" (dismiss)
+
+---
+
+## Content System
+
+**Two content tiers:**
+
+| Tier | How it gets there | Ranking |
+|------|-------------------|---------|
+| Featured | Curator (Premium User) marks as featured | Top of feed/library, gold badge |
+| Standard | Any user upload | Normal ranking by stash count/recency |
+
+**Curator role:**
+- Small group of trusted users (Zach + designated friends)
+- Can mark any reaction as "Featured"
+- Can remove content (flag for removal)
+- Curator status set in Supabase user table
+
+**Content ranking formula:**
+- Stash score = stash count (all time)
+- Trending score = stash count in last 48hrs × recency weight
+- New window = items uploaded in last 24hrs always shown regardless of score
+- Featured items get a 2x ranking multiplier
+
+---
+
+## Design Tokens
+
+| Token | Value |
+|-------|-------|
+| Background | #0a0a0a |
+| Surface | #1a1a1a |
+| Border | #2a2a2a |
+| Accent | #FF3B30 |
+| Gold (Featured) | #FFD700 |
+| Text | #F0F0F0 |
+| Muted | #666666 |
+| Font (headings) | Bebas Neue |
+| Font (body/ui) | Space Mono |
+| Border radius (cards) | 8px |
+| Border radius (buttons) | 4px |
+
+---
+
+## Supabase Database Schema
+
+### reactions table
+| Column | Type | Notes |
+|--------|------|-------|
+| id | uuid | primary key |
+| url | text | image/GIF URL in Supabase Storage |
+| label | text | reaction name |
+| category | text | category slug |
+| type | text | "gif" or "image" |
+| stash_count | int | incremented on each stash |
+| trending_score | float | updated periodically |
+| is_featured | bool | set by curators |
+| is_new | bool | true for first 24hrs |
+| submitted_by | uuid | user id |
+| created_at | timestamp | |
+
+### users table
+| Column | Type | Notes |
+|--------|------|-------|
+| id | uuid | matches Supabase Auth uid |
+| username | text | |
+| is_curator | bool | curator/premium user status |
+| is_premium | bool | paid subscriber |
+| stash_count | int | current stash size |
+| created_at | timestamp | |
+
+### stashes table
+| Column | Type | Notes |
+|--------|------|-------|
+| id | uuid | primary key |
+| user_id | uuid | foreign key → users |
+| reaction_id | uuid | foreign key → reactions |
+| created_at | timestamp | |
+
+### flags table
+| Column | Type | Notes |
+|--------|------|-------|
+| id | uuid | primary key |
+| reaction_id | uuid | |
+| flagged_by | uuid | |
+| reason | text | |
+| created_at | timestamp | |
+
+---
+
+*This document is the source of truth for the Chuckl React Native build. Update it when product decisions change.*
+*Last updated: April 10, 2026 by Wally*`,
+  },
+  {
     id: "hunton-genealogy",
     title: "Hunton Family — Compendium of American Genealogy",
     type: "Research",
