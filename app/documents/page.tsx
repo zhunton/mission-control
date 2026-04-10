@@ -337,18 +337,18 @@ Users can earn profile tags based on achievements and display one tag on their p
 | **Vault Keeper** | Manually assigned by Zach — trusted curators only | Quality control, featured content elevation |
 | **OG** | Joined within the first 30 days of launch — never earnable again | Early adoption, word of mouth |
 | **Hoarder** | Stashed 500+ reactions | Heavy stash usage, retention |
-| **Archivist** | Uploaded 20+ reactions that are still live after 30 days | Quality content contributions (delayed to prevent spam) |
+| **Plug** | Uploaded 20+ reactions still live after 30 days | Quality content contributions |
 
 ### Tag Rules
 - Each user can display only ONE tag on their profile at a time (their choice)
 - Tags are permanent once earned — except Vault Keeper (can be removed by admin)
 - OG tag is the most exclusive — once the 30-day window closes, it is gone forever
-- Archivist requires posts to still be live after 30 days — removed/flagged posts do not count toward the threshold
+- Plug requires posts to still be live after 30 days — removed/flagged posts do not count toward the threshold
 
-### Archivist Anti-Spam Logic
+### Plug Anti-Spam Logic
 The 30-day live requirement is the key spam deterrent:
 - Spammed posts get flagged and removed → do not count
-- Only quality content that survives moderation counts toward Archivist
+- Only quality content that survives moderation counts toward Plug
 - Counter resets if posts are removed — keeps the bar meaningful
 
 ### Database Column
