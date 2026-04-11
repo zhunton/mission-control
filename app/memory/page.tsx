@@ -19,6 +19,119 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "13",
+    date: "April 10, 2026",
+    title: "Chuckl Goes Native — iOS Roadmap, 4-Tier Tag System & UI Spec",
+    discussions: [
+      {
+        title: "App Lab Cleanup — VantaScout Overview, Prototype URLs & Chuckl Icon",
+        thingsToRemember: [
+          "Zach asked to restore VantaScout overview on App Lab — the cleaner satellite/HVAC description had been overwritten; fixed immediately",
+          "Prototype URL field added to all App Lab entries — Chuckl now links directly to chuckl.vercel.app from Mission Control",
+          "Zach shared a Chuckl icon via Telegram (sent as photo = JPEG, white background baked in); Dali attempted transparent recreation but result was way off — reverted immediately",
+          "Zach sent the real PNG as a Document file; white background stripped programmatically; transparent icon live on both chuckl.vercel.app and Mission Control App Lab",
+          "Lesson: Telegram photo button converts PNGs to JPEGs and destroys alpha channels; always ask Zach to use paperclip → Document for icon/asset files",
+        ],
+        recommendations: [
+          "Always ask for icons/assets as File attachments, not photos — Telegram destroys PNG transparency when sent as a photo",
+          "Do not ask Dali to recreate an icon from memory — the results will be off; wait for the original file",
+          "Prototype URL field in App Lab is a good pattern; keep it updated as new builds ship",
+        ],
+        decisions: [
+          "VantaScout App Lab overview restored to clean satellite/HVAC description",
+          "Prototype URL field added to all App Lab entries",
+          "Chuckl transparent icon live on both prototype and App Lab",
+        ],
+      },
+      {
+        title: "Chuckl — iOS Roadmap & Tech Stack Decisions",
+        thingsToRemember: [
+          "Zach asked: 'What's next? How do we make this an iOS native app?' — triggered full roadmap planning session",
+          "Decision: React Native over Swift native — faster to ship, Patch knows it, correct call for a prototype-to-production path",
+          "Zach confirmed he has an Apple Developer account; friends and partners will curate content library pre-launch",
+          "Decision: skip polishing the web prototype — it's a web app, React Native is a full rebuild; polish there is wasted effort",
+          "Phase 1 (1-2 weeks): Supabase setup — auth, database, storage, realtime",
+          "Phase 2 (2-3 weeks): React Native core build — Feed, Library, Profile screens",
+          "Phase 3 (1-2 weeks): Polish + TestFlight + App Store submission",
+          "App Lab updated with full living plan — all decisions logged, phase checkboxes, next actions",
+          "UI Spec document created in Mission Control Documents — screen-by-screen breakdown, database schema, design tokens, content system",
+        ],
+        recommendations: [
+          "Supabase is the right backend choice — free tier handles early-stage traffic, real-time subscriptions are built in, and Patch can integrate it in React Native quickly",
+          "Start backend before any RN code — auth and database schema decisions are hard to undo; get them right first",
+          "App Store review takes 1-3 days on average; plan TestFlight beta for at least 2 weeks before submission",
+          "Keep the living plan in App Lab updated after every build session — it's the single source of truth for the project",
+        ],
+        decisions: [
+          "React Native confirmed as the mobile framework",
+          "Supabase confirmed as the backend",
+          "Web prototype will not be polished further — all energy goes to RN build",
+          "3-phase timeline locked: Backend → RN Build → Polish + Launch",
+          "App Lab living plan created; UI Spec published to Documents",
+        ],
+      },
+      {
+        title: "Chuckl — Content System & 4-Tier Tag Design",
+        thingsToRemember: [
+          "Zach asked how uploaded content gets routed to approvers — clarified: all posts go live immediately, no moderation queue; curation is post-publish only",
+          "Vault Keepers (trusted curators) see a star button on every reaction that regular users don't see; tapping it promotes the reaction to Featured",
+          "Zach wanted edgier names than 'Premium User' — brainstormed together and landed on a 4-tier tag system",
+          "Final 4 tags: OG (join in first month), Hoarder (100+ stashed reactions), Plug (10+ reactions still live after 30 days — spam-proof), Vault Keeper (invited curator with star button)",
+          "'Archivist' was considered as the content-contributor tag; Zach went with 'Plug' instead — fits the app's edgy vibe better",
+          "Vault Keeper is assigned by Zach via admin panel or simple DB flag — no public path to earn it; keeps curation trusted",
+          "The Plug tag is self-reinforcing: spam gets flagged and removed → counter resets → spammers can't earn it",
+          "Spec updated with all 4 tags and full Vault Keeper curation flow",
+        ],
+        recommendations: [
+          "The 4-tag system is smart — it creates identity through behavior without requiring a social graph; users signal who they are by what they do",
+          "OG tag urgency will drive early adoption from Zach's network — announce it before launch, not after",
+          "The Plug 30-day retention gate is the right spam filter — simple, automatic, no moderation overhead",
+          "Consider showing tags on profile/stash gallery so users can flex them — the visibility is part of the reward",
+        ],
+        decisions: [
+          "4-tier tag system locked: OG, Hoarder, Plug, Vault Keeper",
+          "Content curation: all posts go live immediately; Vault Keepers star to Featured post-publish",
+          "Vault Keeper is invite-only (Zach assigns via admin) — no public earn path",
+          "Spec updated with full tag system and curation flow",
+        ],
+      },
+      {
+        title: "Morning Brief — April 10",
+        thingsToRemember: [
+          "Iran, U.S., and Israel agreed to a temporary ceasefire — significant diplomatic development after weeks of tension and escalation",
+          "HVAC price list update: first-ever decrease tracked by ACHR News, but most manufacturers (ICP Parts, Robertshaw, NDL) still pushing 4–15% increases on copper and aluminum products tied to tariff pressures",
+          "Copper and aluminum cost increases will hit job costs at Hunton if not already baked into estimates — worth flagging to procurement",
+        ],
+        recommendations: [
+          "Hunton procurement team should be tracking the manufacturer price increases — 4–15% on copper/aluminum products has real job cost exposure",
+          "The ceasefire is a positive sign but previous Israeli strikes were already complicating it; don't assume Hormuz pressure is fully resolved",
+        ],
+        decisions: [
+          "No system changes — morning brief delivered as scheduled",
+        ],
+      },
+      {
+        title: "Daily AI Brief — April 10",
+        thingsToRemember: [
+          "Federal judge blocks Trump admin's Anthropic ban — U.S. court ruled the ban violated free-speech protections; major precedent for public-sector AI deployment",
+          "TSMC Q1 revenue +35% to $35.7B — crushes forecasts, confirms AI chip demand is still full throttle heading into Q2",
+          "Big Tech goes nuclear — Microsoft, Google, Amazon funding next-gen nuclear projects to power AI data centers; energy is now a core competitive moat, not background infrastructure",
+          "China banned Nvidia server scandal deepens — Shenzhen firm Sharetronic disclosed ~$92M in restricted Nvidia-linked servers sold to Chinese government; Super Micro co-founder charged with smuggling; stock hit 20% daily limit down",
+          "Anthropic Opus 4.5 doubles capacity — amid intensifying compute wars with OpenAI; Treasury Secretary Bessent summoned bank CEOs to discuss implications",
+          "EU has fined Big Tech $7B+ in antitrust cases over 2 years under Digital Markets Act — fines are now a recurring operating cost for platforms in Europe",
+        ],
+        recommendations: [
+          "TSMC +35% is the clearest signal that AI hardware demand hasn't cooled — the buildout continues; HT data center business tailwinds remain intact",
+          "Big Tech going nuclear is a multi-year infrastructure story; data center cooling and power integration will be a growing revenue line for HT",
+          "The Nvidia export scandal means China's access to frontier chips remains constrained — the capability gap may be narrowing via workarounds, not open market access",
+        ],
+        decisions: [
+          "No system changes — AI brief delivered as scheduled via cron announce",
+        ],
+      },
+    ],
+  },
+  {
     id: "12",
     date: "April 7, 2026",
     title: "Chuckl Takes Shape, App Lab Ships & Satellite HVAC Idea",

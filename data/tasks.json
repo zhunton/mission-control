@@ -177,6 +177,17 @@
     "protected": true
   },
   {
+    "id": "14",
+    "title": "Chuckl — Phase 1: Supabase Backend Setup",
+    "description": "Set up the Supabase backend for Chuckl: auth (email + Apple sign-in), database schema (users, reactions, stashes, tags), storage bucket for media, and realtime subscriptions. This is the foundation before any React Native code is written.",
+    "why": "Chuckl is going native. Phase 1 is backend-first — auth and database decisions are hard to undo. Get the schema right before building the UI.",
+    "agent": "Wally",
+    "date": "Apr 10, 2026",
+    "status": "backlog",
+    "priority": "high",
+    "protected": false
+  },
+  {
     "id": "13",
     "title": "Discuss: Sandler Selling System",
     "description": "Review and discuss the Sandler Selling System \u2014 a consultative sales methodology focused on qualifying prospects, uncovering pain, and reversing traditional sales dynamics. Explore how it applies to Hunton Group's sales process across HT, HS, and CVZ.",
