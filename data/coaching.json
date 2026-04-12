@@ -326,6 +326,61 @@
         "DTB answers going thin when you know it well"
       ],
       "note": "85% \u2014 solid session. HVAC fundamentals clicking. Financial math question was ambiguous without full context. DTB answer was correct but below your own standard. Show your work."
+    },
+    {
+      "id": "2026-04-12",
+      "date": "April 12, 2026",
+      "score": 2,
+      "total": 3,
+      "percentage": 67,
+      "categories": {
+        "hvac": {
+          "score": 1,
+          "total": 1
+        },
+        "financial": {
+          "score": 0,
+          "total": 1
+        },
+        "hunton": {
+          "score": 1,
+          "total": 1
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "category": "hvac",
+          "question": "12-story building, floors 4-7 warmer than 8-12, chiller running fine. Most likely culprit?",
+          "userAnswer": "B \u2014 AHU serving floors 4-7 has fouled coil or failing fan",
+          "correct": true,
+          "feedback": "Correct. Chiller is fine, cold water available \u2014 problem is distribution. AHU issue is the right isolation."
+        },
+        {
+          "id": 2,
+          "category": "financial",
+          "question": "Calculate EBITDA and EBITDA margin. Revenue $4.2M, Op income $756k, Depreciation $126k, Interest $42k.",
+          "userAnswer": "C \u2014 $882k / 21%",
+          "correct": false,
+          "feedback": "Close but wrong. EBITDA = $756k + $126k + $42k = $924k (22.0%). You answered $882k which is EBIT (adds back depreciation only, not interest). EBITDA adds back ALL four: Earnings Before Interest, Taxes, Depreciation, Amortization."
+        },
+        {
+          "id": 3,
+          "category": "hunton",
+          "question": "$900k contract, 55% complete, $820k total cost estimate. Revenue to recognize and margin concern?",
+          "userAnswer": "B \u2014 $495k recognized, margin concern at ~8.9% gross margin flagged now",
+          "correct": true,
+          "feedback": "Perfect. Percentage-of-completion = 55% \u00d7 $900k = $495k. $820k cost on $900k contract = 8.9% margin, needs to be flagged immediately, not at closeout."
+        }
+      ],
+      "strengths": [
+        "HVAC system troubleshooting (AHU isolation)",
+        "Revenue recognition and WIP margin analysis"
+      ],
+      "weaknesses": [
+        "EBITDA vs EBIT distinction \u2014 interest expense must be added back"
+      ],
+      "note": "67% \u2014 first multiple choice quiz format. Q1 and Q3 strong. Q2 missed EBITDA vs EBIT distinction by one step. New format working well \u2014 faster to answer."
     }
   ]
 }
