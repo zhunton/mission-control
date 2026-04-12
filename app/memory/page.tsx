@@ -19,6 +19,65 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "14",
+    date: "April 11, 2026",
+    title: "Quiet Saturday — Mythos Safety Threshold, Gemma 4 & Cron Runs",
+    discussions: [
+      {
+        title: "Daily Morning Brief — April 11",
+        thingsToRemember: [
+          "JD Vance leading U.S. delegation in Islamabad for ceasefire talks — no direct U.S.-Iran talks yet; Iran conditioning negotiations on halt to ongoing Israeli strikes in Lebanon",
+          "ACHR News: April 2026 marks the first notable price decrease on their HVAC Price Increase List — rare bright spot amid tariff pressure",
+          "ICP Parts (+4%), Eaton B-Line, and others still pushing copper/aluminum price increases effective this month — real exposure for Hunton job cost estimates",
+        ],
+        recommendations: [
+          "Hunton procurement should be watching copper/aluminum price movements closely — 4–15% increases hitting this month across multiple manufacturers",
+          "Ceasefire talks are conditional and fragile — don't assume Hormuz/energy pressure is resolved; watch for Israeli strike escalation that could break the agreement",
+        ],
+        decisions: [
+          "No system changes — morning brief delivered as scheduled",
+        ],
+      },
+      {
+        title: "Daily Quiz — Chiller Efficiency (kW/ton, COP, IPLV)",
+        thingsToRemember: [
+          "kW/ton: kilowatts of electricity consumed per ton of cooling produced; lower is better — efficient unit ~0.50 kW/ton, older unit can hit 1.0+ kW/ton",
+          "COP (Coefficient of Performance): inverse efficiency ratio — COP of 6.0 means 6 units of cooling per 1 unit of electricity consumed",
+          "IPLV (Integrated Part-Load Value): blends efficiency at 25/50/75/100% load, weighted toward part-load; the real payback metric for chiller replacement proposals",
+          "Chillers almost never run at 100% load — IPLV tells the real annual energy cost story, not the full-load spec sheet number",
+          "Finance Q: Working capital scenario with AR, inventory, prepaid expenses, AP, accrued wages, and deferred revenue across a quarter transition",
+        ],
+        recommendations: [
+          "When evaluating chiller replacement proposals at HT/HS, always anchor on IPLV — not full-load kW/ton; the IPLV drives the actual payback calculation",
+          "A 400-ton chiller running at 65% load year-round at $0.10/kWh — the difference between 1.2 and 0.55 kW/ton IPLV is roughly $200K+ over 10 years",
+        ],
+        decisions: [
+          "No system changes — quiz delivered as scheduled",
+        ],
+      },
+      {
+        title: "Daily AI Brief — April 11",
+        thingsToRemember: [
+          "Anthropic officially withholds Claude Mythos from public release — internal testing found it could autonomously identify thousands of zero-day vulnerabilities across major OSes and browsers; critical infrastructure risk (electric grids, hospitals); no release timeline announced",
+          "This is the AI safety threshold moment the community has been warning about — a model too dangerous to release publicly; Project Glasswing coalition (Amazon, Apple, Google, Microsoft, Nvidia) using it defensively",
+          "Google drops Gemma 4 open-source model family — most capable per byte for advanced reasoning and agentic workflows; strategic counter to Meta Llama and the vacuum left by Mythos staying private",
+          "OpenAI COO and another exec departed pre-IPO — institution under structural pressure ahead of expected Q4 IPO; leadership churn is a systemic signal",
+          "Anthropic acquires biotech startup for $400M — hard push into AI × life sciences sector",
+          "AI agent autonomously hacked FreeBSD in 4 hours with no human assistance — zero-day exploit on hardened kernel; massive underreported cybersecurity inflection point",
+          "MIT CompreSSM: new training technique cuts AI compute costs without meaningful accuracy loss — practical tailwind for smaller labs and open-source models",
+        ],
+        recommendations: [
+          "The Mythos safety decision is the most significant AI governance event to date — Anthropic built a model they literally cannot release; watch how regulators respond in the coming weeks",
+          "OpenAI's leadership churn + structural losses through early 2030s + IPO pressure = elevated risk for organizations deeply embedded in OpenAI workflows; worth monitoring",
+          "Gemma 4 open-source release is good news for the ecosystem — more capable open models mean lower inference costs and more deployment flexibility for non-enterprise use cases",
+        ],
+        decisions: [
+          "No system changes — AI brief delivered as scheduled via cron announce",
+        ],
+      },
+    ],
+  },
+  {
     id: "13",
     date: "April 10, 2026",
     title: "Chuckl Goes Native — iOS Roadmap, 4-Tier Tag System & UI Spec",
