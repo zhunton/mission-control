@@ -19,6 +19,69 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "15",
+    date: "April 12, 2026",
+    title: "Quiet Sunday — Mythos Triggers Federal Response, Gemma 4 #1, Microsoft Japan",
+    discussions: [
+      {
+        title: "Daily Morning Brief — April 12",
+        thingsToRemember: [
+          "U.S.-Iran ceasefire negotiations in Islamabad stretched into day 2 — VP Vance leading talks while Washington applied pressure by sending minesweeping ships through the Strait of Hormuz",
+          "A deal or breakdown this week could move markets and energy prices significantly — outcome not guaranteed",
+          "ACHR News: first actual price decrease on the April 2026 price change list — rare shift after months of steady increases",
+          "Copper fittings and aluminum products still seeing increases up to 15% — not a full reversal, just the first crack in the trend",
+        ],
+        recommendations: [
+          "Hormuz minesweeping ships are the real pressure signal, not just the Islamabad talks — watch for this week's outcome before assuming energy cost pressures ease for HT",
+          "Hunton procurement should track the copper/aluminum increase trend carefully — even with one decrease item, the overall pricing environment is still elevated",
+        ],
+        decisions: [
+          "No system changes — morning brief delivered as scheduled",
+        ],
+      },
+      {
+        title: "Daily Quiz — Air Handling Units, EBITDA, WIP Revenue Recognition",
+        thingsToRemember: [
+          "AHU (Air Handling Unit) is the 'lungs' of a commercial HVAC system — doesn't generate cooling or heating itself; conditions air over coils and distributes via ductwork to every zone",
+          "Chiller makes cold water; AHU uses that cold water to actually cool the air people breathe — two distinct systems working in series",
+          "Most large buildings have multiple AHUs serving different zones; when a tenant complains about a hot office, the culprit is almost always the AHU (fouled coil, failing supply fan, or controls problem)",
+          "Q1 scenario: floors 4–7 warmer than 8–12 despite chiller running fine → AHU serving floors 4–7 with fouled cooling coil or failing supply fan (Answer B)",
+          "EBITDA formula: Operating Income + Depreciation + Amortization + Interest expense — adds back non-cash charges and financing costs to show operational cash generation",
+          "HS Q1 EBITDA calc: Operating income $756K + D&A $126K + Interest $42K = $924K | EBITDA margin = $924K / $4.2M = 22.0% (Answer B)",
+          "WIP/revenue recognition: percentage-of-completion method — recognize revenue proportional to work completed; 55% complete on a $900K contract = $495K revenue recognized through April 30",
+        ],
+        recommendations: [
+          "When reviewing HS financials, always look at EBITDA margin alongside gross margin — it strips out D&A and interest to show the true operational engine",
+          "AHU knowledge is directly applicable on job sites — when a tenant complains, asking the right diagnostic questions (which zone? chiller OK? airflow?) immediately narrows to the right system",
+          "WIP tracking is critical in project work — miscalculating percentage-of-completion affects revenue recognition, bonding capacity, and forecasting accuracy",
+        ],
+        decisions: [
+          "No system changes — quiz delivered as scheduled",
+        ],
+      },
+      {
+        title: "Daily AI Brief — April 12",
+        thingsToRemember: [
+          "Anthropic's Mythos triggered the first-ever federal financial-sector emergency response — Treasury Secretary Bessent and Fed Chair Powell summoned top bank CEOs to address cybersecurity risks from a model that can autonomously exploit hidden software vulnerabilities",
+          "This is an escalation beyond AI safety: regulators are now treating a specific AI model as a systemic financial risk; no release timeline for Mythos remains",
+          "Google Gemma 4 claims #1 on LM Arena — best reasoning and agentic workflow performance per parameter; open-weight and freely deployable; major enterprise adoption tailwind",
+          "Congress introduced legislation to halt new AI data center construction nationwide (Sanders/AOC) — electricity price surges, water usage, job displacement cited; long shot but political signal matters",
+          "Microsoft commits $10B to Japan AI infrastructure — $6B data centers in Tokyo/Osaka/Yokohama, $4B cybersecurity/workforce; largest single Western AI infrastructure play in Asia-Pacific",
+          "NousResearch launches Hermes Agent — adaptive AI agent designed to grow with individual users over time; persistent user-specific agents are the next AI frontier",
+          "Microsoft releases MarkItDown — Python tool converting Office docs to Markdown; signals deeper embedding of AI tooling into developer workflows",
+        ],
+        recommendations: [
+          "The Mythos → federal financial-sector response is a new category of AI governance event; watch how bank regulators and the SEC respond in coming weeks — this could trigger AI disclosure requirements for financial institutions",
+          "The data center moratorium bill is a longshot, but it signals that unchecked compute expansion is becoming a political liability — relevant background context for HT's data center pipeline strategy",
+          "Microsoft's $10B Japan play shows the race for Asia-Pacific enterprise AI is accelerating — Western cloud providers competing hard; useful signal for understanding long-term data center demand",
+        ],
+        decisions: [
+          "No system changes — AI brief delivered as scheduled via cron announce",
+        ],
+      },
+    ],
+  },
+  {
     id: "14",
     date: "April 11, 2026",
     title: "Quiet Saturday — Mythos Safety Threshold, Gemma 4 & Cron Runs",
