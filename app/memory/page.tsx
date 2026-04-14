@@ -19,6 +19,140 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "16",
+    date: "April 13, 2026",
+    title: "Active Monday — OpenClaw Update, Wiki Launch & MindFeed AI",
+    discussions: [
+      {
+        title: "OpenClaw Update to 2026.4.12",
+        thingsToRemember: [
+          "Zach noticed a new OpenClaw update and asked Wally to install it — updated from 2026.4.2 to 2026.4.12 cleanly",
+          "Gateway restart triggered and completed without issues",
+          "Key new feature: Active Memory plugin — a dedicated memory sub-agent that runs before each reply, automatically pulling relevant context from local files without Zach having to reference old conversations",
+          "Also included: security hardening (shell injection, approval auth, gateway credentials) and cron/isolated session fixes",
+        ],
+        recommendations: [
+          "Active Memory should make Wally noticeably smarter in longer-running conversations — context that would otherwise be missed gets surfaced automatically",
+          "Keep memory files clean and well-structured — Active Memory reads them directly, so quality of the files = quality of the context injected",
+        ],
+        decisions: [
+          "OpenClaw updated to 2026.4.12 — Active Memory plugin enabled",
+          "Active Memory confirmed safe: first-party plugin, reads local files only, no external calls",
+        ],
+      },
+      {
+        title: "AI Brief Format Shortened",
+        thingsToRemember: [
+          "Zach's feedback at 4:23 PM: 'The AI Brief is pretty long. Make it much shorter with only the most impactful news and new releases going forward'",
+          "Cron updated immediately — new format: 3-4 bullets max, major news only, starting April 14",
+          "Previous format was running 5-7 bullets with full context; new format is tighter and higher-signal",
+        ],
+        recommendations: [
+          "When the brief runs long, that's a sign the filter is too loose — prioritize model releases, major company moves, and direct Hunton Group relevance",
+          "If Zach wants more detail on a specific story, he can ask; the brief is the hook, not the analysis",
+        ],
+        decisions: [
+          "AI brief cron updated: 3-4 bullets max, major news only — effective April 14",
+        ],
+      },
+      {
+        title: "System Improvement Discussion",
+        thingsToRemember: [
+          "Zach asked: 'How would you improve our collaboration or system together?' — open, honest conversation about gaps",
+          "Biggest gap: execution discipline on apps — Chuckl prototype has been live for weeks but Supabase backend still not built; the next idea keeps jumping the queue",
+          "Hunton doc is coming — someone at the company is working on it, expected around next week; will unlock a lot of business context that Wally currently has only at a surface level",
+          "Atlas research-first rule confirmed: Atlas should always run deep research before making recommendations, not as an afterthought",
+          "Zach confirmed all three priorities as the right ones",
+        ],
+        recommendations: [
+          "Hold the line on Chuckl: finish Phase 1 (Supabase backend) before any other app work gets started — Zach agreed to this standard",
+          "When the Hunton doc arrives, block time to properly ingest it into the wiki and memory — it's the most important context update since day one",
+          "Atlas research-first is a system change, not a one-time note — apply it going forward on every new app/project recommendation",
+        ],
+        decisions: [
+          "Execution-first standard locked in: no new app work until Chuckl Phase 1 is complete",
+          "Atlas research-first rule confirmed as standard operating procedure",
+          "Hunton doc expected ~next week; wiki/hunton/ to be created when it arrives",
+        ],
+      },
+      {
+        title: "Project Wiki Created",
+        thingsToRemember: [
+          "Zach asked to start a project wiki now with Chuckl and VantaScout — Hunton section to be added when the doc arrives",
+          "Wiki structure created in workspace: wiki/INDEX.md, wiki/chuckl/overview.md, wiki/chuckl/market.md, wiki/vantascout/overview.md, wiki/vantascout/market.md",
+          "Atlas ran parallel research threads to populate market and competitor context while the structure was being built",
+          "Wiki is the long-term knowledge base — each project gets a folder; it grows over time and becomes queryable context for Wally and Atlas",
+        ],
+        recommendations: [
+          "Wiki is only useful if kept current — update wiki/chuckl/ and wiki/vantascout/ after every major product decision",
+          "When Hunton doc arrives, wiki/hunton/ should be the first thing built — that section will become the most valuable in the entire wiki",
+          "Consider adding wiki/mindfeed/ once the MindFeed AI code is reviewed and the concept is validated",
+        ],
+        decisions: [
+          "Wiki created in workspace — Chuckl and VantaScout sections live",
+          "Hunton section deferred until the company doc arrives (expected next week)",
+          "Atlas responsible for research content in wiki entries",
+        ],
+      },
+      {
+        title: "MindFeed AI — New App Introduced",
+        thingsToRemember: [
+          "Zach has been building an app in Replit Agent called MindFeed AI — concept: help people navigate the confusing AI landscape (essentially a 'which AI should I use?' discovery/guidance tool)",
+          "Zach said: 'The AI industry is evolving very fast' and positioned this as a consumer-facing AI guide",
+          "GitHub repo created: zhunton/mindfeed-ai",
+          "Attempted to send zip file via Telegram 3 times — all failed (Telegram blocking large attachments from reaching Wally)",
+          "Attempted GitHub web upload — file too large (25MB+ limit hit, likely because node_modules was included in the zip)",
+          "Session ended with code transfer incomplete — no review done yet",
+          "Next step: Zach should delete node_modules from the zip before re-uploading, or install GitHub Desktop to push via command line",
+        ],
+        recommendations: [
+          "Before reviewing MindFeed, understand the real question: is this an AI news aggregator, a model comparison tool, a recommendation engine, or something else? The concept is broad — the code will clarify the actual build direction",
+          "Consumer AI navigation is a real market need but a crowded space (There's an AI for That, Futurepedia, etc.) — differentiation angle matters a lot",
+          "Don't invest heavy build energy until the code is reviewed and the core concept is validated; Zach already has Chuckl in the queue",
+          "Easiest path to get code: delete node_modules from the Replit download zip, then try GitHub web upload again — should bring file well under 25MB",
+        ],
+        decisions: [
+          "MindFeed AI added to radar — no build decisions made yet",
+          "Code review pending (file transfer incomplete)",
+          "GitHub repo created: zhunton/mindfeed-ai",
+        ],
+      },
+      {
+        title: "Morning Brief — April 13",
+        thingsToRemember: [
+          "U.S.-Iran peace talks in Islamabad collapsed — Trump announced the U.S. Navy will blockade the Strait of Hormuz; full escalation; oil markets reacting; energy cost pressure on data center and HVAC equipment pricing is back",
+          "EPA/AIM Act petition filed at the Supreme Court — civil liberties group challenging EPA authority over refrigerant phase-downs; if successful, could disrupt HVAC equipment compliance timelines across the industry",
+        ],
+        recommendations: [
+          "Navy blockade of Hormuz is a step beyond 'minesweeping ships as pressure' — this is an active posture change; energy price volatility is a live variable for HT's data center cost modeling and Hunton procurement",
+          "Watch the Supreme Court AIM Act case carefully — EPA authority over refrigerant transitions is the legal foundation of the entire R-454B/R-32 phase-in timeline; if that gets challenged successfully, the whole transition schedule could shift",
+        ],
+        decisions: [
+          "No system changes — morning brief delivered as scheduled",
+        ],
+      },
+      {
+        title: "Daily Quiz — RTUs & Pull-Through Revenue",
+        thingsToRemember: [
+          "RTU (Rooftop Unit): self-contained HVAC system on a commercial building rooftop — compressor, condenser, air handler all in one cabinet; common in retail, schools, light commercial",
+          "RTU advantage: simplicity (one unit to install, one unit to service); RTU trade-off: single point of failure for the zone it serves",
+          "Zone-specific independence: if one RTU fails, only that zone loses conditioning — other zones unaffected (because each RTU serves its own zone independently)",
+          "Gross Margin calculation: COGS = labor + materials ONLY; overhead (trucks, tools, admin) goes below the gross margin line as operating expense; $80K revenue, $28K labor, $12K materials = 50% GM",
+          "Pull-through revenue: the downstream repair and project work that flows from having an active service relationship — the PM contract ($15K/year) is the door opener; the real value is the first-call access that leads to larger jobs ($40K chiller repair)",
+          "The pull-through multiplier at Hunton: a $45K service agreement can generate up to $180K total annual revenue when pull-through rates are factored in",
+        ],
+        recommendations: [
+          "The pull-through concept is critical for evaluating HS's service agreement business — the face value of the PM contract is a fraction of its real economic value",
+          "When Zach reviews HS service agreement performance, always look at pull-through revenue attached to each customer, not just the contract value",
+          "RTU knowledge is directly applicable on site visits — retail strip malls and school buildings in Hunton's territory will be covered in RTUs",
+        ],
+        decisions: [
+          "No system changes — quiz delivered as scheduled",
+        ],
+      },
+    ],
+  },
+  {
     id: "15",
     date: "April 12, 2026",
     title: "Quiet Sunday — Mythos Triggers Federal Response, Gemma 4 #1, Microsoft Japan",
