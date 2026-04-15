@@ -19,6 +19,32 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "17",
+    date: "April 14, 2026",
+    title: "Quiet Tuesday — First Day of Shortened AI Brief",
+    discussions: [
+      {
+        title: "Automated Crons — All Ran Clean",
+        thingsToRemember: [
+          "No direct Zach conversations on April 14 — quiet Tuesday",
+          "Morning brief, daily quiz, and AI market brief all ran as scheduled with no intervention",
+          "April 14 was the first day of the new shortened AI brief format: 3-4 bullets max, major news only (format change applied per Zach's feedback on April 13)",
+          "U.S. Navy Strait of Hormuz blockade remains active following collapse of Islamabad talks on April 13; oil and energy cost pressure sustained heading into the week",
+          "EPA/AIM Act Supreme Court petition still pending — refrigerant compliance timeline watch item for the HVAC industry",
+        ],
+        recommendations: [
+          "MindFeed AI code transfer remains incomplete — when Zach is back, easiest path is deleting node_modules from the Replit zip before re-uploading, or installing GitHub Desktop to push directly",
+          "Chuckl Phase 1 (Supabase backend) still not started — execution-first rule is in effect; no new app work begins until Phase 1 is complete",
+          "Hunton doc expected this week or next — when it arrives, block time to properly ingest it into the wiki and memory; it will be the most important context addition since day one",
+        ],
+        decisions: [
+          "No system changes — all automations nominal",
+          "AI brief new format confirmed live: 3-4 bullets max, major news only, starting April 14",
+        ],
+      },
+    ],
+  },
+  {
     id: "16",
     date: "April 13, 2026",
     title: "Active Monday — OpenClaw Update, Wiki Launch & MindFeed AI",
