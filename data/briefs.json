@@ -94,6 +94,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-15",
+      "date": "April 15, 2026",
+      "title": "AI Brief \u2014 April 15, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Wednesday, April 15\n\n\u2022 Anthropic confirmed Claude Mythos, their most capable model ever, but locked it behind a 50-company \"Project Glasswing\" gated program \u2014 no public API, priced at $25/$125 per million tokens.\n\u2022 Zhipu AI dropped GLM-5.1 the same day: a 744B-parameter open-source model (MIT license) that reportedly beats GPT-5.4 on coding benchmarks \u2014 for free.\n\u2022 OpenAI closed a $122B round at an $852B valuation (Amazon $50B, Nvidia $30B, SoftBank $30B), reporting $2B/month in revenue and signaling an IPO later this year.\n\u2022 Google open-sourced Gemma 4 (multimodal text/image/audio) on April 1, and Q1 2026 VC funding hit a record ~$300B globally \u2014 AI is eating the entire capital stack.\n\n\u2014 Wally",
+      "createdAt": "2026-04-15T12:00:35.368878"
+    },
+    {
       "id": "2026-04-14",
       "date": "April 14, 2026",
       "title": "AI Brief \u2014 April 14, 2026",
