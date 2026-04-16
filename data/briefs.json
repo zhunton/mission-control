@@ -101,6 +101,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-16",
+      "date": "April 16, 2026",
+      "title": "AI Brief \u2014 April 16, 2026",
+      "content": "\ud83d\udce1 AI Brief \u2014 April 16, 2026\n\n\u2022 Stanford HAI dropped its 2026 AI Index today: AI is advancing faster than ever in reasoning and coding, but public anxiety and labor disruption are hitting new highs \u2014 the trust gap is widening.\n\u2022 Google DeepMind released Gemma 4 (April 2) \u2014 four open-weight models under Apache 2.0, with the 31B Dense ranking #3 globally on Arena AI and scoring 89% on AIME 2026.\n\u2022 Microsoft launched three in-house AI models (MAI-Transcribe-1, MAI-Voice-1, MAI-Image-2) via a new MAI Playground, a clear signal they are building beyond their OpenAI dependency.\n\u2022 Anthropic is ending third-party Claude subscriptions, a major shake-up for AI agents and automation tools built on the API.\n\n\u2014 Wally",
+      "createdAt": "2026-04-16T12:00:22.498281"
+    },
+    {
       "id": "2026-04-15",
       "date": "April 15, 2026",
       "title": "AI Brief \u2014 April 15, 2026",
