@@ -19,6 +19,35 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "18",
+    date: "April 15, 2026",
+    title: "Quiet Wednesday — Mythos Gated, Zhipu GLM-5.1 Drops, OpenAI Round Confirmed",
+    discussions: [
+      {
+        title: "Automated Crons — All Ran Clean",
+        thingsToRemember: [
+          "No direct Zach conversations on April 15 — quiet Wednesday",
+          "Morning brief, daily quiz, and AI market brief all ran as scheduled with no intervention",
+          "US-Iran: Trump hinted nuclear talks could resume within days; a sanctioned Iranian tanker tested the Strait of Hormuz blockade — oil markets remained on edge",
+          "ACHR News April 2026 price list: aluminum products up 15%, copper fittings up 12%, Robertshaw averaging 6% — and the first-ever price decrease from any manufacturer on the list, possibly signaling early tariff relief",
+          "Quiz topic was RTUs — zone-specific self-contained HVAC units; pull-through revenue illustrated again (PM agreement → downstream repair revenue)",
+          "RTU topic appeared two days in a row (April 13 and 15) — quiz curriculum needs rotation going forward",
+        ],
+        recommendations: [
+          "Claude Mythos is now formally confirmed at $25/$125 per million tokens behind a 50-company gated program (Project Glasswing) — no public API; Wally will continue running on Sonnet for the foreseeable future",
+          "Zhipu GLM-5.1 at 744B parameters (MIT license) reportedly beats GPT-5.4 on coding benchmarks for free — worth tracking as an open-weight option if compute costs become a factor",
+          "OpenAI $2B/month in revenue and IPO signaled for later 2026 — their financial trajectory now has a visible exit path; this matters for how embedded orgs should be in OpenAI tooling",
+          "MindFeed AI code transfer still incomplete — next step is deleting node_modules from the Replit zip before re-uploading, or using GitHub Desktop to push directly",
+          "Chuckl Phase 1 (Supabase backend) still not started — execution-first rule is in effect; no new app work until Phase 1 is complete",
+        ],
+        decisions: [
+          "No system changes — all automations nominal",
+          "Quiz curriculum rotation needed: RTUs appeared two days in a row; next quiz should move to a new topic",
+        ],
+      },
+    ],
+  },
+  {
     id: "17",
     date: "April 14, 2026",
     title: "Quiet Tuesday — First Day of Shortened AI Brief",
