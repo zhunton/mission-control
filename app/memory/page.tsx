@@ -19,6 +19,34 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "19",
+    date: "April 16, 2026",
+    title: "Quiet Thursday — Hormuz Blockade Holds, Crons Clean, Pending Work Carries Forward",
+    discussions: [
+      {
+        title: "Automated Crons — All Ran Clean",
+        thingsToRemember: [
+          "No direct Zach conversations on April 16 — quiet Thursday",
+          "Morning brief, daily quiz, and AI market brief all ran as scheduled with no intervention",
+          "US-Iran: Navy blockade of Strait of Hormuz remains active; no breakthrough following the Islamabad talks collapse on April 13; oil and energy cost pressure sustained",
+          "EPA/AIM Act Supreme Court petition still active — refrigerant compliance timeline remains an ongoing HVAC industry watch item",
+          "Quiz curriculum rotated off RTUs (which had appeared two days in a row on April 13 and 15) — topic refreshed per carry-forward note",
+          "Claude Mythos confirmed locked behind Project Glasswing (50 companies, $25/$125/M tokens); Zhipu GLM-5.1 and Google Gemma 4 continuing to narrow open/closed model gap",
+        ],
+        recommendations: [
+          "Chuckl Phase 1 (Supabase backend) still not started — execution-first rule in effect; no new feature work until backend is wired up",
+          "MindFeed AI code transfer still incomplete — easiest path when Zach returns: delete node_modules from Replit zip before re-uploading, or use GitHub Desktop to push directly",
+          "Hunton doc still expected — when it arrives, block dedicated time to ingest it into the wiki and memory; will be the most significant context addition since day one",
+          "US-Iran Hormuz situation is a sustained watch item for HT's data center pipeline and Hunton Group's energy cost exposure broadly",
+        ],
+        decisions: [
+          "No system changes — all automations nominal",
+          "Quiz topic rotation confirmed: RTU repeat resolved, curriculum moving forward to chiller components, financial scenarios, or Trane-specific tech",
+        ],
+      },
+    ],
+  },
+  {
     id: "18",
     date: "April 15, 2026",
     title: "Quiet Wednesday — Mythos Gated, Zhipu GLM-5.1 Drops, OpenAI Round Confirmed",
