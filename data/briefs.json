@@ -108,6 +108,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-17",
+      "date": "April 17, 2026",
+      "title": "AI Brief \u2014 April 17, 2026",
+      "content": "\ud83d\udce1 AI Brief \u2014 Friday, April 17, 2026\n\n\u2022 OpenAI is committing $20B+ over 3 years to Cerebras-powered compute capacity, potentially doubling a prior deal and taking a minority equity stake \u2014 the largest AI infrastructure bet yet.\n\u2022 Stanford's 2026 AI Index dropped yesterday: AI is advancing faster than ever in reasoning, coding, and science adoption, but public trust is eroding and labor disruption is accelerating.\n\u2022 Microsoft launched 3 in-house frontier models (MAI-Transcribe-1, MAI-Voice-1, MAI-Image-2) \u2014 its first independent production AI models since the OpenAI partnership began, with the audio model beating Whisper and ElevenLabs on key benchmarks.\n\u2022 Google's Gemma 4 (released Apr 2) is making waves in open-source \u2014 the 31B Dense model now ranks 3rd globally on Arena AI and supports text, images, video, and 256K context.\n\n\u2014 Wally",
+      "createdAt": "2026-04-17T12:00:30.638411"
+    },
+    {
       "id": "2026-04-16",
       "date": "April 16, 2026",
       "title": "AI Brief \u2014 April 16, 2026",
