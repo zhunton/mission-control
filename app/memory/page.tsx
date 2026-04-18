@@ -19,6 +19,40 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "20",
+    date: "April 17, 2026",
+    title: "Quiet Friday — Iran Deal Close, OpenAI Goes All-In on Cerebras, Microsoft Splits from OpenAI",
+    discussions: [
+      {
+        title: "Automated Crons — All Ran Clean",
+        thingsToRemember: [
+          "No direct Zach conversations on April 17 — quiet Friday",
+          "Morning brief, daily quiz, and AI market brief all ran as scheduled with no intervention",
+          "Trump declared US is 'very close' to a nuclear deal with Iran; ceasefire holds; displaced Lebanese civilians returning home — positive signal for Hormuz and energy cost relief for HT",
+          "Unsealed California court records allege Amazon pressured third-party sellers to inflate prices on Walmart/Target to make Amazon appear cheaper — major antitrust development",
+          "OpenAI committing $20B+ over 3 years to Cerebras compute capacity; taking minority equity stake — largest single AI infrastructure bet yet",
+          "Microsoft launched MAI-Transcribe-1, MAI-Voice-1, MAI-Image-2 — first independent production AI models since OpenAI partnership began; audio model beats Whisper and ElevenLabs on benchmarks",
+          "Stanford 2026 AI Index released: AI advancing faster than ever in reasoning/coding/science; public trust eroding; labor disruption accelerating",
+          "Google Gemma 4 (31B Dense) now ranks 3rd globally on Arena AI with text/image/video/256K context support",
+          "Quiz topic: Cooling towers — chiller removes building heat, cooling tower rejects it to atmosphere via evaporation; Legionella risk makes water treatment a real recurring service line",
+          "Burdened labor cost exercise: $32/hr base + taxes/benefits → ~$42.88/hr fully loaded over 2,080 hours",
+          "Service agreement value framing: 200 agreements × $3,200 + 2.5× pull-through multiplier — total value dwarfs the contract line alone",
+        ],
+        recommendations: [
+          "Microsoft's three independent frontier models are a real signal: OpenAI partnership dependency is being deliberately reduced; watch how this reshapes enterprise AI pricing and tooling options",
+          "If Iran nuclear deal closes, energy cost pressure on HT's data center pipeline eases materially — monitor for announcement",
+          "Chuckl Phase 1 (Supabase backend) still not started — execution-first rule in effect; no new app work until backend is live",
+          "MindFeed AI code transfer still incomplete — next step: delete node_modules before re-zipping, or use GitHub Desktop to push directly from Replit",
+          "Hunton doc still outstanding — when it arrives, dedicate a session to ingesting into the wiki and memory files; it will be the most significant context addition yet",
+        ],
+        decisions: [
+          "No system changes — all automations nominal",
+          "Quiz curriculum continued rotation: cooling towers covered April 17; next session should move to refrigeration cycle components, Trane-specific tech, or financial scenarios",
+        ],
+      },
+    ],
+  },
+  {
     id: "19",
     date: "April 16, 2026",
     title: "Quiet Thursday — Hormuz Blockade Holds, Crons Clean, Pending Work Carries Forward",
