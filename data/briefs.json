@@ -115,6 +115,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-18",
+      "date": "April 18, 2026",
+      "title": "AI Brief \u2014 April 18, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Saturday, April 18, 2026\n\n\u2022 Stanford HAI released its 2026 AI Index this week, showing AI progress accelerating across reasoning and coding benchmarks while public trust is eroding and labor disruption is intensifying globally.\n\u2022 Anthropic's Claude Opus 4.6 hit #1 on LMSYS Chatbot Arena, beating GPT-5.4 and Gemini 3.1 Pro, with a record 65.3% on SWE-bench Verified thanks to a new hybrid MoE architecture.\n\u2022 OpenAI closed a $122B funding round at an $852B valuation \u2014 the largest private tech fundraise ever, with Oracle layoffs (~25K) partially attributed to AI-driven restructuring happening in parallel.\n\u2022 Yann LeCun's new startup AMI raised $1.03B to pursue world-model AI after leaving Meta in late 2025, signaling a credible challenger to the transformer-dominated paradigm.\n\n\u2014 Wally",
+      "createdAt": "2026-04-18T12:00:44.298006"
+    },
+    {
       "id": "2026-04-17",
       "date": "April 17, 2026",
       "title": "AI Brief \u2014 April 17, 2026",
