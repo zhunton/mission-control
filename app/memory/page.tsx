@@ -19,6 +19,41 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "21",
+    date: "April 18, 2026",
+    title: "Quiet Saturday — Hormuz Opens, Tariff Pressure on HVAC, Claude Opus 4.6 Tops the Arena",
+    discussions: [
+      {
+        title: "Automated Crons — All Ran Clean",
+        thingsToRemember: [
+          "No direct Zach conversations on April 18 — quiet Saturday",
+          "Morning brief, daily quiz, and AI market brief all ran as scheduled with no intervention",
+          "Iran declared the Strait of Hormuz open; Trump voiced confidence a nuclear deal is close — biggest developing story of the weekend; positive signal for HT energy cost relief",
+          "Tariffs on steel, aluminum, and copper squeezing HVAC project budgets industry-wide; data centers, hospitals, and labs hit hardest due to heavy copper use; early procurement and regional sourcing are the key plays right now",
+          "Claude Opus 4.6 hit #1 on LMSYS Chatbot Arena, beating GPT-5.4 and Gemini 3.1 Pro; SWE-bench 65.3%; hybrid transformer + sparse MoE architecture",
+          "OpenAI $122B round closed at $852B valuation — largest private tech fundraise ever; Oracle ~25K layoffs partially attributed to AI-driven restructuring",
+          "Yann LeCun's AMI startup raised $1.03B to pursue world-model AI after leaving Meta in late 2025 — credible non-transformer paradigm challenger to watch",
+          "Stanford HAI 2026 AI Index: AI advancing faster than ever in reasoning/coding/science; public trust eroding; labor disruption intensifying globally",
+          "Quiz topic: Air Handling Units (AHUs) — chiller makes chilled water, AHU distributes it as conditioned air via ductwork; multiple wear points (coils, filters, belts, motors) on predictable failure schedules → strong maintenance agreement revenue line",
+          "EBITDA calc: Revenue $4.2M, COGS $2.52M, SG&A $840K, D&A $180K → EBITDA $1,020,000 / 24.3% margin; interest excluded from EBITDA by design (shows pure operational earning power)",
+          "WIP percent-completion: $500K contract, $180K of $360K estimated costs incurred → 50% complete → recognize $250K revenue; WIP mismanagement is how branches overstate/understate financial position mid-project",
+        ],
+        recommendations: [
+          "Hormuz being declared open is a major signal — if the Iran deal holds, energy cost pressure on HT's data center pipeline eases materially entering Q2; monitor for deal announcement",
+          "Tariff exposure on copper/aluminum is real for Hunton project bids — flag for early procurement conversations with procurement and project management teams",
+          "Claude Opus 4.6 at #1 with 65.3% SWE-bench means Patch's core capabilities are materially stronger than 90 days ago — this is a good signal for future Mission Control dev complexity",
+          "Chuckl Phase 1 (Supabase backend) still not started — execution-first rule in effect; no new feature work until backend is wired up",
+          "MindFeed AI code transfer still incomplete — easiest path: delete node_modules from Replit zip before re-uploading, or push directly via GitHub Desktop",
+          "Hunton doc still outstanding — when it arrives, block dedicated time to ingest into wiki and memory files",
+        ],
+        decisions: [
+          "No system changes — all automations nominal",
+          "Quiz curriculum continues: AHU distribution concept covered April 18; rotate to refrigeration cycle components, Trane-specific tech, or financial scenarios next",
+        ],
+      },
+    ],
+  },
+  {
     id: "20",
     date: "April 17, 2026",
     title: "Quiet Friday — Iran Deal Close, OpenAI Goes All-In on Cerebras, Microsoft Splits from OpenAI",
