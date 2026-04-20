@@ -19,6 +19,40 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "22",
+    date: "April 19, 2026",
+    title: "Quiet Sunday — Iran Closes Hormuz & Fires on Ships, Claude Opus 4.7 Drops, OpenAI Kills Sora",
+    discussions: [
+      {
+        title: "Automated Crons — All Ran Clean",
+        thingsToRemember: [
+          "No direct Zach conversations on April 19 — quiet Sunday",
+          "Morning brief, daily quiz, and AI market brief all ran as scheduled with no intervention",
+          "Iran fully closed the Strait of Hormuz in response to the US naval blockade and fired on ships as a ceasefire deadline loomed — a major escalation rattling global energy markets; direct HT data center pipeline exposure on energy costs",
+          "HVAC industry: tariffs on steel, aluminum, and copper continuing to squeeze project budgets across the board; residential markets flagged as the weakest segment; data centers remain the primary demand and bright spot",
+          "Anthropic dropped Claude Opus 4.7 — stronger coding, higher-res image support, new cyber safeguards; same price point as 4.6",
+          "OpenAI lost three senior execs and quietly killed Sora — signaling a hard pivot to enterprise ChatGPT and API revenue focus",
+          "GPT-Rosalind launched: new OpenAI specialized model for life sciences, drug discovery, and biological research workflows",
+          "Anthropic revenue surge reportedly fueling talk of a trillion-dollar valuation — puts it firmly in OpenAI territory; competitive pressure intensifying",
+          "Quiz lesson: Cooling towers — closes the heat rejection loop on a chiller system; chiller absorbs building heat into condenser water, tower rejects it to atmosphere via evaporation over fill media; mandatory maintenance: water treatment (Legionella + scale buildup), fill media cleaning, fan/motor inspections",
+          "Quiz topics: cooling tower function, working capital + DSO (cash cycle awareness for Hunton branches), pull-through revenue mechanics",
+        ],
+        recommendations: [
+          "Iran firing on ships and fully closing Hormuz is a major escalation from Saturday's 'open' declaration — if sustained, energy cost pressure on HT's data center pipeline intensifies sharply; monitor for deal or further escalation early week",
+          "Claude Opus 4.7 is live — same price, materially stronger; worth checking if OpenClaw and Patch are configured to use the latest model version",
+          "OpenAI killing Sora signals resource constraints even at $852B valuation — reinforces Anthropic's momentum and competitive position",
+          "Chuckl Phase 1 (Supabase backend) still not started — execution-first rule in effect; no new feature development until backend is wired",
+          "MindFeed AI code transfer still incomplete — easiest path: delete node_modules before re-zipping Replit export, or push directly via GitHub Desktop",
+          "Hunton doc still outstanding — when it arrives, block dedicated time to ingest into wiki and memory files",
+        ],
+        decisions: [
+          "No system changes — all automations nominal",
+          "Quiz curriculum: cooling tower heat rejection covered April 19; next rotation should cover refrigeration cycle components, compressor types, or financial scenarios (variance analysis, full P&L)",
+        ],
+      },
+    ],
+  },
+  {
     id: "21",
     date: "April 18, 2026",
     title: "Quiet Saturday — Hormuz Opens, Tariff Pressure on HVAC, Claude Opus 4.6 Tops the Arena",
