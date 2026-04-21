@@ -19,6 +19,39 @@ interface MemoryEntry {
 
 const ENTRIES: MemoryEntry[] = [
   {
+    id: "23",
+    date: "April 20, 2026",
+    title: "Quiet Monday — AHU Ventilation, Project Margins & WIP Risk",
+    discussions: [
+      {
+        title: "Automated Crons — All Ran Clean",
+        thingsToRemember: [
+          "No direct Zach conversations on April 20 — quiet Monday",
+          "Morning brief, daily quiz, and AI market brief all ran as scheduled with no intervention",
+          "Iran/Hormuz: escalation from April 19 (full closure + ships fired on) continued in background — no ceasefire or deal announced; sustained energy cost pressure on HT data center pipeline",
+          "Quiz lesson: Air Handling Units (AHUs) — the workhorse box that moves and conditions air; pulls return + fresh outside air, runs through filters and coils, distributes via ductwork; large buildings have dozens of AHUs serving different zones; prime Hunton service territory (coils foul, filters clog, belts wear, controls drift)",
+          "Q1 (HVAC): Stuffy/stale air despite correct temps → outside air (OA) damper stuck closed or undersized; ventilation problem, not a cooling problem; ASHRAE 62.1 sets minimum ventilation rates for occupied spaces; OA damper is the first diagnostic to check on air quality complaints",
+          "Q2 (Financial): $500K contract — $100K direct labor + 30% burden ($30K) + $160K materials/subs = $290K direct costs → Gross Profit $210K → GM% = 42.0%; minus $45K branch overhead → Operating Income $165K → Operating Margin = 33.0%",
+          "Q3 (Hunton Operations/WIP): Of 14 open WIP jobs — 5 stale jobs (no status updates 30+ days) are the biggest cash flow and risk signal; aged WIP hides real losses, inflates backlog without delivering cash, and blows up on the P&L at job close; ahead-of-billing is normal; Answer: B",
+          "Chuckl Phase 1 (Supabase backend) and MindFeed AI code transfer both remain pending",
+        ],
+        recommendations: [
+          "Iran/Hormuz escalation from April 19 remains unresolved — if sustained through the week, energy cost pressure on HT's data center pipeline intensifies materially; watch for deal or further escalation signal",
+          "AHU OA damper lesson is directly applicable on Hunton job sites — when a tenant complains about stale/stuffy air with correct temps, the OA damper is the first thing to check; ASHRAE 62.1 is the reference standard",
+          "WIP stale jobs are the silent killer in branch management — the key pattern to watch in any HS branch P&L review: aged open WIP with no updates means something went wrong and losses are hiding",
+          "Two-cut margin habit: always read GM% (before overhead) AND operating margin (after overhead) together in job cost and P&L reviews — they tell different stories",
+          "Chuckl Phase 1 (Supabase backend) still not started — execution-first rule in effect; no new feature work until backend is wired",
+          "MindFeed AI code transfer still incomplete — easiest path: delete node_modules before re-zipping Replit export, or push directly via GitHub Desktop",
+          "Hunton doc still outstanding — when it arrives, block dedicated time to ingest into wiki and memory files",
+        ],
+        decisions: [
+          "No system changes — all automations nominal",
+          "Quiz curriculum: AHU ventilation + project margin + WIP risk covered April 20; next rotation should move to refrigerant cycle components, compressor types, or variance analysis",
+        ],
+      },
+    ],
+  },
+  {
     id: "22",
     date: "April 19, 2026",
     title: "Quiet Sunday — Iran Closes Hormuz & Fires on Ships, Claude Opus 4.7 Drops, OpenAI Kills Sora",
