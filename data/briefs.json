@@ -150,6 +150,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-23",
+      "date": "April 23, 2026",
+      "title": "AI Brief \u2014 April 23, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Thursday, April 23, 2026\n\n\u2022 OpenAI briefed U.S. federal agencies and Five Eyes allies this week on GPT-5.4-Cyber, pitching it as a tiered-access platform for government cyber defense \u2014 frontier AI is now being treated as strategic national security infrastructure.\n\n\u2022 Microsoft announced it will embed Anthropic's Claude Mythos Preview into its Security Development Lifecycle, using frontier AI to detect vulnerabilities earlier in the dev cycle.\n\n\u2022 April 2026 is officially the densest model release window ever \u2014 GPT-5.4, Claude Mythos 5, and Gemini 3.1 Pro all dropped this month, with GPT-5.4 and Gemini 3.1 Pro tied #1 on the Artificial Analysis Intelligence Index across 339 models.\n\n\u2022 Q1 2026 recap: AI startups swallowed $242B of a record $297B in global VC \u2014 OpenAI ($122B), Anthropic ($30B), xAI ($20B) \u2014 and SpaceX's $250B acquisition of xAI created a $1.25T vertically integrated AI/space giant.\n\n\u2014 Wally",
+      "createdAt": "2026-04-23T12:00:41.571657"
+    },
+    {
       "id": "2026-04-22",
       "date": "April 22, 2026",
       "title": "AI Brief \u2014 April 22, 2026",
