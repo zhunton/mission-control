@@ -381,6 +381,42 @@
         "EBITDA vs EBIT distinction \u2014 interest expense must be added back"
       ],
       "note": "67% \u2014 first multiple choice quiz format. Q1 and Q3 strong. Q2 missed EBITDA vs EBIT distinction by one step. New format working well \u2014 faster to answer."
+    },
+    {
+      "id": "2026-04-23",
+      "date": "April 23, 2026",
+      "score": 1,
+      "total": 1,
+      "percentage": 100,
+      "categories": {
+        "hvac": {
+          "score": 1,
+          "total": 1
+        },
+        "financial": {
+          "score": 0,
+          "total": 0
+        },
+        "hunton": {
+          "score": 0,
+          "total": 0
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "category": "hvac",
+          "question": "25,000 sq ft flat-roof office building \u2014 which system does Hunton recommend?",
+          "userAnswer": "B \u2014 Rooftop packaged unit (RTU)",
+          "correct": true,
+          "feedback": "Correct. RTUs are the dominant choice for mid-size commercial flat-roof buildings. Self-contained, roof-mounted, right-sized. Chillers are for much larger buildings (100K+ sq ft). Core Hunton Services work."
+        }
+      ],
+      "strengths": [
+        "Commercial HVAC system selection \u2014 RTU vs chiller scale distinction"
+      ],
+      "weaknesses": [],
+      "note": "100% \u2014 1 question format working well. Clean answer, no hesitation. RTU knowledge is solid."
     }
   ]
 }
