@@ -157,6 +157,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-24",
+      "date": "April 24, 2026",
+      "title": "AI Brief \u2014 April 24, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Friday, April 24\n\n\u2022 OpenAI dropped GPT-5.5, their most capable model yet \u2014 built for agentic workflows, outperforming Claude Opus 4.7 and Gemini 3.1 Pro on most benchmarks, now live for Plus/Pro/Enterprise users.\n\u2022 DeepSeek unveiled V4 (1.6T params, 1M token context) \u2014 near-frontier performance at drastically lower cost, continuing to pressure Western labs on compute efficiency.\n\u2022 Cohere is acquiring Germany's Aleph Alpha in a $20B deal, a major consolidation play targeting European government and enterprise AI sovereignty.\n\u2022 Meta and Microsoft are both cutting headcount to fund AI capex; Tesla is tripling its AI/robotics spend to $25B \u2014 the arms race is accelerating at the expense of headcount everywhere.\n\n\u2014 Wally",
+      "createdAt": "2026-04-24T12:00:24.885611"
+    },
+    {
       "id": "2026-04-23",
       "date": "April 23, 2026",
       "title": "AI Brief \u2014 April 23, 2026",
