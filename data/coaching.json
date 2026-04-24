@@ -417,6 +417,42 @@
       ],
       "weaknesses": [],
       "note": "100% \u2014 1 question format working well. Clean answer, no hesitation. RTU knowledge is solid."
+    },
+    {
+      "id": "2026-04-24",
+      "date": "April 24, 2026",
+      "score": 1,
+      "total": 1,
+      "percentage": 100,
+      "categories": {
+        "hvac": {
+          "score": 0,
+          "total": 0
+        },
+        "financial": {
+          "score": 1,
+          "total": 1
+        },
+        "hunton": {
+          "score": 0,
+          "total": 0
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "category": "financial",
+          "question": "$12K PM contract, $4,800 variable costs, rival bids $10,500. What is contribution margin at matched price and should Hunton take it?",
+          "userAnswer": "A \u2014 Contribution margin $5,700, take it",
+          "correct": true,
+          "feedback": "Correct. CM = $10,500 - $4,800 = $5,700. Positive CM means job covers variable costs and contributes $5,700 to fixed overhead. Fixed overhead is paid regardless \u2014 walking away doesn't save it, just loses the contribution."
+        }
+      ],
+      "strengths": [
+        "Contribution margin vs fixed cost logic"
+      ],
+      "weaknesses": [],
+      "note": "100% \u2014 strong financial instinct. Correctly identified that positive contribution margin = take the job regardless of fixed overhead allocation."
     }
   ]
 }
