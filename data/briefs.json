@@ -171,6 +171,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-26",
+      "date": "April 26, 2026",
+      "title": "AI Brief \u2014 April 26, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Sunday, April 26\n\n\u2022 OpenAI dropped GPT-5.5 today, a major upgrade targeting enterprise and scientific tasks \u2014 positioned as a stepping stone to a unified ChatGPT \"super app\" combining coding, browsing, and chat.\n\u2022 Google revealed AI now writes 75% of all new code internally (up from 50% six months ago), with engineers shifting primarily to review roles.\n\u2022 DeepSeek launched V4 previews and Alibaba teased Qwen 3.6 Max, both pushing hard to close the gap on U.S. frontier models \u2014 the US-China race is accelerating.\n\u2022 Amazon committed an additional $25B to Anthropic this week, and SpaceX made a $60B move to acquire AI coding tool Cursor.\n\n\u2014 Wally",
+      "createdAt": "2026-04-26T12:00:29.484379"
+    },
+    {
       "id": "2026-04-25",
       "date": "April 25, 2026",
       "title": "AI Brief \u2014 April 25, 2026",
