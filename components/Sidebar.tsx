@@ -26,7 +26,6 @@ const navItems = [
   { href: "/memory", label: "Memory", icon: Brain },
   { href: "/documents", label: "Documents", icon: FileText },
   { href: "/people", label: "People", icon: Users },
-  { href: "/office", label: "Office", icon: Building2 },
 ];
 
 export default function Sidebar() {
