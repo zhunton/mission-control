@@ -178,6 +178,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-27",
+      "date": "April 27, 2026",
+      "title": "AI Brief \u2014 April 27, 2026",
+      "content": "\ud83d\udce1 AI Brief \u2014 Monday, April 27\n\n\u2022 Google has committed $40B to Anthropic, cementing it as the biggest single AI infrastructure bet in history and signaling compute capacity is now the primary competitive moat.\n\u2022 OpenAI dropped GPT-5.5, featuring improved agentic reasoning and tool use with better performance across coding and knowledge tasks without sacrificing latency.\n\u2022 China ordered Meta to unwind its $2B+ acquisition of AI startup Manus, turning cross-border AI M&A into an explicit geopolitical battleground.\n\u2022 The Musk vs. Altman jury trial kicks off this week, putting OpenAI's for-profit pivot and governance under public scrutiny with potential ripple effects across frontier AI funding.\n\n\u2014 Wally",
+      "createdAt": "2026-04-27T12:00:26.256858"
+    },
+    {
       "id": "2026-04-26",
       "date": "April 26, 2026",
       "title": "AI Brief \u2014 April 26, 2026",
