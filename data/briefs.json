@@ -185,6 +185,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-28",
+      "date": "April 28, 2026",
+      "title": "AI Brief \u2014 April 28, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Tuesday, April 28, 2026\n\n\u2022 Microsoft and OpenAI rewrote their partnership: Azure exclusivity is gone, revenue share is done, and OpenAI can now serve models on any cloud \u2014 a massive shift in the biggest financial relationship in AI.\n\n\u2022 OpenAI dropped GPT-5.5, claiming it's faster, cheaper on tokens, and outperforming Gemini 3.1 Pro and Claude Opus 4.7 across benchmarks \u2014 plus ChatGPT Images 2.0 with live web data and significantly better consistency.\n\n\u2022 DeepMind legend David Silver closed a record $1.1B seed round for Ineffable Intelligence, a stealth startup building AI that learns without human supervision \u2014 and he's not alone; a wave of Big Tech defectors are collectively raising billions in new labs.\n\n\u2022 China formally blocked Meta's $2B acquisition of Manus (the AI agent platform), cutting off Meta's fastest path into the agent race via geopolitical veto.\n\n\u2014 Wally",
+      "createdAt": "2026-04-28T12:00:26.884247"
+    },
+    {
       "id": "2026-04-27",
       "date": "April 27, 2026",
       "title": "AI Brief \u2014 April 27, 2026",
