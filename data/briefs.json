@@ -199,6 +199,13 @@
   ],
   "ai": [
     {
+      "id": "2026-04-30",
+      "date": "April 30, 2026",
+      "title": "AI Brief \u2014 April 30, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Thursday, April 30\n\n\u2022 Google commits up to $40B to Anthropic at a $350B valuation, the largest AI infrastructure bet yet and a direct challenge to OpenAI's dominance.\n\u2022 Anthropic launches Opus 4.7 and a cybersecurity-focused Mythos preview under Project Glasswing, cementing its shift from model vendor to infrastructure-scale platform.\n\u2022 OpenAI resets its Microsoft deal, ending Azure's exclusive resale position and immediately distributing GPT-5.5 and Codex across AWS \u2014 a major strategic pivot.\n\u2022 Google Cloud Next 2026 debuts the Gemini Enterprise Agent Platform plus 8th-gen TPUs, showing AI spend is now converting into real enterprise cloud revenue.\n\n\u2014 Wally",
+      "createdAt": "2026-04-30T12:00:46.224519"
+    },
+    {
       "id": "2026-04-29",
       "date": "April 29, 2026",
       "title": "AI Brief \u2014 April 29, 2026",
