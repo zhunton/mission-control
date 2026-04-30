@@ -432,6 +432,101 @@ Add a \`profile_tag\` column to the users table (text, nullable) — stores the 
 *Last updated: April 10, 2026 by Wally*`,
   },
   {
+    id: "chuckl-overview",
+    title: "Chuckl — Product Overview",
+    type: "Product",
+    agent: "Wally",
+    date: "Apr 30, 2026",
+    content: `# Chuckl
+## The Personal Reaction Arsenal
+
+---
+
+## The Idea
+
+When you are scrolling through social media or a group chat, someone drops the perfect GIF as a reply — and it makes you burst out laughing. You think: where do they keep these? How do they find the exact right one so fast?
+
+Most people hoard reaction GIFs and images scattered across camera rolls, saved Reddit posts, random Telegram albums, and browser bookmarks. There is no clean home for them. Finding the right reaction in the moment takes too long, so people either skip it or settle for whatever GIPHY spits out first.
+
+Chuckl solves that. It is a personal reaction library — browse a curated collection of high-quality GIFs and images, stash your favorites, and copy them instantly whenever you need them.
+
+---
+
+## The Problem We Are Solving
+
+GIPHY has 500 million GIFs. That sounds like a feature but it is actually the problem. Searching GIPHY for the right reaction means scrolling through hundreds of irrelevant, low-quality results. Most of them you would never use. The good ones are buried.
+
+There is also no way to save your favorites in a way that is actually useful. GIPHY favorites are a flat, unsearchable list. Nobody organizes their reactions on GIPHY — they just search from scratch every time.
+
+**The pain point:** People want to use the perfect reaction in the moment. They cannot find it fast enough. So they either do not send anything, or they send something mediocre.
+
+---
+
+## What Chuckl Does
+
+Chuckl is a curated, organized personal library of your best reactions. Three things:
+
+**Browse** — A clean library of high-quality GIFs and images, organized by emotion and mood. Laughing, Shocked, Eye Roll, WTF, Savage, Awkward — categories that match how people actually think about reactions. Everything in the library is hand-curated. No auto-generated garbage.
+
+**Stash** — Save your favorites to your personal stash. Your stash is yours — organized, searchable, always accessible. No more digging through your camera roll looking for that one meme you saved six months ago.
+
+**Copy and deploy** — Tap copy on any reaction and it is ready to paste into any chat, comment, or DM. Immediate. No friction.
+
+---
+
+## Why It Is Different
+
+GIPHY is a search engine. Chuckl is a personal collection.
+
+That is the core distinction. GIPHY is designed for volume — every GIF ever made, searchable. Chuckl is designed for quality and speed — the best reactions, organized, instantly accessible.
+
+The other difference is curation. Everything in Chuckl is human-selected and approved. Nothing gets in that is not actually good. Over time, the community surface the best reactions to the top through stashing — the more times something gets stashed, the higher it ranks. It is social proof without a social network.
+
+---
+
+## The Business Model
+
+Simple freemium:
+
+**Free** — Browse the full library, stash up to 30 reactions.
+
+**Premium ($2.99/month)** — Unlimited stash. The free limit is designed to hit right when users are most engaged — 30 reactions in, you have found things you actually love and the upgrade feels natural.
+
+---
+
+## The Community System
+
+Users can submit their own reactions. Content goes live immediately — no approval bottleneck. But the community has a quality filter built in: **stash count**. The more times something gets stashed, the higher it rises. Low-quality content never gets stashed and sinks to the bottom naturally.
+
+**Vault Keepers** — a small group of trusted curators (invited by the team) who can elevate any reaction to Featured status. Featured reactions get a gold badge and priority placement. This is how the best content gets the spotlight without a moderation queue.
+
+**Profile tags** earned through use:
+- **OG** — joined in the first 30 days of launch. Never available again.
+- **Hoarder** — stashed 500+ reactions
+- **Plug** — uploaded 20+ reactions that are still live after 30 days
+- **Vault Keeper** — trusted curator, manually assigned
+
+---
+
+## Where It Stands
+
+A working web prototype is live at chuckl.vercel.app.
+
+The backend database is built. The content library is being curated now — targeting 200 high-quality reactions across all categories before launch.
+
+The next step is building the iOS app in React Native, followed by App Store submission.
+
+---
+
+## Why Now
+
+The reaction GIF space has not had a real quality-first challenger. GIPHY is dominant by volume but nobody loves it. People who use reactions heavily — and there are tens of millions of them — want something better. A curated, fast, personal library is the obvious product. Nobody has built it right yet.
+
+---
+
+*Prepared by Wally | April 30, 2026*`,
+  },
+  {
     id: "hunton-genealogy",
     title: "Hunton Family — Compendium of American Genealogy",
     type: "Research",
