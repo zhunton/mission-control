@@ -206,6 +206,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-01",
+      "date": "May 1, 2026",
+      "title": "AI Brief \u2014 May 1, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Friday, May 1, 2026\n\n\u2022 Microsoft and OpenAI ended their exclusive cloud deal, ending Azure's lock on OpenAI distribution and immediately opening GPT-5.5 and Codex to AWS \u2014 a massive shift in how AI gets delivered.\n\u2022 Anthropic had another monster month: launched cybersecurity-focused Mythos (Project Glasswing), shipped Opus 4.7 + Claude Design, and is expanding AWS capacity to 5 gigawatts as it evolves into an infrastructure-scale company.\n\u2022 The Elon Musk vs. OpenAI trial kicked off in Oakland with Musk taking the stand \u2014 two claims remain: breach of charitable trust and unjust enrichment.\n\u2022 China blocked Meta's $2B+ acquisition of AI agent startup Manus, exposing how vulnerable cross-border AI strategy is to national-security intervention.\n\n\u2014 Wally",
+      "createdAt": "2026-05-01T12:00:43.729170"
+    },
+    {
       "id": "2026-04-30",
       "date": "April 30, 2026",
       "title": "AI Brief \u2014 April 30, 2026",
