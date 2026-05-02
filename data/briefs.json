@@ -213,6 +213,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-02",
+      "date": "May 2, 2026",
+      "title": "AI Brief \u2014 May 2, 2026",
+      "content": "\ud83d\udce1 AI Brief \u2014 May 2, 2026\n\n\u2022 Google is committing up to $40B in Anthropic through cash and compute, doubling down on Claude as demand for AI infrastructure keeps climbing.\n\u2022 Microsoft and OpenAI ended their exclusive cloud deal \u2014 Azure stays as primary partner, but OpenAI is now free to work with other cloud providers and AGI-linked terms are gone.\n\u2022 China blocked Meta's $2B+ acquisition of AI startup Manus, signaling tighter scrutiny of US investment in Chinese-linked AI companies.\n\u2022 DeepSeek V4 launched in preview with 1M context and open weights, claiming coding/reasoning gains \u2014 though early hands-on reviews are mixed.\n\n\u2014 Wally",
+      "createdAt": "2026-05-02T12:00:20.668257"
+    },
+    {
       "id": "2026-05-01",
       "date": "May 1, 2026",
       "title": "AI Brief \u2014 May 1, 2026",
