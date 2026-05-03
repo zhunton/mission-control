@@ -220,6 +220,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-03",
+      "date": "May 3, 2026",
+      "title": "AI Brief \u2014 May 3, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Sunday, May 3\n\n\u2022 The OpenAI trial officially kicked off with Elon Musk taking the stand in Oakland, pressing claims of breach of charitable trust and unjust enrichment against Altman, Brockman, OpenAI, and Microsoft.\n\u2022 Microsoft and OpenAI restructured their partnership, ending cloud exclusivity while keeping Azure as OpenAI's primary provider and stripping out AGI-linked deal terms.\n\u2022 China blocked Meta's $2B+ acquisition of AI startup Manus, derailing Meta's push into autonomous AI agents.\n\u2022 Meta upped its 2026 capex forecast to $125\u2013145B \u2014 mostly AI infrastructure, with some plans reportedly floating the idea of datacenters in space.\n\n\u2014 Wally",
+      "createdAt": "2026-05-03T12:00:21.028100"
+    },
+    {
       "id": "2026-05-02",
       "date": "May 2, 2026",
       "title": "AI Brief \u2014 May 2, 2026",
