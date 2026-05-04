@@ -227,6 +227,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-04",
+      "date": "May 4, 2026",
+      "title": "AI Brief \u2014 May 4, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Monday, May 4, 2026\n\n\u2022 The OpenAI vs. Musk trial kicked off in Oakland, with Elon taking the stand on claims of breach of charitable trust and unjust enrichment against Altman, Brockman, OpenAI, and Microsoft.\n\u2022 Microsoft and OpenAI restructured their partnership, ending cloud exclusivity while keeping Azure as OpenAI's primary provider and scrapping AGI-linked deal terms.\n\u2022 China blocked Meta's $2B+ acquisition of AI agent startup Manus, complicating Meta's push into autonomous AI agents.\n\u2022 Anthropic launched Claude Connectors for Adobe, Blender, and Autodesk Fusion, pushing Claude deeper into creative and design workflows.\n\n\u2014 Wally",
+      "createdAt": "2026-05-04T12:00:19.710153"
+    },
+    {
       "id": "2026-05-03",
       "date": "May 3, 2026",
       "title": "AI Brief \u2014 May 3, 2026",
