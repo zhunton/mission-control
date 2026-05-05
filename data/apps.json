@@ -109,6 +109,41 @@
       "repoUrl": "https://github.com/zhunton (existing repos)",
       "addedDate": "April 21, 2026",
       "lastUpdated": "April 21, 2026"
+    },
+    {
+      "id": "asm-prereview",
+      "name": "ASM Pre-Review",
+      "tagline": "Monthly Business Pre-Review tool for Hunton Services Area Service Managers.",
+      "status": "building",
+      "platform": "Web App (internal tool)",
+      "stage": "Prototype Build",
+      "overview": "An internal Hunton Services web tool that replaces the old model where management walked ASMs through their own data in monthly Business Review Meetings. Now ASMs own the meeting \u2014 they prep beforehand, submit a structured Business Pre-Review, and come in ready to present rather than be presented to. The tool tracks prior month SMART Goal progress and captures new goals for the current month, creating a continuous accountability loop.",
+      "painPoint": "ASMs historically came to Business Review Meetings unprepared \u2014 management would walk them through their own KPIs. The goal is to flip this: ASMs should know their numbers, identify gaps, set SMART goals, and lead the meeting. There was no structured tool to support this preparation process.",
+      "strengths": [
+        "Solves a real internal workflow problem Zach has direct visibility into",
+        "Creates accountability \u2014 goals carry forward month over month, not forgotten after meetings",
+        "KPI Snapshot forces ASMs to actually look at their numbers before the meeting",
+        "Historical record of performance over time \u2014 12 months from now, management can see trends",
+        "Can be embedded in SharePoint/Teams for easy access \u2014 no separate login required",
+        "Dynamic form design \u2014 no dead space, adds gaps and root causes as needed",
+        "Greenfield opportunity \u2014 nothing like this exists at Hunton Group today"
+      ],
+      "challenges": [
+        "KPI data is manual entry (pulled from Power BI by the ASM) \u2014 no live integration",
+        "No user authentication in v1 \u2014 anyone can edit any submission",
+        "Needs to be hosted outside company domain (Vercel) \u2014 IT approval may be needed for SharePoint embedding",
+        "Motivating ASM adoption \u2014 new tools require behavioral change",
+        "Hunton Group GitHub/Vercel/Supabase accounts need to be created before deployment"
+      ],
+      "monetization": "Internal tool \u2014 not for sale. Value is operational: better-prepared ASMs, better meetings, clearer accountability, stronger team performance. Long-term could expand to other Hunton Group companies (HT, HD, CVZ).",
+      "timeline": "Prototype: this week (Patch building now)\nReview + feedback: after prototype\nHunton Group accounts setup: Zach to set up GitHub, Vercel, Supabase under Hunton Group\nDeployment: after account setup\nSharePoint/Teams embedding: after deployment",
+      "techStack": "Next.js 15 (App Router, TypeScript), Tailwind CSS, Supabase (separate project from Chuckl \u2014 Hunton business data isolated), Vercel hosting, embedded in SharePoint via website web part or Teams tab",
+      "gamePlan": "## Tool Structure\n\n### Two Tabs\n1. **Pre-Review** \u2014 New submission flow\n2. **History** \u2014 View all past submissions by team\n\n---\n\n### Pre-Review Tab\n\n**Landing state:** Centered card with \"+ New Submission\" button.\n\n**Submission Flow:**\n\n**Step 1 \u2014 Select Team & Month**\n- Team dropdown: C1, C2, C3, C4, LCU, CT, A1, I2, I3, PLB, BOI\n- Month/year picker\n\n**Step 2 \u2014 Two-Part Form**\n\n#### Part A: Prior Month SMART Goal Review\nAuto-populated from last month's submission (grayed out, read-only). ASM reviews each goal:\n- Status: Not Started | In Progress | Complete\n- Notes with contextual prompts based on status\n\n#### Part B: KPI Snapshot + Current Month Gaps\n\n**KPI Snapshot Table (manual entry, right panel)**\n\n| KPI | Unit | Goal | Actual | Variance |\n|-----|------|------|--------|----------|\n| Deviation to Plan | $ | input | input | auto-calc \u2191\u2193 |\n| Tech Utilization | % | input | input | auto-calc \u2191\u2193 |\n| Contract Revenue | $ | input | input | auto-calc \u2191\u2193 |\n| Contract Compliance | % | input | input | auto-calc \u2191\u2193 |\n| Pay Velocity | days | input | input | auto-calc \u2191\u2193 (lower is better) |\n| Supervisor Utilization | % | input | input | auto-calc \u2191\u2193 |\n| Deviation to Forecast | $ | input | input | auto-calc \u2191\u2193 |\n\nVariance: Positive = green arrow \u2191, Negative = red arrow \u2193\n\n**Performance Gaps (dynamic)**\nStart with one gap. \"+ Add Another Gap\" button.\n\nEach gap:\n1. Gap type (required): Deviation to Plan | Tech Utilization | Contract Revenue | Contract Compliance | Pay Velocity | Supervisor Utilization | Deviation to Forecast\n2. Root cause(s) (required, at least one): People | Manpower | Method | Measurement | Material | Environment \u2014 \"+ Add Root Cause\" button\n3. SMART Goal (all required):\n   - S \u2014 Specific: \"Exactly what needs to be done\"\n   - M \u2014 Measurable: \"How will success be tracked\"\n   - A \u2014 Actionable & Reasonable: checkbox (must be checked)\n   - T \u2014 Target Date: date picker\n   - Owner: ASM | RC/RCA | FS | Tech\n\n**Submission Footer**\n- ASM Name (required text field \u2014 gives ownership)\n- Motivational quote: *\"Preparation turns meetings into decisions, and decisions into results.\"*\n- Submit button\n\n---\n\n### History Tab\n\n**Team cards grid** \u2014 one card per team with HVAC equipment background images matching team type:\n- C1/C2 \u2192 chiller/mechanical\n- C3/C4 \u2192 rooftop units\n- CT \u2192 cooling tower\n- BOI \u2192 boiler room\n- etc.\n\nEach card shows: Team name, submission count, latest submission date\n\n**Team History Page** (clicking a card):\n- Filter by month\n- List of submissions: Month | ASM Name | Gaps count | View | Edit\n- View = read-only, Edit = editable form\n\n---\n\n## Validation\n- All gap fields required when a gap is added\n- ASM Name required\n- Actionable checkbox must be checked\n- Inline validation errors on submit attempt\n\n---\n\n## Deployment Plan\n1. Prototype review with Zach\n2. Set up Hunton Group GitHub, Vercel, Supabase accounts\n3. Deploy to Vercel under Hunton Group account\n4. Embed URL in SharePoint page \u2192 add as tab in Business Review Teams channel\n5. ASMs access via Teams \u2014 no separate login needed\n\n---\n\n## Future Enhancements (post-launch)\n- Role-based access (ASM vs management vs read-only)\n- Live KPI integration with Power BI\n- Email reminders to ASMs who haven't submitted before the meeting\n- Trend visualization on History page (is a team's utilization gap improving month over month?)\n- Expand to other Hunton Group companies (HT, HD, CVZ)",
+      "notes": "Logos saved:\n- /workspace/assets/hunton-logo.png\n- /workspace/assets/hunton-services-logo-white.png\n\nReplit prototype exists as visual reference \u2014 Patch building fresh version.\n\nKey design decisions:\n- Deviation to Plan is $ not %\n- Pay Velocity: lower days = better (variance logic is inverted vs other KPIs)\n- Green \u2191 = positive variance, Red \u2193 = negative variance\n- No user auth in v1 \u2014 anyone can edit any submission\n- Must be embeddable in SharePoint/Teams",
+      "prototypeUrl": "",
+      "repoUrl": "",
+      "addedDate": "May 5, 2026",
+      "lastUpdated": "May 5, 2026"
     }
   ]
 }
