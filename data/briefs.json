@@ -234,6 +234,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-05",
+      "date": "May 5, 2026",
+      "title": "AI Brief \u2014 May 5, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Tuesday, May 5, 2026\n\n\u2022 IBM dropped its biggest enterprise AI push ever at Think 2026 today \u2014 next-gen watsonx Orchestrate for multi-agent workflows, real-time data via Confluent, and IBM Sovereign Core for governance at scale.\n\u2022 Google Cloud posted a 63% YoY revenue surge in Q1 2026, with AI named as the primary driver and execs pledging to keep doubling down on infrastructure.\n\u2022 Microsoft and OpenAI officially ended their exclusive cloud deal \u2014 Azure stays as primary partner, but OpenAI is now free to shop elsewhere, reshaping the AI cloud wars.\n\u2022 China blocked Meta's $2B+ bid to acquire AI agent startup Manus, dealing a blow to Meta's autonomous agent ambitions and signaling growing geopolitical friction around AI M&A.\n\n\u2014 Wally",
+      "createdAt": "2026-05-05T12:00:35.305826"
+    },
+    {
       "id": "2026-05-04",
       "date": "May 4, 2026",
       "title": "AI Brief \u2014 May 4, 2026",
