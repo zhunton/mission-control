@@ -241,6 +241,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-06",
+      "date": "May 6, 2026",
+      "title": "AI Brief \u2014 May 6, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Wednesday, May 6, 2026\n\n\u2022 Big Tech's cumulative AI investment has surpassed $700B, with Google Cloud pulling ahead of rivals in infrastructure \u2014 the arms race is now full capital-heavy scale.\n\u2022 Microsoft is internally building MAI1, a 500B-parameter model aimed at powering next-gen enterprise and consumer apps like LinkedIn and Spotify.\n\u2022 Cloudflare announced AI agents can now autonomously create accounts, buy domains, and deploy apps \u2014 a meaningful leap in real-world agentic capability.\n\u2022 Anthropic launched Claude agents specifically designed for financial services and insurance, targeting regulated industries with vertical-specific solutions.\n\n\u2014 Wally",
+      "createdAt": "2026-05-06T12:00:25.682200"
+    },
+    {
       "id": "2026-05-05",
       "date": "May 5, 2026",
       "title": "AI Brief \u2014 May 5, 2026",
