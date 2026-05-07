@@ -453,6 +453,42 @@
       ],
       "weaknesses": [],
       "note": "100% \u2014 strong financial instinct. Correctly identified that positive contribution margin = take the job regardless of fixed overhead allocation."
+    },
+    {
+      "id": "2026-05-07",
+      "date": "May 7, 2026",
+      "score": 0,
+      "total": 1,
+      "percentage": 0,
+      "categories": {
+        "hvac": {
+          "score": 0,
+          "total": 1
+        },
+        "financial": {
+          "score": 0,
+          "total": 0
+        },
+        "hunton": {
+          "score": 0,
+          "total": 0
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "category": "hvac",
+          "question": "RTU running constantly, can't cool building, suction line temperature unusually warm \u2014 most likely root cause?",
+          "userAnswer": "D \u2014 Clogged air filter causing coil freeze",
+          "correct": false,
+          "feedback": "Good instinct (airflow restriction IS a real problem) but wrong direction. Clogged filter causes the coil to FREEZE (suction line gets colder, not warmer). Correct answer: B \u2014 refrigerant leak causes low charge, evaporator can't absorb heat, suction line warms up. Warm suction line = low refrigerant is the key diagnostic."
+        }
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Refrigerant cycle diagnostics \u2014 suction line temperature direction (warm = low refrigerant, cold/frozen = airflow restriction)"
+      ],
+      "note": "0% \u2014 close reasoning but wrong symptom direction. Understands airflow restriction causes problems but needs to learn the difference: frozen coil = cold suction line, low refrigerant = warm suction line. Good teaching moment on vapor-compression diagnostics."
     }
   ]
 }
