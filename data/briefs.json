@@ -269,6 +269,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-10",
+      "date": "May 10, 2026",
+      "title": "AI Brief \u2014 May 10, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Sunday, May 10, 2026\n\n\u2022 Anthropic's $50B funding round at a $900B valuation is still developing, cementing it as the most valuable private AI company on the planet.\n\u2022 Google Chrome was caught silently installing a 4GB on-device AI model without explicit user consent, drawing immediate backlash from privacy researchers.\n\u2022 IBM dropped Granite 4.1 (8B params, MoE architecture) that matches 32B model performance \u2014 enterprise-grade efficiency play against the frontier labs.\n\u2022 The US-China AI Summit is officially on the agenda for Trump-Xi Beijing talks, with Treasury's Bessent leading \u2014 first bilateral AI policy talks at this level.\n\n\u2014 Wally",
+      "createdAt": "2026-05-10T12:00:26.053903"
+    },
+    {
       "id": "2026-05-09",
       "date": "May 9, 2026",
       "title": "AI Brief \u2014 May 9, 2026",
