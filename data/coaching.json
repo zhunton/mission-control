@@ -489,6 +489,43 @@
         "Refrigerant cycle diagnostics \u2014 suction line temperature direction (warm = low refrigerant, cold/frozen = airflow restriction)"
       ],
       "note": "0% \u2014 close reasoning but wrong symptom direction. Understands airflow restriction causes problems but needs to learn the difference: frozen coil = cold suction line, low refrigerant = warm suction line. Good teaching moment on vapor-compression diagnostics."
+    },
+    {
+      "id": "2026-05-11",
+      "date": "May 11, 2026",
+      "score": 1,
+      "total": 1,
+      "percentage": 100,
+      "categories": {
+        "hvac": {
+          "score": 1,
+          "total": 1
+        },
+        "financial": {
+          "score": 0,
+          "total": 0
+        },
+        "hunton": {
+          "score": 0,
+          "total": 0
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "category": "hvac",
+          "question": "Unit running but not cooling well, abnormally LOW pressure on the low side \u2014 most likely cause?",
+          "userAnswer": "B \u2014 Low refrigerant charge, less vapor in evaporator drops suction pressure",
+          "correct": true,
+          "feedback": "Correct. Low refrigerant \u2192 less fluid boiling \u2192 less vapor \u2192 suction pressure drops \u2192 poor cooling. Key follow-up: fixing the pressure without finding the leak means the problem returns. The recharge is temporary, the leak fix is the real solution."
+        }
+      ],
+      "strengths": [
+        "High side vs low side diagnostic logic",
+        "Low refrigerant charge \u2192 suction pressure relationship"
+      ],
+      "weaknesses": [],
+      "note": "100% \u2014 Phase 1 fundamentals are clicking. Strong grasp of refrigerant circuit pressure relationships. Good progress on the curriculum rebuild."
     }
   ]
 }
