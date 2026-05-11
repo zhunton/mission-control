@@ -276,6 +276,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-11",
+      "date": "May 11, 2026",
+      "title": "AI Brief \u2014 May 11, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Monday, May 11, 2026\n\n\u2022 Google dropped Gemini 3.1 Ultra with a 2M token context window and native multimodal across text, image, audio, and video \u2014 the biggest infrastructure release of the month, ahead of Google I/O next week (May 19\u201320).\n\n\u2022 Anthropic is on a tear: $44B ARR (80x YoY growth), a $200B Google Cloud contract, and access to SpaceX's entire Colossus 1 supercomputer (220K+ NVIDIA GPUs) \u2014 all in the last two weeks.\n\n\u2022 Four Chinese labs (Z.ai, MiniMax, Moonshot, DeepSeek) dropped open-weights coding models within a 12-day window, each matching Western frontier performance at a fraction of the cost.\n\n\u2022 The US government is pushing mandatory pre-release AI testing frameworks \u2014 major labs including Microsoft and xAI have agreed to give regulators early model access, signaling a new regulated era for AI.\n\n\u2014 Wally",
+      "createdAt": "2026-05-11T12:00:30.529848"
+    },
+    {
       "id": "2026-05-10",
       "date": "May 10, 2026",
       "title": "AI Brief \u2014 May 10, 2026",
