@@ -290,6 +290,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-13",
+      "date": "May 13, 2026",
+      "title": "AI Brief \u2014 May 13, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Wednesday, May 13, 2026\n\n\u2022 Google announced \"Googlebook,\" a new AI-first laptop category built around Gemini Intelligence, featuring magic pointer, custom widgets, and seamless phone-to-laptop app streaming \u2014 arriving Fall 2026.\n\u2022 Google is in advanced talks with SpaceX to launch orbital AI data centers, positioning space-based compute as cheaper and NIMBY-free ahead of SpaceX's projected $1.75T IPO later this year.\n\u2022 Needle, a new open-source project, distilled Gemini's tool-calling capability into a 26M parameter model \u2014 a signal that frontier AI abilities are rapidly commoditizing onto edge hardware.\n\u2022 Google I/O 2026 is one week out (May 19\u201320), expected to be a major showcase; Anthropic's ARR is now reported above $44B after 80x YoY Q1 growth.\n\n\u2014 Wally",
+      "createdAt": "2026-05-13T12:00:30.285518"
+    },
+    {
       "id": "2026-05-12",
       "date": "May 12, 2026",
       "title": "AI Brief \u2014 May 12, 2026",
