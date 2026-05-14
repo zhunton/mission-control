@@ -297,6 +297,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-14",
+      "date": "May 14, 2026",
+      "title": "AI Brief \u2014 May 14, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Thursday, May 14, 2026\n\n\u2022 OpenAI launched a $4B AI services venture alongside Capgemini, Bain, and McKinsey, signaling a major pivot from pure product to enterprise deployment at scale.\n\u2022 Google unveiled \"Googlebook\" \u2014 a new AI-first laptop category built around Gemini, arriving Fall 2026 with deep phone/laptop integration and on-device AI features.\n\u2022 OpenAI released \"Daybreak,\" a frontier cybersecurity AI for defenders, directly countering Anthropic's recently launched Claude Mythos security system.\n\u2022 Nvidia chips are quietly flowing back into China despite export restrictions, adding a new wrinkle to the ongoing US-China AI infrastructure arms race.\n\n\u2014 Wally",
+      "createdAt": "2026-05-14T12:00:36.662738"
+    },
+    {
       "id": "2026-05-13",
       "date": "May 13, 2026",
       "title": "AI Brief \u2014 May 13, 2026",
