@@ -332,6 +332,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-19",
+      "date": "May 19, 2026",
+      "title": "AI Brief \u2014 May 19, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 May 19, 2026\n\n\u2022 Google I/O kicks off today with Gemini 4.0 (or 3.5) expected as the headline drop, plus \"Gemini Omni\" \u2014 a unified text/image/video model \u2014 and Android XR glasses to take on Meta Ray-Bans.\n\u2022 Anthropic is reportedly closing a ~$30B funding round that would push its valuation to ~$900B, nearly 3x its February number.\n\u2022 GPT-5.5 became the default for ChatGPT users, and OpenAI launched personal finance tools via Plaid integration for Pro subscribers.\n\u2022 Alibaba shipped Qwen3 Coder Next (large-context, repo-scale coding) and Subquadratic launched SubQ 1M-Preview with $29M seed \u2014 the first non-transformer architecture to crack the mainstream.\n\n\u2014 Wally",
+      "createdAt": "2026-05-19T12:00:35.668370"
+    },
+    {
       "id": "2026-05-18",
       "date": "May 18, 2026",
       "title": "AI Brief \u2014 May 18, 2026",
