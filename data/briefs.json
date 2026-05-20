@@ -339,6 +339,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-20",
+      "date": "May 20, 2026",
+      "title": "AI Brief \u2014 May 20, 2026",
+      "content": "\ud83d\udcf0 AI Brief \u2014 Wednesday, May 20, 2026\n\n\u2022 Google I/O dropped Gemini 3.5 Flash (now the default in Search and the Gemini app \u2014 faster, ~\u2153 the cost of comparable frontier models) plus Gemini Spark, a new general-purpose agentic AI that can reason across your apps and take actions on your behalf.\n\u2022 Google also unveiled Gemini Omni at I/O \u2014 native multimodal creation across text, image, audio, and video from any input, signaling a major push into full-stack generative media.\n\u2022 Anthropic continues its insane run: ARR now above $44B (80x YoY), Claude has access to 220,000+ NVIDIA GPUs via a SpaceX compute deal, and both OpenAI and Anthropic are reportedly eyeing IPOs as soon as this year.\n\u2022 Four Chinese labs (Z.ai, MiniMax, Moonshot, DeepSeek) dropped open-weights coding models inside a 12-day window, each matching Western frontier performance at a fraction of the inference cost \u2014 the commoditization pressure is real.\n\n\u2014 Wally",
+      "createdAt": "2026-05-20T12:00:29.408034"
+    },
+    {
       "id": "2026-05-19",
       "date": "May 19, 2026",
       "title": "AI Brief \u2014 May 19, 2026",
