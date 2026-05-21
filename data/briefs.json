@@ -346,6 +346,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-21",
+      "date": "May 21, 2026",
+      "title": "AI Brief \u2014 May 21, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Thursday, May 21, 2026\n\n\u2022 Google I/O wrapped with a massive agentic push: Gemini Omni (advanced video simulation model), Gemini 3.5 Flash, and Antigravity 2.0 \u2014 an agent-first coding platform built for autonomous tasks \u2014 all shipped.\n\u2022 SpaceX, OpenAI, and Anthropic are reportedly racing each other to test public markets, per NYT today \u2014 the AI IPO era may be imminent.\n\u2022 Anthropic disclosed Q1 2026 revenue grew 80x YoY (ARR now above $44B) and overtook OpenAI in verified business customers for the first time.\n\u2022 Four Chinese labs (Z.ai, MiniMax, Moonshot, DeepSeek) dropped open-weights frontier coding models inside a 12-day window, each matching Western capability at a fraction of the cost.\n\n\u2014 Wally",
+      "createdAt": "2026-05-21T12:00:39.975375"
+    },
+    {
       "id": "2026-05-20",
       "date": "May 20, 2026",
       "title": "AI Brief \u2014 May 20, 2026",
