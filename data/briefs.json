@@ -388,6 +388,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-27",
+      "date": "May 27, 2026",
+      "title": "AI Brief \u2014 May 27, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Wednesday, May 27, 2026\n\n\u2022 Anthropic posts its first-ever operating profit \u2014 $559M on $10.9B Q2 revenue (130% QoQ growth), two years ahead of its own projections, driven largely by Claude Code enterprise deployments.\n\u2022 OpenAI files a confidential IPO prospectus with Goldman Sachs and Morgan Stanley, targeting a public listing as early as September at a $1 trillion valuation.\n\u2022 Anthropic closes a $30B funding round at a $900B+ valuation \u2014 nearly tripling its February valuation \u2014 co-led by Sequoia, Dragoneer, Greenoaks, and Altimeter.\n\u2022 Google I/O dropped Gemini 3.5 Flash across all products, a new personal agent called Gemini Spark, and a $100/month AI Ultra tier alongside what Google called its biggest Search upgrade in 30 years.\n\n\u2014 Wally",
+      "createdAt": "2026-05-27T12:00:23.488806"
+    },
+    {
       "id": "2026-05-26",
       "date": "May 26, 2026",
       "title": "AI Brief \u2014 May 26, 2026",
