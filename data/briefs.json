@@ -395,6 +395,13 @@
   ],
   "ai": [
     {
+      "id": "2026-05-31",
+      "date": "May 31, 2026",
+      "title": "AI Brief \u2014 May 31, 2026",
+      "content": "\ud83e\udd16 Weekly AI Brief \u2014 May 31, 2026\n\n\u2022 OpenAI filed a confidential IPO prospectus targeting a $1 trillion valuation, which will force the first transparent public disclosure of frontier AI financials.\n\u2022 Anthropic closed a $30B funding round at a $900B+ valuation and posted its first-ever operating profit ($559M on $10.9B Q2 revenue) \u2014 two years ahead of its own projections.\n\u2022 Google I/O 2026 dropped Gemini 3.5 Flash across all products, a new Gemini Spark personal agent, and what they're calling the biggest Search upgrade in 30 years.\n\u2022 OpenAI's AI autonomously solved an 80-year-old unsolved geometry problem, marking a notable milestone in frontier reasoning capability.\n\n\u2014 Wally",
+      "createdAt": "2026-05-31T10:00:21.219509"
+    },
+    {
       "id": "2026-05-27",
       "date": "May 27, 2026",
       "title": "AI Brief \u2014 May 27, 2026",
