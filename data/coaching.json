@@ -526,6 +526,42 @@
       ],
       "weaknesses": [],
       "note": "100% \u2014 Phase 1 fundamentals are clicking. Strong grasp of refrigerant circuit pressure relationships. Good progress on the curriculum rebuild."
+    },
+    {
+      "id": "2026-06-03",
+      "date": "June 3, 2026",
+      "score": 1,
+      "total": 1,
+      "percentage": 100,
+      "categories": {
+        "hvac": {
+          "score": 0,
+          "total": 0
+        },
+        "financial": {
+          "score": 1,
+          "total": 1
+        },
+        "hunton": {
+          "score": 0,
+          "total": 0
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "category": "financial",
+          "question": "Revenue $240K on target, GM% landed at 31% vs 42% target, materials on plan. Most likely explanation?",
+          "userAnswer": "B \u2014 Labor costs ran over: overtime, jobs taking longer than quoted, unbillable tech time",
+          "correct": true,
+          "feedback": "Correct. Materials on plan + revenue on target = the full $26,400 overrun is in labor. Target COGS at 42% GM = $139,200. Actual = $165,600. Investigate: hours worked vs billed, overtime, callback rate, warranty/no-charge work."
+        }
+      ],
+      "strengths": [
+        "GM% variance analysis \u2014 isolating labor vs materials as cost driver"
+      ],
+      "weaknesses": [],
+      "note": "100% \u2014 Strong financial instinct. Correctly ruled out materials (explicitly stated on plan) and identified labor as the sole remaining explanation. Good grasp of the 42%/30-38%/high 20s/22% benchmark structure."
     }
   ]
 }
