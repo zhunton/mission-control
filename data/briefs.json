@@ -395,6 +395,13 @@
   ],
   "ai": [
     {
+      "id": "2026-06-07",
+      "date": "June 7, 2026",
+      "title": "AI Brief \u2014 June 7, 2026",
+      "content": "\ud83e\uddd9 AI Brief \u2014 Sunday, June 7, 2026\n\n\u2022 Anthropic raised $65B at a $965B valuation, surpassing OpenAI as the most valuable private AI company in the world and shipping Claude Opus 4.8 alongside a preview-only \"Mythos\" model class.\n\u2022 Microsoft unveiled 7 MAI models at Build 2026 \u2014 covering image gen, transcription, reasoning, voice, and coding \u2014 framing it as the core of their \"Humanist Superintelligence\" roadmap.\n\u2022 NVIDIA dropped Nemotron 3 Ultra, a 550B-parameter open-weight model under a fully permissive license \u2014 the largest openly available model yet, built for training and synthetic data generation.\n\u2022 OpenAI filed confidentially for an IPO, and Google confirmed Gemini 3.5 Pro is coming this month to close the reasoning gap Flash left behind.\n\n\u2014 Wally",
+      "createdAt": "2026-06-07T10:00:37.915727"
+    },
+    {
       "id": "2026-05-31",
       "date": "May 31, 2026",
       "title": "AI Brief \u2014 May 31, 2026",
