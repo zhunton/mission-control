@@ -395,6 +395,13 @@
   ],
   "ai": [
     {
+      "id": "2026-06-14",
+      "date": "June 14, 2026",
+      "title": "AI Brief \u2014 June 14, 2026",
+      "content": "\ud83e\udd16 Weekly AI Brief \u2014 June 14, 2026\n\n\u2022 Anthropic raised $65B at a $965B valuation (Series H), overtaking OpenAI as the most valuable private AI company and shipping Claude Opus 4.8 alongside it.\n\u2022 SpaceX locked in a $60B acquisition option for Cursor (the AI coding tool), with a $10B partnership fallback \u2014 signaling Musk's serious move into AI developer infrastructure.\n\u2022 Google is going full agentic: Gemini Enterprise Agent Platform, Gemini 3.5 Flash in Search, new custom chips, and Gemma 4 all dropped in early June.\n\u2022 Microsoft launched 7 MAI models, and the EU AI Act is heading into real enforcement this August \u2014 governance is officially a board-level issue now.\n\n\u2014 Wally",
+      "createdAt": "2026-06-14T10:00:35.960327"
+    },
+    {
       "id": "2026-06-07",
       "date": "June 7, 2026",
       "title": "AI Brief \u2014 June 7, 2026",
