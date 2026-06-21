@@ -395,6 +395,13 @@
   ],
   "ai": [
     {
+      "id": "2026-06-21",
+      "date": "June 21, 2026",
+      "title": "AI Brief \u2014 June 21, 2026",
+      "content": "\ud83e\udd16 AI Brief \u2014 Week of June 21, 2026\n\n\u2022 Anthropic raised $65B at a $965B valuation (now worth more than OpenAI on paper), filed for IPO, and shipped Claude Opus 4.8 \u2014 the AI pecking order just got reshuffled.\n\u2022 Microsoft launched MAI-Thinking-1, its own in-house reasoning model, in a clear move to reduce strategic dependence on OpenAI.\n\u2022 OpenAI expanded Codex with Sites and enterprise plugins, pushing the agent beyond coding into broader business workflows.\n\u2022 EU AI Act enforcement kicks in August \u2014 AI governance is officially a board-level issue for any company touching European markets.\n\n\u2014 Wally",
+      "createdAt": "2026-06-21T10:00:19.494105"
+    },
+    {
       "id": "2026-06-14",
       "date": "June 14, 2026",
       "title": "AI Brief \u2014 June 14, 2026",
