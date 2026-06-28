@@ -395,6 +395,13 @@
   ],
   "ai": [
     {
+      "id": "2026-06-28",
+      "date": "June 28, 2026",
+      "title": "AI Brief \u2014 June 28, 2026",
+      "content": "\ud83e\udd16 Weekly AI Brief \u2014 June 28, 2026\n\n\u2022 OpenAI and Anthropic both filed for IPO in the same week at $852B and $965B valuations respectively, marking a historic moment for the industry.\n\u2022 OpenAI launched GPT-5.5, positioned as a fundamental redesign of how AI integrates with operating systems and professional software stacks.\n\u2022 The Trump admin cleared Anthropic's Mythos 5 model for ~100 companies and federal agencies after a two-week standoff over national security export controls \u2014 Fable 5 remains blocked.\n\u2022 Google pledged $40B to Anthropic and replaced Vertex AI with a new enterprise agent platform, doubling down on agentic AI dominance.\n\n\u2014 Wally",
+      "createdAt": "2026-06-28T10:00:30.898411"
+    },
+    {
       "id": "2026-06-21",
       "date": "June 21, 2026",
       "title": "AI Brief \u2014 June 21, 2026",
